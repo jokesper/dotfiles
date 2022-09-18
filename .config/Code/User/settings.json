@@ -1,0 +1,28 @@
+{
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": "'ss03', 'ss04', 'ss05', 'ss09', 'cv32'",
+    "gitlens.defaultDateFormat": "DD.MM.YYYY, hh:mm",
+    "gitlens.defaultDateShortFormat": "DD.MM.YYYY, hh:mm",
+    "gitlens.defaultTimeFormat": "hh:mm",
+    "explorer.confirmDelete": false,
+    "gitlens.codeLens.scopes": [
+        "document",
+        "containers",
+        "blocks"
+    ],
+    "explorer.confirmDragAndDrop": false,
+    "editor.wordWrap": "on",
+    "FSharp.codeLenses.signature.enabled": false,
+    "FSharp.inlayHints.typeAnnotations": false,
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true,
+    "FSharp.enableTreeView": false,
+    "FSharp.dotnetRoot": "/home/joe/.dotnet",
+    "haskell.manageHLS": "GHCup",
+    "editor.comments.insertSpace": false,
+    "FSharp.inlayHints.parameterNames": false,
+    "FSharp.inlayHints.enabled": false,
+    "Lua.telemetry.enable": false
+}
