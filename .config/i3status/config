@@ -34,6 +34,8 @@ volume master {
 battery all {
     format = "%status %percentage %remaining"
 	integer_battery_capacity = true
+    low_threshold = 20
+    threshold_type = percentage
 }
 
 disk "/" {
