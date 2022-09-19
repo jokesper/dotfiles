@@ -9,6 +9,7 @@ general {
 #order += "ipv6"
 order += "wireless _first_"
 order += "ethernet _first_"
+order += "volume master"
 order += "battery all"
 order += "disk /"
 order += "load"
@@ -23,6 +24,11 @@ wireless _first_ {
 ethernet _first_ {
         format_up = "E: %ip (%speed)"
         format_down = "E: down"
+}
+
+volume master {
+        format = "VOL %volume"
+        format_muted = "MUTED (%volume)"
 }
 
 battery all {
