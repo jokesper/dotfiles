@@ -41,13 +41,13 @@ opt.foldenable     = false
 
 opt.ignorecase     = true
 opt.smartcase      = true
-opt.incsearch      = true
-opt.hlsearch       = true
+--opt.incsearch      = true
+--opt.hlsearch       = true
 
 opt.expandtab      = true
 opt.shiftwidth     = 4
 opt.shiftround     = true
-opt.smarttab       = true
+--opt.smarttab       = true
 opt.softtabstop    = 4
 opt.tabstop        = 4
 opt.autoindent     = true
