@@ -16,7 +16,9 @@ api.nvim_create_autocmd({"VimEnter","VimResume","VimResized","WinNew","WinClosed
     callback = function()
         for _,id in pairs(vim.api.nvim_list_wins()) do
             vim.wo[id].scrolloff =
-                    math.ceil(api.nvim_win_get_height(id) / 10)
+                math.ceil(api.nvim_win_get_height(id) / 10)
+            vim.wo[id].sidescrolloff =
+                math.ceil(api.nvim_win_get_width (id) / 10)
         end
     end})
 -- Possible fix for the 2.:
@@ -28,10 +30,14 @@ api.nvim_create_autocmd({"VimEnter","VimResume","VimResized","WinNew","WinClosed
 
 opt.encoding       = 'utf8'
 opt.fileencoding   = 'utf8'
+opt.linebreak      = true
 
 opt.syntax         = "ON"
 opt.termguicolors  = true
 opt.spelllang      = "en"
+
+opt.foldmethod     = "indent"
+opt.foldenable     = false
 
 opt.ignorecase     = true
 opt.smartcase      = true
@@ -40,6 +46,8 @@ opt.hlsearch       = true
 
 opt.expandtab      = true
 opt.shiftwidth     = 4
+opt.shiftround     = true
+opt.smarttab       = true
 opt.softtabstop    = 4
 opt.tabstop        = 4
 opt.autoindent     = true
@@ -47,3 +55,5 @@ opt.smartindent    = true
 
 opt.splitright     = true
 opt.splitbelow     = true
+
+--opt.lazyredraw = true
