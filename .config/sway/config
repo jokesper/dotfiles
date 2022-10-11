@@ -60,9 +60,9 @@ set $ws9   "9:Discord"
 set $ws10 "10"
 
 # Bind windows to workspaces
-assign [app_id="firefox"] $ws2
-assign [app_id="Steam"  ] $ws8
-assign [app_id="discord"] $ws9
+for_window [app_id="firefox"] move container to workspace $ws2
+for_window [app_id="Steam"  ] move container to workspace $ws8
+for_window [app_id="discord"] move container to workspace $ws9
 
 # Switch to workspace
 bindsym $mod+1 workspace number $ws1
