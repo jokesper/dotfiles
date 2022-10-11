@@ -11,7 +11,7 @@
 .config/Code/User/*
 !.config/Code/User/settings.json
 !.config/gtk-3.0/
-!.config/i3/
+!.config/sway/
 !.config/i3status/
 !.config/kitty/
 !.config/nvim/
