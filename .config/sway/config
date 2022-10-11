@@ -8,7 +8,7 @@ set $down  j
 set $up    k
 set $right l
 set $term kitty
-set $menu dmenu_path | bemenu | xargs swaymsg exec --
+set $menu .config/sway/menu.sh | bemenu | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 
 #output * bg /usr/share/background/sway/Sway_Wallpaper_Blue_1920x1080.png fill
