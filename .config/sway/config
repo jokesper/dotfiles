@@ -11,7 +11,7 @@ set $term kitty
 set $menu .config/sway/menu.sh | bemenu | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 
-#output * bg /usr/share/background/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 bindsym $mod+t       exec $term
 bindsym $mod+Return  exec $term
@@ -59,10 +59,11 @@ set $ws8   "8:Steam"
 set $ws9   "9:Discord"
 set $ws10 "10"
 
-# Bind windows to workspaces
+# Window specific changes
+for_window [shell="xwayland"] title_format "%title [XWayland]"
 for_window [app_id="firefox"] move container to workspace $ws2
-for_window [app_id="Steam"  ] move container to workspace $ws8
-for_window [app_id="discord"] move container to workspace $ws9
+for_window [class ="Steam"  ] move container to workspace $ws8
+for_window [class ="discord"] move container to workspace $ws9
 
 # Switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -137,7 +138,7 @@ exec swayidle -w \
     timeout 7 $lock \
     resume 'swaymsg "output * dpms on"'
 input type:touchpad tap enabled
-input * {
+input type:keyboard {
     xkb_layout "us,de"
     xkb_numlock enabled
 }

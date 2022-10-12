@@ -28,7 +28,7 @@ ethernet _first_ {
 
 volume master {
     format = "VOL %volume"
-    format_muted = "MUTED (%volume)"
+    format_muted = "MUTED %volume"
 }
 
 battery all {
