@@ -1,0 +1,13 @@
+[init]
+    defaultBranch = main
+[core]
+    whitespace = tab-in-indent,tabwith=4
+[user]
+    name = jkeDev
+    email = 52346246+jkeDev@users.noreply.github.com
+[credential "https://gist.github.com"]
+    helper = !/usr/bin/gh auth git-credential
+[credential "https://github.com"]
+    helper = !/usr/bin/gh auth git-credential
+[format]
+    pretty = oneline
