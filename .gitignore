@@ -8,11 +8,6 @@
 
 !.config/
 .config/*
-!.config/Code/
-.config/Code/*
-!.config/Code/User/
-.config/Code/User/*
-!.config/Code/User/settings.json
 !.config/gtk-3.0/
 !.config/sway/
 !.config/i3status/
