@@ -11,7 +11,7 @@ set $term kitty
 set $menu .config/sway/menu.sh | bemenu | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * background #0F0F0F solid_color
 
 bindsym $mod+t       exec $term
 bindsym $mod+Return  exec $term
