@@ -1,6 +1,10 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+alias \
+    sudo='sudo --preserve-env=HOME,EDITOR ' \
+    man='man '
+
 if [ -x /usr/bin/dircolors ]; then
     alias \
         ls='ls --color=auto' \
