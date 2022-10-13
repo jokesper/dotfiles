@@ -2,6 +2,7 @@
 !.gitattributes
 !.gitconfig
 !.gitignore
+!.bash_profile
 !.bashrc
 !.bash_aliases
 
