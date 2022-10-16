@@ -39,6 +39,7 @@ BEGIN {
 /^Exec=/ {
     if (!relevant) next
     sub(/[^=]+=/, "")
+    sub(/%./, "\"\"") # Field codes are not supported
     exec = $0
 }
 # TODO: implement URL
