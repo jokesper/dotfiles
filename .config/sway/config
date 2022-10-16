@@ -8,7 +8,7 @@ set $down  j
 set $up    k
 set $right l
 set $term kitty
-set $menu .config/sway/menu.sh | bemenu | xargs swaymsg exec --
+set $menu .config/sway/menu.sh | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 
 output * background #0F0F0F solid_color
