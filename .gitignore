@@ -13,6 +13,7 @@
 !.config/i3status/
 !.config/kitty/
 !.config/nvim/
+.config/nvim/plugin
 
 !.minecraft/
 .minecraft/*
