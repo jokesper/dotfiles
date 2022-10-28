@@ -57,7 +57,7 @@ opt.shiftround     = true
 --opt.smarttab       = true
 opt.softtabstop    = 4
 opt.tabstop        = 4
-opt.autoindent     = true
+--opt.autoindent     = true
 opt.smartindent    = true
 
 opt.splitright     = true
