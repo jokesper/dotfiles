@@ -1,5 +1,5 @@
-vim.g.mapleader = ','
-vim.g.localleader = '\\'
+vim.g.mapleader = ' '
+vim.g.localleader = ','
 
 require('vars')
 require('opts')
