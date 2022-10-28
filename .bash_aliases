@@ -6,3 +6,5 @@ alias \
             | select(.pid? and .visible?) \
             | ({name, class, app_id}) \
             | del(.. | select(. == null))"' \
+    ll='la -l' \
+    la='ls -A' \
