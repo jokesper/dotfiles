@@ -5,7 +5,7 @@ opt.title          = true
 opt.titlestring    = "%<%F - nvim"
 opt.relativenumber = true
 opt.number         = true
-opt.whichwrap      = "lh"
+opt.whichwrap      = "lh<>"
 
 -- FIXME:
 -- 1. Scrolloff faction is hard coded
