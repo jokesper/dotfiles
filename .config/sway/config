@@ -10,6 +10,7 @@ set $right l
 set $term kitty
 set $menu .config/sway/menu.sh | xargs swaymsg exec --
 set $lock swaylock -fc 111111
+set $select slurp -b \#FF007F1F -c \#007F7F
 
 output * background #0F0F0F solid_color
 
@@ -21,6 +22,7 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 bindsym $mod+Shift+x exec $lock
+bindsym Print exec grim -g "$($select)" - | wl-copy
 
 # Show edge borders only when necessary.
 default_border pixel
