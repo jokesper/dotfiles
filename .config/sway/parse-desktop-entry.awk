@@ -9,6 +9,7 @@ BEGIN {
 /^\[Desktop Entry\]/ {
     show = 1
     relevant = 1
+    shell = ""
     next
 }
 
@@ -31,10 +32,10 @@ BEGIN {
     show = 0
 }
 
-# Not supported by kitty
-#/^Terminal=true$/ {
-#    if (add) 
-#}
+/^Terminal=true$/ {
+    if (!relevant) next
+    shell = "kitty" 
+}
 
 /^Exec=/ {
     if (!relevant) next
@@ -48,6 +49,6 @@ ENDFILE {
     if (show) {
         gsub(/\s+/, " ", name)
         gsub(/\s+/, " ", exec)
-        print name "\t" exec
+        print name "\t" shell " " exec
     }
 }
