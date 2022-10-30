@@ -40,8 +40,8 @@ opt.cursorline     = true
 opt.cursorlineopt  = "number"
 -- TODO:
 -- - swap nvim_command for native alternative
-api.nvim_command("highlight LineNr guifg=gray")
-api.nvim_command("highlight Pmenu guibg=gray")
+api.nvim_command "highlight LineNr guifg=gray"
+api.nvim_command "highlight Pmenu  guibg=gray"
 
 opt.foldmethod     = "indent"
 opt.foldenable     = false
