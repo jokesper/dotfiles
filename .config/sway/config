@@ -145,9 +145,11 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 exec swayidle -w \
-    timeout 5 'swaymsg "output * dpms off"' \
-    timeout 7 $lock \
-    resume 'swaymsg "output * dpms on"'
+    timeout 300 'swaymsg "output * dpms off"' \
+       resume 'swaymsg "output * dpms on"' \
+    timeout 310 "$lock" \
+    before-sleep "$lock"
+
 input type:touchpad tap enabled
 input type:keyboard {
     xkb_layout "us,de"
