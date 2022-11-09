@@ -1,5 +1,5 @@
-vim.g.  mapleader = ' '
-vim.g.localleader = ','
+vim.g.     mapleader = ' '
+vim.g.maplocalleader = ','
 
 require 'jkeDev.vars'
 require 'jkeDev.opts'
