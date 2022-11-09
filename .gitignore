@@ -16,6 +16,7 @@
 .config/nvim/plugin
 .config/nvim/lua/*
 !.config/nvim/lua/jkeDev/
+!.config/pacman/
 
 !.minecraft/
 .minecraft/*

@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type      = Package
+Target    = *
+
+[Action]
+Depends = neovim
+When    = PostTransaction
+Exec    = /bin/bash -c -- 'runuser -u "$(echo $SUDO_USER)" -- nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
