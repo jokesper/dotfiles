@@ -14,16 +14,20 @@ set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
 
 output * background #0F0F0F solid_color
 
-bindsym $mod+t       exec $term
-bindsym $mod+Return  exec $term
+bindsym $mod+t       exec --no-startup-id $term
+bindsym $mod+Return  exec --no-startup-id $term
 bindsym $mod+Shift+q kill
-bindsym $mod+d       exec $menu
+bindsym $mod+d       exec --no-startup-id $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+c reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec --no-startup-id \
+    swaynag -t warning \
+    -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
+    -B 'Yes, exit sway' \
+    'swaymsg exit'
 bindsym $mod+Shift+x exec $lock
-bindsym       Print exec grim -g "$($select)" - | wl-copy
-bindsym Shift+Print exec \
+bindsym       Print exec --no-startup-id grim -g "$($select)" - | wl-copy
+bindsym Shift+Print exec --no-startup-id \
     swaymsg -t get_tree \
     | jq -r '.. \
         | select(.pid? and .visible?) \
@@ -148,11 +152,11 @@ input type:keyboard {
     xkb_options "grp:win_space_toggle"
     xkb_numlock enabled
 }
-bindsym XF86AudioRaiseVolume  exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume  exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute         exec pactl set-sink-mute   @DEFAULT_SINK@ toggle
-bindsym XF86MonBrightnessUp   exec brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86AudioRaiseVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute         exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Read `man 5 sway-bar` for more information about this section.
 bar {
