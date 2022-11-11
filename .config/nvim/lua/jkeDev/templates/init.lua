@@ -21,15 +21,17 @@ for _,format in ipairs({
     {'*.tex', 'latex'}
 }) do
     local template = table.remove(format)
-    if type(template) == 'string'
-    then template = require('jkeDev.templates.' .. template) end
+    local callback
+    if type(template) == 'string' then
+        template = ('jkeDev.templates.%s'):format(template)
+        callback = function(e) require(template)(loader, e) end
+    else callback = function(e) template(loader, e) end end
 
     api.nvim_create_autocmd(
         "BufNewFile",
         {
             group = 'templates',
             desc = "A template for files with extensions: " .. tostring(format),
-            pattern = format,
-            callback = function(event) template(loader, event) end
+            pattern = format, callback = callback
         })
 end
