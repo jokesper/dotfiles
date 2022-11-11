@@ -2,10 +2,12 @@ local api = vim.api
 
 api.nvim_create_augroup('templates', {clear = true})
 local function loader(template, ...)
-    local indent = #template:match('^%s*')
-    local cnt = {}
-    for line in (template..'\n'):format(...):gmatch('([^\n]*)\n') do
-        table.insert(cnt, line:sub(indent+1))
+    local cnt, indent = {}, template:match('^%s*')
+    for line in (template:sub(#indent+1) .. '\n')
+            :gsub('\n' .. indent, '\n')
+            :format(...)
+            :gmatch('([^\n]*)\n') do
+        table.insert(cnt, line)
     end
     api.nvim_buf_set_lines(0, 0, -1, true, cnt)
     api.nvim_win_set_cursor(0, {#cnt, #cnt[#cnt]})
@@ -14,9 +16,10 @@ for _,format in ipairs({
     {
         function(loader, _) loader([[
             #!/bin/bash
-            ]])
+        ]])
         end, '*.sh'
-    }
+    },
+    {'latex', '*.tex'}
 }) do
     local template = table.remove(format, 1)
     if type(template) == 'string'
