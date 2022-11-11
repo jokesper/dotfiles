@@ -12,16 +12,15 @@ local function loader(template, ...)
     api.nvim_buf_set_lines(0, 0, -1, true, cnt)
     api.nvim_win_set_cursor(0, {#cnt, #cnt[#cnt]})
 end
+local function generate(pattern, template)
+    return {pattern, function(loader, _) loader(template) end}
+end
+
 for _,format in ipairs({
-    {
-        function(loader, _) loader([[
-            #!/bin/bash
-        ]])
-        end, '*.sh'
-    },
-    {'latex', '*.tex'}
+    generate('*.sh', '#!/bin/bash\n'),
+    {'*.tex', 'latex'}
 }) do
-    local template = table.remove(format, 1)
+    local template = table.remove(format)
     if type(template) == 'string'
     then template = require('jkeDev.templates.' .. template) end
 
