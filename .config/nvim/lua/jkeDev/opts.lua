@@ -25,7 +25,6 @@ api.nvim_create_autocmd({"VimEnter","VimResume","VimResized","WinNew","WinClosed
 -- api.nvim_create_autocmd({"WinNew", "WinScrolled"}, {
 --    desc = "Update scrolloff value"
 --    callback = function()
---        
 --    end})
 
 opt.encoding       = 'utf8'

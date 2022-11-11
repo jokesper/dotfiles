@@ -4,7 +4,7 @@ return function(loader, event)
     esss = event
     loader([[
         \documentclass{article}
-        
+
         \usepackage{amsmath}
         \usepackage{geometry}
 
@@ -13,7 +13,7 @@ return function(loader, event)
         \title{%s}
         \author{%s}
         \date{%s}
-        
+
         \begin{document}
             \maketitle
         \end{document}]],

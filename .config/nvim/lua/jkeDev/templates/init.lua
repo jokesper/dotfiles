@@ -1,4 +1,5 @@
 local api = vim.api
+local autocmd = api.nvim_create_autocmd
 
 api.nvim_create_augroup('templates', {clear = true})
 local function loader(template, ...)
@@ -27,7 +28,7 @@ for _,format in ipairs({
         callback = function(e) require(template)(loader, e) end
     else callback = function(e) template(loader, e) end end
 
-    api.nvim_create_autocmd(
+    autocmd(
         "BufNewFile",
         {
             group = 'templates',
@@ -35,3 +36,15 @@ for _,format in ipairs({
             pattern = format, callback = callback
         })
 end
+
+-- FIXME: Disable on binary files
+autocmd(
+    "BufWritePre",
+    {
+        group = 'templates',
+        desc = "Automatically remove trailing whitespaces.",
+        pattern = '*',
+        callback = function()
+            api.nvim_exec([[%s/\s\+$//e]], {silent=true})
+        end
+    })

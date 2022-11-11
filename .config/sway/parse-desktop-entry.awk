@@ -34,7 +34,7 @@ BEGIN {
 
 /^Terminal=true$/ {
     if (!relevant) next
-    shell = "kitty" 
+    shell = "kitty"
 }
 
 /^Exec=/ {
