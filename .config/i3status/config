@@ -13,6 +13,7 @@ order += "volume master"
 order += "battery all"
 order += "disk /"
 order += "cpu_usage"
+order += "cpu_temperature all"
 order += "memory"
 order += "tztime local"
 
@@ -47,6 +48,10 @@ cpu_usage {
     format = "%usage"
     max_threshold = 75
     degraded_threshold = 25
+}
+
+cpu_temperature all {
+    format = "%degrees°C"
 }
 
 memory {
