@@ -1,17 +1,13 @@
 #!/usr/bin/env bash
 
-cd "$HOME/Music"
-
 lists=$(find \
     -L $(sed 's/:/ /g' <(printf "%q" "$MUSIC:$HOME/Music")) \
     -maxdepth 1 -type f -name \*.list)
 
-#cd "${0%/*}"
-#for list in *.list; do
 while IFS= read -r list; do
     dir=${list%.*}
     notListed=$(gawk -F "\t" -v sync="yt-dlp -P '$dir' -qxa -" '
-        NR==FNR {list[$1] = $2; next}
+        match(FILENAME, /^.*\.list$/) {list[$1] = $2; next}
         match($0, /(.*)\s+\[(.*?)\]/, v) {
             if (v[2] in list)
                 {delete list[v[2]]; next}
@@ -28,13 +24,13 @@ while IFS= read -r list; do
             "$list" \
             <(ls -1 "$dir" 2> /dev/null))
     if [ -n "$notListed" ]; then
-        printf 'The following tracks are not listed in the playlist:\n'
+        printf ':: The following tracks are not listed in the playlist %s:\n' $dir
         cut -f2 <<< $notListed
         printf ':: What action to take? [Append/Remove/Ignore] '
-        read -r option
+        read -r option < /dev/tty
         case $option in
             'A'|'a')
-                echo "$notListed" >> $list;;
+                cut -f 1,2 <<< "$notListed" >> $list;;
             'R'|'r')
                 while IFS= read -r track; do
                     rm "$(cut -f3 <<< "$track")";
