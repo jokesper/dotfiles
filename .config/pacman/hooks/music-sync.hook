@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type      = Package
+Target    = *
+
+[Action]
+Depends = yt-dlp
+When    = PostTransaction
+Exec    = /bin/bash -c -- 'runuser -u "$SUDO_USER" -- bash -c "\$HOME/.dotfiles/music-sync.sh"'
