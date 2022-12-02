@@ -1,11 +1,10 @@
 local sys = vim.fn.system
 local env = vim.env
 return function(loader, event)
-    esss = event
     loader([[
         \documentclass{article}
 
-        \usepackage{amsmath}
+        \usepackage[intlimits]{amsmath}
         \usepackage{geometry}
 
         \geometry{margin=2cm}
