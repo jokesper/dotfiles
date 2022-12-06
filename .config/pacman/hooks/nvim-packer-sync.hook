@@ -6,6 +6,7 @@ Type      = Package
 Target    = *
 
 [Action]
+Description = Updating NeoVim Plugins...
 Depends = neovim
 When    = PostTransaction
 Exec    = /bin/bash -c -- 'runuser -u "$SUDO_USER" -- nvim --headless -c "autocmd User PackerComplete quitall" -c "PackerSync"'
