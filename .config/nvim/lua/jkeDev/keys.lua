@@ -4,6 +4,10 @@ local map = vim.api.nvim_set_keymap
 --        vim.api.nvim_set_keymap(mode, ...)
 --    end
 --end
+map('n', '<C-D>', '<C-D>zzg0', {})
+map('n', '<C-U>', '<C-U>zzg0', {})
+map('n', 'n'    , 'nzz'      , {})
+map('n', 'N'    , 'Nzz'      , {})
 
 --map('t', '<ESC>'    , '<C-\\><C-N>'        , {}) -- leave terimal mode
 map('i', 'jk'       , '<ESC>'              , {}) -- leave insert mode
