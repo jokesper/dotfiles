@@ -7,8 +7,8 @@ end
 
 local telescope = require 'telescope.builtin'
 
-map('n', '<C-D>', '<C-D>zzg0', {})
-map('n', '<C-U>', '<C-U>zzg0', {})
+map('n', '<C-D>', 'M<C-D>g0' , {})
+map('n', '<C-U>', 'M<C-U>g0' , {})
 map('n', 'n'    , 'nzz'      , {})
 map('n', 'N'    , 'Nzz'      , {})
 
