@@ -14,7 +14,7 @@ return function(loader, event)
         \date{%s}
 
         \begin{document}
-            \maketitle
+            %^\maketitle
         \end{document}]],
         event.match:match('([^/]+)%.[^%.]+$'),
         sys{"getent", "passwd", env.USER}:split(':')[5],
