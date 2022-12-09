@@ -4,7 +4,7 @@ local autocmd = api.nvim_create_autocmd
 api.nvim_create_augroup('templates', {clear = true})
 local function mapVararg(f, ...)
     local res = {}
-    for i,v in pairs{...} do res[i] = f(v) end
+    for k,v in pairs{...} do res[k] = f(v) end
     return unpack(res) -- moved to table.unpack
 end
 local function loader(template, ...)
