@@ -6,6 +6,8 @@ return function(loader, event)
 
         \usepackage[intlimits]{amsmath}
         \usepackage{geometry}
+        \usepackage[shortlabels]{enumitem}
+        \usepackage{graphics}
 
         \geometry{margin=2cm}
 
