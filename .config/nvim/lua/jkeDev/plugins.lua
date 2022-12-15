@@ -13,7 +13,11 @@ local packer_bootstrap = ensure_packer()
 return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'folke/tokyonight.nvim'
-    use 'lervag/vimtex'
+    use {
+        'lervag/vimtex',
+        opt = true,
+        cmd = 'BufWinEnter *.tex'
+    }
     use {
         'nvim-telescope/telescope.nvim',
         branch = '0.1.x',
