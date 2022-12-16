@@ -16,7 +16,7 @@ return require('packer').startup(function(use)
     use {
         'lervag/vimtex',
         opt = true,
-        cmd = 'BufWinEnter *.tex'
+        event = 'BufWinEnter *.tex'
     }
     use {
         'nvim-telescope/telescope.nvim',
