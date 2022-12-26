@@ -1,7 +1,7 @@
 [init]
     defaultBranch = main
 [core]
-    whitespace = tab-in-indent,tabwith=4,trailing-space
+	whitespace = indent-with-non-tab,space-before-tab,tabwith=4,trailing-space
 [user]
     name = jkeDev
     email = 52346246+jkeDev@users.noreply.github.com
