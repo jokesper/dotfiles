@@ -36,6 +36,7 @@ bindsym Shift+Print exec \
     | $select -or \
     | grim -g - - \
     | wl-copy
+bindsym $mod+v exec kitty -d ~/Documents -- nvim
 
 # Show edge borders only when necessary.
 default_border pixel
