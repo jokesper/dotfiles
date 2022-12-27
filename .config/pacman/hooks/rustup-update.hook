@@ -8,5 +8,5 @@ Target = *
 [Action]
 Description = Updating Rust toolchains
 Depends = rustup
-when = PostTransaction
-Exec = rustup update
+When = PostTransaction
+Exec = /usr/bin/rustup update
