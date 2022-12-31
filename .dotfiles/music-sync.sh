@@ -6,6 +6,7 @@ lists=$(find \
 
 while IFS= read -r list; do
     dir=${list%.*}
+	name=${dir##*/}
     notListed=$(gawk -F "\t" -v sync="yt-dlp -P '$dir' -qxa -" '
         match(FILENAME, /^.*\.list$/) {list[$1] = $2; next}
         match($0, /(.*)\s+\[(.*?)\]/, v) {
@@ -24,7 +25,7 @@ while IFS= read -r list; do
             "$list" \
             <(ls -1 "$dir" 2> /dev/null))
     if [ -n "$notListed" ]; then
-        printf ':: The following tracks are not listed in the playlist %s:\n' $dir
+		printf ':: The following tracks are not listed in the playlist %s (%s):\n' $name $dir
         cut -f2 <<< $notListed
         printf ':: What action to take? [Append/Remove/Ignore] '
         read -r option < /dev/tty
@@ -33,8 +34,9 @@ while IFS= read -r list; do
                 cut -f 1,2 <<< "$notListed" >> $list;;
             'R'|'r')
                 while IFS= read -r track; do
-                    rm "$(cut -f3 <<< "$track")";
+                    rm "$dir/$(cut -f3 <<< "$track")";
                 done <<< "$notListed";;
         esac
     fi
+	find "$dir" > "${CMUS_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}}/cmus/playlists/$name"
 done <<< "$lists"
