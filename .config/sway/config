@@ -171,4 +171,13 @@ bar {
     position top
     status_command i3status
     strip_workspace_numbers yes
+	mode hide
+	colors {
+		background #0000007F
+		inactive_workspace #000000BF #000000BF #FFFFFFFF
+		# ToDo: active_workspace
+		active_workspace #FFFFFFFF #FFFFFFFF #000000FF
+		focused_workspace #000000BF #000000BF #00FFFFFF
+		urgent_workspace #000000BF #000000BF #FF0000FF
+	}
 }
