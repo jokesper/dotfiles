@@ -12,7 +12,7 @@ set $menu .config/sway/menu.sh | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
 
-output * background ~/Desktop/background fit #0F0F0F
+exec ~/.dotfiles/swap-background.sh
 
 bindsym $mod+t       exec $term
 bindsym $mod+Return  exec $term
