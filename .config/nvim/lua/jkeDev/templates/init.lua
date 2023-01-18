@@ -63,16 +63,3 @@ for _,format in ipairs({
             pattern = format, callback = callback
         })
 end
-
--- FIXME: Disable on binary files
-autocmd(
-    "BufWritePre",
-    {
-        group = 'templates',
-        desc = "Automatically remove trailing whitespaces.",
-        pattern = '*',
-        callback = function()
-            if not api.nvim_buf_get_option(api.nvim_get_current_buf(), 'modifiable') then return end
-            api.nvim_exec([[%s/\s\+$//e]], {silent=true})
-        end
-    })

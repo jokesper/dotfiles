@@ -1,22 +1,45 @@
 local api = vim.api
-local augroup = api.nvim_create_augroup
-local autocmd = api.nvim_create_autocmd
+local create_augroup = api.nvim_create_augroup
+local create_autocmd = api.nvim_create_autocmd
+local exec = api.nvim_exec
+local is_buffer_modifiable = function()
+	return not api.nvim_buf_get_option(
+		api.nvim_get_current_buf())
+end
 
-augroup('custom', {clear = true})
-autocmd('TermOpen', {
-    group = 'custom',
-    desc = "Automatically enter Terminal-mode when opening a terminal.",
-    command = 'startinsert'
-})
-autocmd('TermClose', {
-	group = 'custom',
-	pattern = 'term://*:*{bash}',
-	desc = 'Automatically close terminal window when exiting shells.',
-	command = 'quit!',
-})
-autocmd('WinEnter', {
-	group = 'custom',
-	pattern = 'term://*',
-	desc = 'Automatically enter Terminal-mode when entering a terminal window.',
-	command = 'startinsert',
-})
+for name,augroup in pairs{custom = {
+	{'TermOpen',
+		desc = 'Automatically enter Terminal-mode when opening a terminal.',
+		command = 'startinsert',
+	},
+	{'TermClose',
+		pattern = 'term://*:*{bash}',
+		desc = 'Automatically close terminal window when exiting shells.',
+		command = 'quit!',
+	},
+	{'WinEnter',
+		pattern = 'term://*',
+		desc = 'Automatically enter Terminal-mode when entering a terminal window.',
+		command = 'startinsert',
+	},
+	{'BufLeave',
+		desc = 'Automatically enter Terminal-mode when entering a terminal window.',
+		command = 'stopinsert',
+	},
+	{'BufWritePre',
+		-- FIXME: Disable on binary files
+		desc = 'Automatically remove trailing whitespaces.',
+		callback = function()
+			if not is_buffer_modifiable() then return end
+			exec([[%s/\s\+$//e]], {silent=true})
+		end,
+	}},
+} do
+	if type(name) == 'string' then create_augroup(name, {clear = true}) end
+	for _,autocmd in ipairs(augroup) do
+		event, opts = {}, {group = name}
+		for k,v in pairs(autocmd)
+			do (type(k) == 'number' and event or opts)[k] = v end
+		create_autocmd(event, opts)
+	end
+end
