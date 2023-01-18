@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type      = Package
+Target    = *
+
+[Action]
+Description = Running user update scripts...
+Depends = gawk
+When = PostTransaction
+Exec = /opt/dotfiles/user-updates.sh

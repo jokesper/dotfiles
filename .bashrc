@@ -2,7 +2,7 @@
 [[ $- != *i* ]] && return
 
 alias \
-    sudo='sudo --preserve-env=HOME,EDITOR ' \
+	doas='doas ' \
     man='man '
 
 if [ -x /usr/bin/dircolors ]; then
