@@ -3,8 +3,8 @@ local create_augroup = api.nvim_create_augroup
 local create_autocmd = api.nvim_create_autocmd
 local exec = api.nvim_exec
 local is_buffer_modifiable = function()
-	return not api.nvim_buf_get_option(
-		api.nvim_get_current_buf())
+	return api.nvim_buf_get_option(
+		api.nvim_get_current_buf(), 'modifiable')
 end
 
 for name,augroup in pairs{custom = {
