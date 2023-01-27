@@ -37,6 +37,8 @@ map('nv', '<Leader>p', '"+p')
 map('nv', '<Leader>P', '"+P')
 map('nv', '<Leader>d', '"+d')
 map('nv', '<Leader>D', '"+D')
+map('v', '<Leader>x', '"+x')
+map('v', '<Leader>X', '"+X')
 
 map('v', 'J', ":m '>+1<CR>gv=gv")
 map('v', 'K', ":m '<-2<CR>gv=gv")
