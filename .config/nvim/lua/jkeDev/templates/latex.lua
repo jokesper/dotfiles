@@ -7,6 +7,7 @@ return function(loader, event) loader([[
 	\usepackage{geometry}
 	\usepackage[shortlabels]{enumitem}
 	\usepackage{graphicx}
+	\usepackage{amsfonts}
 
 	\geometry{margin=2cm}
 
