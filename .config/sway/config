@@ -12,7 +12,8 @@ set $menu .config/sway/menu.sh | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
 
-exec ~/.dotfiles/swap-background.sh
+exec_always ~/.dotfiles/swap-background.sh
+exec wpa_cli -Ba ~/.dotfiles/swap-background.sh
 
 bindsym $mod+t       exec $term
 bindsym $mod+Return  exec $term
