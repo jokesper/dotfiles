@@ -176,8 +176,7 @@ bar {
 	colors {
 		background #0000007F
 		inactive_workspace #000000BF #000000BF #FFFFFFFF
-		# ToDo: active_workspace
-		active_workspace #FFFFFFFF #FFFFFFFF #000000FF
+		active_workspace #000000BF #000000BF #FFBF00FF
 		focused_workspace #000000BF #000000BF #00FFFFFF
 		urgent_workspace #000000BF #000000BF #FF0000FF
 	}
