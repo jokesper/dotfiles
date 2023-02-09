@@ -181,3 +181,5 @@ bar {
 		urgent_workspace #000000BF #000000BF #FF0000FF
 	}
 }
+
+include ../dotfiles/sway-config
