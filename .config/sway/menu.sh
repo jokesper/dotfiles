@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 find \
-    -L $(sed 's/:/\/applications /g' <(printf "%q" "$XDG_DATA_HOME:$XDG_DATA_DIRS:")) \
+    -L $(sed 's/:/\/applications /g' <(printf "%q" \
+		"${XDG_DATA_HOME:-$HOME/.local/share}:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}:")) \
     -type f -name \*.desktop \
     | xargs -d '\n' gawk -f ~/.config/sway/parse-desktop-entry.awk \
     | sort \
