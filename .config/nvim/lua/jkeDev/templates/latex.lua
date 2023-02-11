@@ -3,7 +3,7 @@ local env = vim.env
 return function(loader, event) loader([[
 	\documentclass{article}
 
-	\usepackage[intlimits]{amsmath}
+	\usepackage{amsmath}
 	\usepackage{geometry}
 	\usepackage[shortlabels]{enumitem}
 	\usepackage{graphicx}
