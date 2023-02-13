@@ -9,3 +9,5 @@ alias \
             | del(.. | select(. == null))"' \
     ll='la -l' \
     la='ls -A' \
+	man='~/.dotfiles/man.sh' \
+	file='file -b' \
