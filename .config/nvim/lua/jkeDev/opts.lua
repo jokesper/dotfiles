@@ -27,8 +27,6 @@ opt.linebreak      = true
 
 opt.termguicolors  = true
 
-opt.list = true
-opt.listchars = 'tab:| '
 
 opt.cursorline     = true
 opt.cursorlineopt  = "number"
