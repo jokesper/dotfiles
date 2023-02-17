@@ -27,7 +27,6 @@ map('nvot!', '<A-K>', '<C-\\><C-n><C-w>K')
 map('nvot!', '<A-L>', '<C-\\><C-n><C-w>L')
 
 map('i', 'jk', '<ESC>')
-map('n', '<Leader>n', '<Cmd>nohlsearch<CR>')
 map('n', '<Leader>x', '<Cmd>Ex<CR>')
 
 -- System clipboard
