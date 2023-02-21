@@ -25,3 +25,5 @@ export MOZ_ENABLE_WAYLAND=1
 #export XDG_DATA_HOME="$HOME/.local/share"
 #export XDG_STATE_HOME="$HOME/.local/state"
 #export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+
+set -o vi
