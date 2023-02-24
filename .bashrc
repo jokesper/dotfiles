@@ -3,16 +3,16 @@
 
 alias \
 	doas='doas ' \
-    man='man '
+	man='man '
 
 if [ -x /usr/bin/dircolors ]; then
-    alias \
-        ls='ls --color=auto' \
-        grep='grep --color=auto'
+	alias \
+		ls='ls --color=auto' \
+		grep='grep --color=auto'
 fi
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
 PS1='\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\W\[\e[0m\]\$ '
