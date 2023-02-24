@@ -16,15 +16,15 @@ map('n', '<C-y>', '<C-y>Mg0')
 map('n', 'n', 'nzz')
 map('n', 'N', 'Nzz')
 
-map('nvot!', '<A-h>', '<C-\\><C-n><C-w>h')
-map('nvot!', '<A-j>', '<C-\\><C-n><C-w>j')
-map('nvot!', '<A-k>', '<C-\\><C-n><C-w>k')
-map('nvot!', '<A-l>', '<C-\\><C-n><C-w>l')
-
-map('nvot!', '<A-H>', '<C-\\><C-n><C-w>H')
-map('nvot!', '<A-J>', '<C-\\><C-n><C-w>J')
-map('nvot!', '<A-K>', '<C-\\><C-n><C-w>K')
-map('nvot!', '<A-L>', '<C-\\><C-n><C-w>L')
+for lhs,rhs in pairs{
+	['<A-h>'] = '<C-w>h', ['<A-H>'] = '<C-w>H',
+	['<A-j>'] = '<C-w>j', ['<A-J>'] = '<C-w>J',
+	['<A-k>'] = '<C-w>k', ['<A-K>'] = '<C-w>K',
+	['<A-l>'] = '<C-w>l', ['<A-L>'] = '<C-w>L',
+	['<A-n>'] = '<Cmd>new<CR>', ['<A-m>'] = '<Cmd>vnew<CR>',
+	['<A-t>'] = '<Cmd>vnew +terminal<CR>', ['<A-T>'] = '<Cmd>new +terminal<CR>',
+	['<A-=>'] = '<C-w>=',
+} do map('nvot!', lhs, '<Cmd>stopinsert<CR>'..rhs) end
 
 map('i', 'jk', '<ESC>')
 map('n', '<Leader>x', '<Cmd>Ex<CR>')
