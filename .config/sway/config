@@ -8,6 +8,7 @@ set $down j
 set $up k
 set $right l
 set $term kitty -- nvim term://bash
+set $editor kitty -d ~/Documents -- nvim
 set $menu .config/sway/menu.sh | xargs swaymsg exec --
 set $lock swaylock -fc 111111
 set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
@@ -37,7 +38,7 @@ bindsym Shift+Print exec \
 	| $select -or \
 	| grim -g - - \
 	| wl-copy
-bindsym $mod+v exec kitty -d ~/Documents -- nvim
+bindsym $mod+v exec $editor
 
 # Show edge borders only when necessary.
 default_border pixel
