@@ -8,6 +8,7 @@ return function(loader, event) loader([[
 	\usepackage[shortlabels]{enumitem}
 	\usepackage{graphicx}
 	\usepackage{amsfonts}
+	\usepackage{units}
 
 	\geometry{margin=2cm}
 
