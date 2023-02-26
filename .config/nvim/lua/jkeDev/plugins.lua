@@ -25,6 +25,12 @@ return require 'packer'.startup(function(use)
 		branch = '0.1.x',
 		requires = 'nvim-lua/plenary.nvim',
 	}
+	use {
+		'glacambre/firenvim',
+		opt = true,
+		run = function() fn['firenvim#install'](0) end,
+		setup = [[vim.cmd.packadd 'firenvim']],
+	}
 	use 'lukas-reineke/indent-blankline.nvim'
 
 	if bootstrap then require('packer').sync() end
