@@ -28,3 +28,5 @@ export MOZ_ENABLE_WAYLAND=1
 
 # Show unpushed git commits
 git log -n8 @{u}..HEAD -- 2>/dev/null
+
+complete -cf doas
