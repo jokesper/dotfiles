@@ -11,7 +11,7 @@ end
 
 for name,augroup in pairs{custom = {
 	{'TermOpen',
-		desc = 'Automatically enter Terminal-mode when opening a terminal.',
+		desc = 'Automatically enter Terminal-mode when opening a new terminal window.',
 		command = 'startinsert',
 	},
 	{'TermClose',
@@ -21,11 +21,11 @@ for name,augroup in pairs{custom = {
 	},
 	{'WinEnter',
 		pattern = 'term://*',
-		desc = 'Automatically enter Terminal-mode when entering a terminal window.',
+		desc = 'Automatically enter terminal mode when entering a terminal window.',
 		command = 'startinsert',
 	},
 	{'BufLeave',
-		desc = 'Automatically enter Terminal-mode when entering a terminal window.',
+		desc = 'Automatically leave insert mode when changing terminal window buffer.',
 		command = 'stopinsert',
 	},
 	{'BufWritePre',
