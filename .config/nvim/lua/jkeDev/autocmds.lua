@@ -1,7 +1,9 @@
 local api = vim.api
 local create_augroup = api.nvim_create_augroup
 local create_autocmd = api.nvim_create_autocmd
-local exec = api.nvim_exec
+local exec = function(src, output)
+	api.nvim_exec(src, output ~= nil and output)
+end
 local buf_get_option = api.nvim_buf_get_option
 local is_buffer_modifiable = function()
 	local buf = api.nvim_get_current_buf()
@@ -11,8 +13,14 @@ end
 
 for name,augroup in pairs{custom = {
 	{'TermOpen',
-		desc = 'Automatically enter Terminal-mode when opening a new terminal window.',
-		command = 'startinsert',
+		desc = 'Automatically configure new terminal windows',
+		callback = function()
+			local opt = vim.opt_local
+			opt.modifiable = false
+			opt.modified = false
+			opt.bufhidden = 'delete'
+			exec 'startinsert'
+		end,
 	},
 	{'TermClose',
 		pattern = 'term://*:*{bash}',
@@ -37,7 +45,7 @@ for name,augroup in pairs{custom = {
 				[[\s\+$]], -- Remove trailing spaces
 				[[\%^\n\+]], -- Remove leading newlines
 				[[\n\+\%$]], -- Remove trailing newlines
-			} do exec(('%%s/%s//e'):format(pattern), {silent=true}) end
+			} do exec(('%%s/%s//e'):format(pattern)) end
 		end,
 	}},
 } do
