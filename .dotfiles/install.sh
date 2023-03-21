@@ -6,11 +6,3 @@ install -Dm644 ./user-updates.hook -t /etc/pacman.d/hooks/
 install -Dm755 ./user-updates.sh -t /opt/dotfiles/
 install -Dm644 ./doas.conf -t /etc/
 install -Dm644 ./faillock.conf -t /etc/security/
-
-user=${DOAS_USER:-$SUDO_USER}
-if [ -z $user ]; then
-	printf "Not running from \`doas\` or \`sudo\`"
-	user=$(stat -c %U "$path")
-	printf "Detected home directory of %s" "$user"
-fi
-runuser -u "$user" ./../setup-user.sh
