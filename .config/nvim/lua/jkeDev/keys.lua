@@ -42,5 +42,6 @@ map('nv', '<Leader>C', '"+c$')
 map('v', '<Leader>x', '"+x')
 map('v', '<Leader>X', '"+X')
 
-map('v', 'J', ":m '>+1<CR>gv=gv")
-map('v', 'K', ":m '<-2<CR>gv=gv")
+local v, max = vim.v, math.max
+map('v', 'J', function() return (":m '>+%i<CR>gv=gv"):format(max(1,v.count)) end, {expr = true})
+map('v', 'K', function() return (":m '<-%i<CR>gv=gv"):format(1+max(1,v.count)) end, {expr = true})
