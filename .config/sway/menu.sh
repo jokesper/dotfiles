@@ -5,7 +5,7 @@ find \
 	-type f -name \*.desktop \
 	| xargs -d '\n' gawk -f ~/.config/sway/parse-desktop-entry.awk \
 	| sort \
-	| gawk -F "\t" -v menu='bemenu -ipλ -fm all' '
+	| gawk -F "\t" -v menu='bemenu -ipλ -fm all --fn "NimbusSans 10"' '
 		{
 			print $1 |& menu
 			cmds[$1] = $2
