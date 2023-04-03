@@ -1,9 +1,6 @@
 vim.g.mapleader = ' '
 
-require 'jkeDev.libext'
-require 'jkeDev.vars'
-require 'jkeDev.opts'
-require 'jkeDev.keys'
-require 'jkeDev.templates'
-require 'jkeDev.plugins'
-require 'jkeDev.autocmds'
+for _,name in ipairs{
+	'libext', 'vars', 'opts', 'keys', 'templates', 'plugins', 'autocmds'
+} do require(('jkeDev.%s'):format(name)) end
+vim.cmd.colorscheme 'jkeDev'
