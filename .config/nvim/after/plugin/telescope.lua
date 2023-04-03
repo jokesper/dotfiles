@@ -1,8 +1,17 @@
 local telescope = require 'telescope.builtin'
+local actions = require 'telescope.actions'
 local map = vim.keymap.set
 
 require 'telescope'.setup {
-	defaults = {file_ignore_patterns = {'Output/'}},
+	defaults = {
+		file_ignore_patterns = {
+			'Output/',
+		},
+		mappings = {
+			i = {['<C-c>'] = false},
+			n = {['<C-c>'] = actions.close},
+		},
+	},
 }
 
 map('n', '<Leader>f', telescope.find_files)
