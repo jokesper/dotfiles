@@ -6,6 +6,8 @@ require 'telescope'.setup {
 	defaults = {
 		file_ignore_patterns = {
 			'Output/',
+			'bin/',
+			'obj/',
 		},
 		mappings = {
 			i = {['<C-c>'] = false},
