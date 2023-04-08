@@ -41,6 +41,13 @@ map('nv', '<Leader>C', '"+c$')
 map('v', '<Leader>x', '"+x')
 map('v', '<Leader>X', '"+X')
 
+-- Remove relative scrolling without moving cursor,
+-- since it is only usefull after commands like `n`
+-- and it should be in the autocmd
+map('n', 'zt', '')
+map('n', 'zz', '')
+map('n', 'zb', '')
+
 local v, max = vim.v, math.max
 map('v', 'J', function() return (":m '>+%i<CR>gv=gv"):format(max(1,v.count)) end, {expr = true})
 map('v', 'K', function() return (":m '<-%i<CR>gv=gv"):format(1+max(1,v.count)) end, {expr = true})
