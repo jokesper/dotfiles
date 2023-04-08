@@ -1,13 +1,20 @@
+local function stringToTable(str)
+	return type(str) == 'string' and table.fromIter(str:gmatch '.') or str end
+
 do
-	local native = vim.keymap.set
+	local _set, _del = vim.keymap.set, vim.keymap.del
 	vim.keymap.set = function(modes, lhs, rhs, opts)
-		opts = opts or {}
+		opts, modes = opts or {}, stringToTable(modes)
 		if opts.silent == nil then opts.silent = true end
-		if type(modes) ~= 'string' then native(modes, lhs, rhs, opts) return end
-		for mode in modes:gmatch '.' do native(mode, lhs, rhs, opts) end
+		_set(modes, lhs, rhs, opts)
+	end
+	vim.keymap.del = function(modes, lhs, opts)
+		_del(stringToTable(modes), lhs, opts)
 	end
 end
+
 local map = vim.keymap.set
+local del = vim.keymap.del
 
 map('n', '<C-d>', '<C-d>Mg0')
 map('n', '<C-u>', '<C-u>Mg0')

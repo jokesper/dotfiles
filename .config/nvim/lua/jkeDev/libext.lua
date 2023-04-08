@@ -1,3 +1,8 @@
+table.fromIter = function(iter)
+	local res = {}
+	for e in iter do table.insert(res, e) end
+	return res
+end
 string.split = function(s,del)
 	local toCut = {[0]={[2]=1}}
 	for a,b in s
