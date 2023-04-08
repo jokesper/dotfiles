@@ -17,6 +17,8 @@ fi
 
 PS1='\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\W\[\e[0m\]\$ '
 
+shopt -s autocd
+
 export EDITOR=nvim
 export MOZ_ENABLE_WAYLAND=1
 
