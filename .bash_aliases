@@ -1,6 +1,7 @@
 alias \
 	vim=nvim \
 	lua=luajit \
+	up='doas -n pacman -Syu --' \
 	get_tree='\
 		swaymsg -t get_tree \
 		| jq ".. \
