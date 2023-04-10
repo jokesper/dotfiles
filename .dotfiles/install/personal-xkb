@@ -1,0 +1,13 @@
+hidden partial modifier_keys
+xkb_symbols "basic" {
+
+	include "eu(basic)"
+	name[Group1] = "EurKEY (customized)";
+
+	key <CAPS> { [ Control_L ] };
+	modifier_map Control { <CAPS> };
+
+	key <ESC> { [ Caps_Lock ] };
+
+	replace key <LCTL> { [ Escape ] };
+};

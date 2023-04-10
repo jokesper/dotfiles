@@ -140,8 +140,8 @@ for_window [app_id=".*"] inhibit_idle fullscreen
 
 input type:touchpad tap enabled
 input type:keyboard {
-	xkb_layout "eu"
-	xkb_options "grp:win_space_toggle,ctrl:swapcaps"
+	xkb_layout "personal"
+	xkb_options "grp:win_space_toggle"
 	xkb_numlock enabled
 }
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
