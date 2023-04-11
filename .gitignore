@@ -1,16 +1,16 @@
 /*
 !.gitattributes
-!.gitconfig
 !.gitignore
 !.bash_profile
 !.bashrc
-!.bash_aliases
 !.inputrc
 
 !.dotfiles/
 
 !.config/
 .config/*
+!.config/git/
+!.config/bash/
 !.config/gtk-3.0/
 !.config/sway/
 !.config/i3status/

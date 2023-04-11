@@ -1,6 +1,12 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+config=${XDG_CONFIG_HOME:-$HOME/.config}/bash
+state=${XDG_STATE_HOME:-$HOME/.local/state}/bash
+
+mkdir -p $state
+export HISTFILE=$state/history
+
 alias \
 	doas='doas ' \
 	man='man '
@@ -11,8 +17,8 @@ if [ -x /usr/bin/dircolors ]; then
 		grep='grep --color=auto'
 fi
 
-if [ -f ~/.bash_aliases ]; then
-	. ~/.bash_aliases
+if [ -f $config/aliases ]; then
+	. $config/aliases
 fi
 
 PS1='\[\e[36m\]\u@\h\[\e[m\]:\[\e[35m\]\W\[\e[m\]\$ '
