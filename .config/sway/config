@@ -57,16 +57,16 @@ bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3:Firefox"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8:Steam"
-set $ws9 "9:Discord"
-set $ws10 "10:Music"
+set $ws1 1
+set $ws2 2
+set $ws3 3:Firefox
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8:Steam
+set $ws9 9:Discord
+set $ws10 10:Music
 
 # Window specific changes
 for_window [shell="xwayland"] title_format "%title [XWayland]"
