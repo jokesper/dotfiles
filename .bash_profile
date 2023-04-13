@@ -1,4 +1,2 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-	exec sway
-fi
+[[ -z ${DISPLAY:-} && $(tty) = '/dev/tty1' ]] && exec sway
