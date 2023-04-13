@@ -23,7 +23,7 @@ for name,augroup in pairs{custom = {
 		end,
 	},
 	{'TermClose',
-		pattern = 'term://*:*{bash}',
+		pattern = 'term://*:*{bash,sl}*',
 		desc = 'Automatically close terminal window when exiting shells.',
 		command = 'quit!',
 	},

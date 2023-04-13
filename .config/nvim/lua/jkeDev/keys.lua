@@ -51,9 +51,10 @@ map('v', '<Leader>X', '"+X')
 -- Remove relative scrolling without moving cursor,
 -- since it is only usefull after commands like `n`
 -- and it should be in the autocmd
-map('n', 'zt', '')
-map('n', 'zz', '')
-map('n', 'zb', '')
+local anti_bad_habits = '<Cmd>tabnew term://sl -Glwe<CR>'
+map('n', 'zt', anti_bad_habits)
+map('n', 'zz', anti_bad_habits)
+map('n', 'zb', anti_bad_habits)
 
 local v, max = vim.v, math.max
 map('v', 'J', function() return (":m '>+%i<CR>gv=gv"):format(max(1,v.count)) end, {expr = true})
