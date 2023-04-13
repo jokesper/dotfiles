@@ -1,0 +1,6 @@
+[Match]
+Type=wlan
+
+[Network]
+DHCP=true
+IgnoreCarrierLoss=3s
