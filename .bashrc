@@ -9,17 +9,14 @@ export HISTFILE=$state/history
 
 alias \
 	doas='doas ' \
-	man='man '
+	man='man ' \
 
-if [ -x /usr/bin/dircolors ]; then
-	alias \
-		ls='ls --color=auto' \
-		grep='grep --color=auto'
-fi
+[[ -x /usr/bin/dircolors ]] && alias \
+	ls='ls --color=auto' \
+	grep='grep --color=auto' \
 
-if [ -f $config/aliases ]; then
+[[ -f $config/aliases ]] && \
 	. $config/aliases
-fi
 
 PS1='\[\e[36m\]\u@\h\[\e[m\]:\[\e[35m\]\W\[\e[m\]\$ '
 
