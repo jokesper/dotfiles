@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
+set -eu
+
 fallback='#0F0F0F'
-if [ -z $1 ]; then
+[[ ! -v 1 ]] &&
 	WPA_ID=$(wpa_cli status | awk -F= '/^id=/ {print $2; exit}')
-fi
-case ${2:-$([[ -n $WPA_ID ]] && echo "CONNECTED")} in
+case ${2:-${WPA_ID:+CONNECTED}} in
 	CONNECTED)
 		ssid=$(wpa_cli get_network "$WPA_ID" ssid \
 			| tail -n 1 \

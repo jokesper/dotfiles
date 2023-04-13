@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+set -eu
+
 lists=$(find \
-	-L $(sed 's/:/ /g' <(printf "%q" "$MUSIC:$HOME/Music")) \
+	-L $(sed 's/:/ /g' <(printf "%q" "${MUSIC:-}:$HOME/Music")) \
 	-maxdepth 1 -type f -name \*.list)
 
 while IFS= read -r list; do

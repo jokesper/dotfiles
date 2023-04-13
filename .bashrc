@@ -1,6 +1,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+set -eu
+
 config=${XDG_CONFIG_HOME:-$HOME/.config}/bash
 state=${XDG_STATE_HOME:-$HOME/.local/state}/bash
 
@@ -35,3 +37,6 @@ export MOZ_ENABLE_WAYLAND=1
 git log -n8 @{u}..HEAD -- 2>/dev/null
 
 complete -cf doas
+
+# Disable after config
+set +e

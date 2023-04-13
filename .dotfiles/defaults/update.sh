@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 lv1="\e[32m==>\e[0m"
 lv2="\e[34m  ->\e[0m"
 printf "$lv1 $USER\n"

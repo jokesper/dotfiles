@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 printf ":: Running user update scripts...\n"
 getent passwd \
 	| gawk -F: \

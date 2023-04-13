@@ -46,7 +46,7 @@ local function generate(pattern, template)
 end
 
 for _,format in ipairs({
-	generate('*.sh', '#!/usr/bin/env bash\n'),
+	{'*.sh', 'bash'},
 	{'*.tex', 'latex'},
 }) do
 	local template = table.remove(format)

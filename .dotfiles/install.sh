@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eu
+
 path=${0%/*}
 cd "$path/install/"
 install -Dm644 ./doas.conf -t /etc/
