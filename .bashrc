@@ -22,7 +22,9 @@ alias \
 
 PS1='\[\e[36m\]\u@\h\[\e[m\]:\[\e[35m\]\W\[\e[m\]\$ '
 
-shopt -s autocd
+shopt -s \
+	autocd \
+	extglob \
 
 export EDITOR=nvim
 export MOZ_ENABLE_WAYLAND=1
