@@ -41,4 +41,4 @@ git log -n8 @{u}..HEAD -- 2>/dev/null
 complete -cf doas
 
 # Disable after config
-set +e
+set +eu
