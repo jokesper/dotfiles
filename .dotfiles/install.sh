@@ -3,6 +3,7 @@
 set -eu
 
 pacman --needed --noconfirm -S \
+		gcc \
 		jq \
 		which \
 	grub \
