@@ -15,7 +15,7 @@ pacman --needed --noconfirm -S \
 		ripgrep \
 		texlive-latexextra \
 	sway \
-		bemenu \
+		bemenu-wayland \
 		grim slurp \
 	kitty \
 		ttf-fira-code \
