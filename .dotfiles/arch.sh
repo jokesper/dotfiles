@@ -61,6 +61,7 @@ chroot "$path" bash -c "set -eu
 		rm -r * .*
 		git clone $url .
 		~/.dotfiles/setup-user.sh'
-	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\""
+	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\"
+	bash"
 umount --recursive "$path"
 reboot
