@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -eu
+
+error="\e[31;1m$0: %s\e[0m\n"
+missing="\e[31;1m$0: Missing parameter '%s'\e[0m\n"
+warn="\e[33;1m$0: %s\e[0m\n"
+
+# Install via `curl https://raw.githubusercontent.com/jkeDev/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>`
+[[ -v 1 && $1 == @(-h|--help) ]] && printf \
+'Usage: install.sh <path> <hostname> <kernel> <username>
+	To create a new installation preferably used with a live
+	environment of arch and the first step 1 of the installation guide
+	at https://wiki.archlinux.org/title/Installation_guide completed.
+	`path`		should be the mount point, e.g. `/mnt`.
+	`hostname`	see `hostname(5)`.
+	`kernel`	one of stable, hardened, lts, rt, rt-lts, zen
+				or an available kernel package.
+	`username`	username for a new user in the wheel group.
+				the root account will be disabled.
+' && exit
+
+[[ ! -v 1 ]] && printf "$missing" path >&2 && exit || path=$1
+[[ ! -v 2 ]] && printf "$missing" hostname >&2 && exit || hostname=$2
+[[ ! -v 3 ]] && printf "$missing" kernel >&2 && exit || kernel=$3
+[[ ! -v 4 ]] && printf "$missing" username  >&2 && exit || username=$4
+url="https://github.com/jkeDev/dotfiles.git"
+
+case ${kernel:-stable} in
+	stable) kernel='linux';;
+	hardened | lts | rt | rt-lts | zen)
+		kernel="linux-$kernel";;
+esac
+
+if which reflector 2>/dev/null; then reflector --country 'Germany,' >/dev/null
+else printf "$warn" "reflector not installed" >&2; fi
+
+pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
+pacstrap -K "$path" base linux-firmware "$kernel" grub git \
+	$(lscpu | sed -n 's/.*\(amd\|intel\).*/\L\1-ucode/ip')
+genfstab -U "$path" >> "$path/etc/fstab"
+mount -t proc {,$path}/proc
+mount -t sysfs {,$path}/sys
+mount --rbind {,$path}/dev
+uefiDir=/sys/firmware/efi/efivars
+[[ -d $uefiDir ]] && mount --rbind {,$path}$uefiDir
+cp {,$path}/etc/resolv.conf
+chroot "$path" bash -c "set -eu
+	passwd --expire --lock root
+	printf '$hostname' > /etc/hostname
+	if [[ -d '$uefiDir' ]]; then
+		pacman --noconfirm -S efibootmgr
+		grub-install --target=x86_64-efi --efi-directory=boot --removable
+	else
+		printf '$error' 'BIOS sytems are currently not supported.'
+		exit
+	fi
+	useradd -mG wheel -s /bin/bash '$username'
+	until passwd '$username' < /dev/tty; do :; done
+	runuser - '$username' -c '
+		rm -r * .*
+		git clone $url .
+		~/.dotfiles/setup-user.sh'
+	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\""
+umount --recursive "$path"
+reboot
