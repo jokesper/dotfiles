@@ -2,6 +2,18 @@
 
 set -eu
 
+path=${0%/*}
+cd "$path/install/"
+install -Dm644 <(echo 'en_US.UTF-8 UTF-8') -T /etc/locale.gen
+install -Dm644 <(echo 'LANG=en_US.UTF-8') -T /etc/locale.conf
+install -Dm644 ./personal.map -t /usr/local/share/kbd/keymaps/
+install -Dm644 ./personal-xkb -T /usr/share/X11/xkb/symbols/personal
+install -Dm644 ./vconsole.conf -t /etc/
+install -Dm644 ./pacman.conf -t /etc/
+install -Dm644 ./doas.conf -t /etc/
+install -Dm644 ./faillock.conf -t /etc/security/
+install -Dm644 ./25-wireless.network -t /etc/systemd/network/
+
 pacman --needed --noconfirm -S \
 		gcc \
 		jq \
@@ -45,18 +57,6 @@ pacman --needed --noconfirm -S \
 	steam fuse2 \
 	discord \
 	2>/dev/null
-
-path=${0%/*}
-cd "$path/install/"
-install -Dm644 ./pacman.conf -t /etc/
-install -Dm644 ./doas.conf -t /etc/
-install -Dm644 ./faillock.conf -t /etc/security/
-install -Dm644 ./25-wireless.network -t /etc/systemd/network/
-install -Dm644 ./personal.map -t /usr/local/share/kbd/keymaps/
-install -Dm644 ./personal-xkb -T /usr/share/X11/xkb/symbols/personal
-install -Dm644 <(echo 'en_US.UTF-8 UTF-8') -T /etc/locale.gen
-install -Dm644 <(echo 'LANG=en_US.UTF-8') -T /etc/locale.conf
-install -Dm644 ./vconsole.conf -t /etc/
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
