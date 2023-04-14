@@ -48,6 +48,7 @@ pacman --needed --noconfirm -S \
 
 path=${0%/*}
 cd "$path/install/"
+install -Dm644 ./pacman.conf -t /etc/
 install -Dm644 ./doas.conf -t /etc/
 install -Dm644 ./faillock.conf -t /etc/security/
 install -Dm644 ./25-wireless.network -t /etc/systemd/network/
