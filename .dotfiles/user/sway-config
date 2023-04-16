@@ -1,3 +1,8 @@
 # User and machine specific configuration for sway
 #
 # Use this to setup multiple monitors or custom input settings
+
+# Example commands:
+# - scale output: `output some-output scale 1.2`
+# - bind output: `workspace $ws1 output some-output`
+# - move workspace to output: `bindsym $mod+Ctrl+1 move workspace output some-output`
