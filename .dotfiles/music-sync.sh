@@ -6,6 +6,8 @@ lists=$(find \
 	-L $(sed 's/:/ /g' <(printf "%q" "${MUSIC:-}:$HOME/Music")) \
 	-maxdepth 1 -type f -name \*.list)
 
+playlistRoot="${CMUS_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}}/cmus/playlists/"
+mkdir -p "$playlistRoot"
 while IFS= read -r list; do
 	dir=${list%.*}
 	name=${dir##*/}
@@ -43,5 +45,5 @@ while IFS= read -r list; do
 				done <<< "$notListed";;
 		esac
 	fi
-	find "$dir" > "${CMUS_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}}/cmus/playlists/$name"
+	find "$dir" > "$playlistRoot/$name"
 done <<< "$lists"
