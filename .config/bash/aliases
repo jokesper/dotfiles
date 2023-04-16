@@ -1,6 +1,7 @@
 alias \
 	vim=nvim \
 	lua=luajit \
+	which='lookup() { pacman -Qi $* 2>/dev/null || pacman -Qo $* 2>/dev/null || which $*; }; lookup' \
 	up='doas -n pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null && \
 		doas -n pacman -Su && \
 		~/.dotfiles/user-updates.sh' \
