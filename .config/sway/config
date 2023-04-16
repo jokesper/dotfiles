@@ -18,6 +18,8 @@ set $lock swaylock -fc 111111
 set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
 
 exec_always ~/.dotfiles/swap-background.sh
+# https://github.com/swaywm/sway/commit/7d0351b41195671263a92997caab620c763d9d65
+#exec_always swaymsg -t subscribe -m '["output"]' | while read -r data; do :; done
 exec wpa_cli -Ba ~/.dotfiles/swap-background.sh
 
 bindsym $mod+t exec $term
