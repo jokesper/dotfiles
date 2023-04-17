@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-#set -eu
+set -eu
 
 set-wallpaper() {
 	wallpaper=$(find "$2" -type f 2>/dev/null | shuf -n1)
 	[[ -z "$wallpaper" ]] && return 1
-	swaymsg output "$1" background "$wallpaper" fit "#7F0000"
+	swaymsg output "$1" background "$wallpaper" fill "#7F0000"
 }
 
 [[ ! -v 1 ]] && WPA_ID=$(wpa_cli status | awk -F= '/^id=/ {print $2; exit}')
