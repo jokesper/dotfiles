@@ -36,7 +36,7 @@ if which reflector 2>/dev/null; then reflector --country 'Germany,' >/dev/null
 else printf "$warn" "reflector not installed" >&2; fi
 
 pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
-pacstrap -K "$path" base linux-firmware "$kernel" grub git \
+pacstrap -K "$path" base linux-firmware "$kernel" git \
 	$(lscpu | sed -n 's/.*\(amd\|intel\).*/\L\1-ucode/ip')
 genfstab -U "$path" >> "$path/etc/fstab"
 mount -t proc {,$path}/proc
@@ -48,13 +48,6 @@ cp {,$path}/etc/resolv.conf
 chroot "$path" bash -c "set -eu
 	passwd --expire --lock root
 	printf '$hostname' > /etc/hostname
-	if [[ -d '$uefiDir' ]]; then
-		pacman --noconfirm -S efibootmgr
-		grub-install --target=x86_64-efi --efi-directory=boot --removable
-	else
-		printf '$error' 'BIOS sytems are currently not supported.'
-		exit
-	fi
 	useradd -mG wheel -s /bin/bash '$username'
 	until passwd '$username' < /dev/tty; do :; done
 	runuser - '$username' -c '

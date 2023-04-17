@@ -2,6 +2,9 @@
 
 set -eu
 
+error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$@" >&2; }
+warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$@" >&2; }
+
 path=${0%/*}
 cd "$path/install/"
 install -Dm644 <(echo 'en_US.UTF-8 UTF-8') -T /etc/locale.gen
@@ -65,6 +68,14 @@ pacman --needed --noconfirm -S \
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
 locale-gen
+if [[ -d /sys/firmware/efi/efivars ]]; then
+	pacman --needed --noconfirm -S efibootmgr 2>/dev/null
+	grub-install --target=x86_64-efi --efi-directory=/boot --removable
+else
+	error 'BIOS systems are currently not supported.'
+	warn 'Please install manually'
+	bash
+fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
 [[ -z $(pacman -T wpa_supplicant) ]] &&
