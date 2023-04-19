@@ -4,6 +4,7 @@ return function(loader, event) loader([[
 	\documentclass{article}
 
 	\usepackage{amsmath}
+	\usepackage{amssymb}
 	\usepackage{geometry}
 	\usepackage[shortlabels]{enumitem}
 	\usepackage{graphicx}
