@@ -11,6 +11,8 @@ return function(loader, event) loader([[
 	\usepackage{amsfonts}
 	\usepackage{units}
 
+	\newcommand{\textop}[1]{\relax\ifmmode\mathop{\text{#1}}\else\text{#1}\fi}
+
 	\geometry{margin=2cm}
 
 	\title{%s}
