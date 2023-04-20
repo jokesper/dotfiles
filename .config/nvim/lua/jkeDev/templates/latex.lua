@@ -10,6 +10,9 @@ return function(loader, event) loader([[
 	\usepackage{graphicx}
 	\usepackage{amsfonts}
 	\usepackage{units}
+	\usepackage{pgfplotstable}
+
+	\pgfplotsset{compat = newest}
 
 	\newcommand{\textop}[1]{\relax\ifmmode\mathop{\text{#1}}\else\text{#1}\fi}
 
