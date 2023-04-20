@@ -13,6 +13,7 @@ install -Dm644 ./personal.map -t /usr/local/share/kbd/keymaps/
 install -Dm644 ./personal-xkb -T /usr/share/X11/xkb/symbols/personal
 install -Dm644 ./vconsole.conf -t /etc/
 install -Dm644 ./pacman.conf -t /etc/
+install -Dm644 ./grub -t /etc/default/
 install -Dm644 ./doas.conf -t /etc/
 install -Dm644 ./faillock.conf -t /etc/security/
 install -Dm644 ./25-wireless.network -t /etc/systemd/network/
