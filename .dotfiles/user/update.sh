@@ -10,4 +10,4 @@ printf "$lv2 Synchronizing music playlists\n"
 ~/.dotfiles/music-sync.sh
 
 printf "$lv2 Updating neovim plugins\n"
-nvim --headless -c 'autocmd User PackerComplete quitall' -c PackerSync
+nvim --headless -c 'autocmd User PackerComplete quitall' -c PackerSync 2>/dev/null
