@@ -2,7 +2,7 @@
 #
 # Read `man 5 sway` for a complete reference.
 
-font NimbusSans 10
+font NimbusSans 8
 
 set $config ${XDG_CONFIG_HOME:-$HOME/.config}/sway
 
