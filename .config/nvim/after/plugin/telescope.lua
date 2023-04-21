@@ -10,7 +10,10 @@ require 'telescope'.setup {
 			'obj/',
 		},
 		mappings = {
-			i = {['<C-c>'] = false},
+			i = {
+				['<C-c>'] = false,
+				['<esc>'] = actions.close,
+			},
 			n = {['<C-c>'] = actions.close},
 		},
 	},
