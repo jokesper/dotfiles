@@ -6,6 +6,7 @@
 !.inputrc
 
 !.dotfiles/
+!docs/
 
 !.config/
 .config/*
