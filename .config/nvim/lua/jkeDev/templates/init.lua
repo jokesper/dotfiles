@@ -56,9 +56,7 @@ for _,format in ipairs({
 		callback = function(e) require(template)(loader, e) end
 	else callback = function(e) template(loader, e) end end
 
-	autocmd(
-	'BufNewFile',
-	{
+	autocmd('BufNewFile', {
 		group = 'templates',
 		desc = ('A template for files with extensions: %s'):format(tostring(format)),
 		pattern = format, callback = callback,
