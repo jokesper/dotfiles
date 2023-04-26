@@ -10,6 +10,7 @@ return function(loader, event) loader([[
 	\usepackage{graphicx}
 	\usepackage{amsfonts}
 	\usepackage{units}
+	\usepackage{pgfplots}
 	\usepackage{pgfplotstable}
 
 	\pgfplotsset{compat = newest}
