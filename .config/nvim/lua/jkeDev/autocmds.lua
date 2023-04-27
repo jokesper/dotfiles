@@ -26,6 +26,14 @@ local function setOptionsOnFocus(enable)
 			else opts[opt] = val.on end
 		end
 	end
+	for opt,val in pairs{
+		showtabline = {0,1},
+		cmdheight = {0,1},
+	} do
+		if type(opt) == 'number' then opt,val = val, {false, true} end
+		if enable then val = val[2] else val = val[1] end
+		vim.opt[opt] = val
+	end
 end
 
 for name,augroup in pairs{custom = {
