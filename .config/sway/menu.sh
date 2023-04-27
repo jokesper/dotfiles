@@ -8,7 +8,7 @@ find \
 	-type f -name \*.desktop \
 	| xargs -d '\n' gawk -f "${0%/*}/parse-desktop-entry.awk" \
 	| sort \
-	| gawk -F "\t" -v menu='bemenu -ipλ -fm all --fn "NimbusSans 8"' '
+	| gawk -F "\t" -v menu='bemenu -ipλ -fm all --fn "NimbusSans 6"' '
 		{
 			print $1 |& menu
 			cmds[$1] = $2
