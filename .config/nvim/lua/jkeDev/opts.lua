@@ -3,8 +3,6 @@ local api = vim.api
 
 opt.title = true
 opt.titlestring = '%<%F - nvim'
-opt.number = true
-opt.relativenumber = true
 
 -- FIXME:
 -- 1. Scrolloff faction is hard coded

@@ -11,6 +11,23 @@ local is_buffer_modifiable = function()
 		and not buf_get_option(buf, 'binary')
 end
 
+local function setOptionsOnFocus(enable)
+	for _,win in ipairs(api.nvim_list_wins()) do
+		local vars, opts = vim.w[win], vim.wo[win]
+		for opt,val in pairs{
+			'number', 'relativenumber',
+			fillchars = {'eob: ', ''},
+		} do
+			if type(opt) == 'number' then opt,val = val, {false, true} end
+			val = {off = val[1], on = val[2]}
+			local old = ('original-%s'):format(opt)
+			if not enable then vars[old], opts[opt] = opts[opt], val.off
+			elseif vars[old] ~= nil then opts[opt] = vars[old]
+			else opts[opt] = val.on end
+		end
+	end
+end
+
 for name,augroup in pairs{custom = {
 	{'TermOpen',
 		desc = 'Automatically configure new terminal windows',
@@ -47,8 +64,16 @@ for name,augroup in pairs{custom = {
 				[[\n\+\%$]], -- Remove trailing newlines
 			} do exec(('%%s/%s//e'):format(pattern)) end
 		end,
-	}},
-} do
+	},
+	{'VimEnter', 'FocusGained',
+		desc = 'Show line numbers when focused',
+		callback = function() setOptionsOnFocus(true) end,
+	},
+	{'FocusLost',
+		desc = 'Hide line numbers when not focused',
+		callback = function() setOptionsOnFocus(false) end,
+	},
+}} do
 	if type(name) == 'string' then create_augroup(name, {clear = true}) end
 	for _,autocmd in ipairs(augroup) do
 		event, opts = {}, {group = name}
