@@ -27,7 +27,8 @@ pacman --needed --noconfirm -S \
 		jq \
 		which \
 	grub \
-	pulseaudio \
+	wireplumber \
+		pipewire-pulse \
 	brightnessctl \
 	man-db \
 	doas \
