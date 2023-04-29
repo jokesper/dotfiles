@@ -26,6 +26,8 @@ pacman --needed --noconfirm -S \
 		gcc \
 		jq \
 		which \
+		fakeroot \
+		make \
 	grub \
 	wireplumber \
 		pipewire-pulse \
