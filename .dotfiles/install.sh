@@ -28,6 +28,7 @@ pacman --needed --noconfirm -S \
 		which \
 		fakeroot \
 		make \
+		patch \
 	grub \
 	wireplumber \
 		pipewire-pulse \
