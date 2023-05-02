@@ -23,7 +23,3 @@
 !.config/cmus/
 .config/cmus/*
 !.config/cmus/rc
-
-!.minecraft/
-.minecraft/*
-!.minecraft/options.txt
