@@ -86,7 +86,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 [[ -z $(pacman -T wpa_supplicant) ]] &&
 	while IFS= read -r device; do
 		config="/etc/wpa_supplicant/wpa_supplicant-$device.conf"
-		[[ ! -f $config ]] && install -Dm600 ./wpa_supplicant.conf -T $config
+		[[ ! -f $config ]] && install -Dm600 ./wpa_supplicant.conf -T "$config"
 		systemctl enable "wpa_supplicant@$device"
 	done <<< "$(networkctl list --json=short \
 		| jq -r '.Interfaces[]
