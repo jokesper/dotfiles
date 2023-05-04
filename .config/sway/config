@@ -27,14 +27,14 @@ bindsym $mod+q kill
 bindsym $mod+d exec $menu
 floating_modifier $mod normal
 bindsym $mod+c reload
-bindsym $mod+Shift+e exec \
+bindsym $mod+Alt+e exec \
 	swaynag -t warning \
 		-m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
 		-B 'Yes, exit sway' \
 		'swaymsg exit'
 bindsym $mod+x exec $lock
 bindsym Print exec grim -g "$($select)" - | wl-copy
-bindsym Shift+Print exec \
+bindsym Alt+Print exec \
 	swaymsg -t get_tree \
 	| jq -r '.. \
 		| select(.pid? and .visible?) \
@@ -55,11 +55,11 @@ bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 
-# Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
+# Move the focused window with the same, but add Alt
+bindsym $mod+Alt+$left move left
+bindsym $mod+Alt+$down move down
+bindsym $mod+Alt+$up move up
+bindsym $mod+Alt+$right move right
 
 set $ws1 1
 set $ws2 2
@@ -90,16 +90,16 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 # Move focused container to workspace
-bindsym $mod+Shift+1 move workspace $ws1
-bindsym $mod+Shift+2 move workspace $ws2
-bindsym $mod+Shift+3 move workspace $ws3
-bindsym $mod+Shift+4 move workspace $ws4
-bindsym $mod+Shift+5 move workspace $ws5
-bindsym $mod+Shift+6 move workspace $ws6
-bindsym $mod+Shift+7 move workspace $ws7
-bindsym $mod+Shift+8 move workspace $ws8
-bindsym $mod+Shift+9 move workspace $ws9
-bindsym $mod+Shift+0 move workspace $ws10
+bindsym $mod+Alt+1 move workspace $ws1
+bindsym $mod+Alt+2 move workspace $ws2
+bindsym $mod+Alt+3 move workspace $ws3
+bindsym $mod+Alt+4 move workspace $ws4
+bindsym $mod+Alt+5 move workspace $ws5
+bindsym $mod+Alt+6 move workspace $ws6
+bindsym $mod+Alt+7 move workspace $ws7
+bindsym $mod+Alt+8 move workspace $ws8
+bindsym $mod+Alt+9 move workspace $ws9
+bindsym $mod+Alt+0 move workspace $ws10
 
 # Split the current object of your focus
 bindsym $mod+m split h
@@ -109,12 +109,12 @@ bindsym $mod+n split v
 #bindsym $mod+w layout tabbed
 
 bindsym $mod+f fullscreen toggle
-bindsym $mod+Shift+i floating toggle
+bindsym $mod+Alt+i floating toggle
 # Swap focus between the tiling area and the floating area
 bindsym $mod+i focus mode_toggle
 bindsym $mod+a focus parent
 
-bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Alt+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show

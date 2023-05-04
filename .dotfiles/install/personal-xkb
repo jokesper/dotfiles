@@ -10,4 +10,7 @@ xkb_symbols "basic" {
 	key <ESC> { [ Caps_Lock ] };
 
 	replace key <LCTL> { [ Escape ] };
+
+	key <LALT> { [ Shift_L ] };
+	key <LFSH> { [ Alt_L ] };
 };
