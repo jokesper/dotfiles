@@ -14,12 +14,13 @@ set-wallpaper() {
 		| tail -n 1 \
 		| jq --raw-output .)
 
+background="$HOME/Desktop/background"
 swaymsg -t get_outputs \
 | jq -r '.[].name' \
 | while IFS= read -r output; do
-	set-wallpaper "$output" "$HOME/Desktop/background-${ssid:-offline}=$output" ||
-	set-wallpaper "$output" "$HOME/Desktop/background-${ssid:-offline}" ||
-	set-wallpaper "$output" "$HOME/Desktop/background=$output" ||
-	set-wallpaper "$output" "$HOME/Desktop/background" ||
+	set-wallpaper "$output" "$background-${ssid:-offline}=$output" ||
+	set-wallpaper "$output" "$background-${ssid:-offline}" ||
+	set-wallpaper "$output" "$background=$output" ||
+	set-wallpaper "$output" "$background" ||
 	swaymsg output "$output" background "#0F0F0F" solid_color
 done
