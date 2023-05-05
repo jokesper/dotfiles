@@ -26,6 +26,7 @@ pacman --needed --noconfirm -S \
 		gcc \
 		jq \
 		which \
+		xdg-utils \
 		fakeroot \
 		make \
 		patch \
