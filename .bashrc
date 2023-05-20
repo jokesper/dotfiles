@@ -36,7 +36,7 @@ export MOZ_ENABLE_WAYLAND=1
 #export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 
 # Show unpushed git commits
-git log -n8 @{u}..HEAD -- 2>/dev/null
+git log -n8 @{u}..HEAD -- 2>/dev/null || true
 
 complete -cf doas
 
