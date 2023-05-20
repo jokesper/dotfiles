@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-set -eu
+[[ -z ${DISPLAY:-} ]] && set -eu
 
 config=${XDG_CONFIG_HOME:-$HOME/.config}/bash
 state=${XDG_STATE_HOME:-$HOME/.local/state}/bash
