@@ -13,4 +13,7 @@ xkb_symbols "basic" {
 
 	replace key <LALT> { [ Shift_L ] };
 	replace key <LFSH> { [ Alt_L ] };
+
+	replace key <BKSP> { [ Shift_R ] };
+	replace key <RTSH> { [ BackSpace ] };
 };
