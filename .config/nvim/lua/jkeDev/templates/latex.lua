@@ -12,6 +12,7 @@ return function(loader, event) loader([[
 	\usepackage{units}
 	\usepackage{pgfplots}
 	\usepackage{pgfplotstable}
+	\usepackage[autostyle]{csquotes}
 
 	\pgfplotsset{compat = newest}
 
