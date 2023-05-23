@@ -1,8 +1,8 @@
 hidden partial modifier_keys
 xkb_symbols "basic" {
 
-	include "eu(basic)"
-	name[Group1] = "EurKEY (customized)";
+	include "us(dvorak)"
+	name[Group1] = "Dvorak (customized)";
 
 	key <CAPS> { [ Control_L ] };
 	modifier_map Control { <CAPS> };
@@ -11,6 +11,6 @@ xkb_symbols "basic" {
 
 	replace key <LCTL> { [ Escape ] };
 
-	key <LALT> { [ Shift_L ] };
-	key <LFSH> { [ Alt_L ] };
+	replace key <LALT> { [ Shift_L ] };
+	replace key <LFSH> { [ Alt_L ] };
 };

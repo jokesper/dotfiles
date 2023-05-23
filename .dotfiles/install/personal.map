@@ -1,4 +1,4 @@
-include "/usr/share/kbd/keymaps/i386/qwerty/us.map.gz"
+include "/usr/share/kbd/keymaps/i386/dvorak/dvorak.map.gz"
 
 # Enable mapping independent of modifier keys
 keymaps 0-511
