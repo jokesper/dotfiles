@@ -13,6 +13,7 @@ return function(loader, event) loader([[
 	\usepackage{pgfplots}
 	\usepackage{pgfplotstable}
 	\usepackage[autostyle]{csquotes}
+	\usepackage{babel}
 
 	\pgfplotsset{compat = newest}
 
