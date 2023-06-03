@@ -14,6 +14,8 @@ return function(loader, event) loader([[
 	\usepackage{pgfplotstable}
 	\usepackage[autostyle]{csquotes}
 	\usepackage{babel}
+	\usepackage[document]{ragged2e}
+	\usepackage[skip=1em]{parskip}
 
 	\pgfplotsset{compat = newest}
 
