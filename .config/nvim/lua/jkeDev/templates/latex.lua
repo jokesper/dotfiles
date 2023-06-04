@@ -17,6 +17,8 @@ return function(loader, event) loader([[
 	\usepackage[document]{ragged2e}
 	\usepackage[skip=1em]{parskip}
 
+	\usetikzlibrary{angles,quotes}
+
 	\pgfplotsset{compat = newest}
 
 	\newcommand{\textop}[1]{\relax\ifmmode\mathop{\text{#1}}\else\text{#1}\fi}
