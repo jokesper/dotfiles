@@ -8,6 +8,7 @@ state=${XDG_STATE_HOME:-$HOME/.local/state}/bash
 
 mkdir -p $state
 export HISTFILE=$state/history
+export CARGO_HOME=${XDG_DATA_HOME:-$HOME/.local/share}/cargo
 
 alias \
 	doas='doas ' \
@@ -28,6 +29,8 @@ shopt -s \
 
 export EDITOR=nvim
 export MOZ_ENABLE_WAYLAND=1
+
+export PATH="${PATH}:${CARGO_HOME}/bin"
 
 #export XDG_CONFIG_HOME="$HOME/.config"
 #export XDG_CACHE_HOME="$HOME/.cache"
