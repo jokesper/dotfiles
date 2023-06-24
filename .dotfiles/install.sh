@@ -46,12 +46,12 @@ pacman --needed --noconfirm -S \
 		grim slurp \
 	kitty \
 		ttf-fira-code \
+		fish \
 	firefox \
 	cmus \
 	2>/dev/null
 
 pacman --needed --noconfirm --asdeps -S \
-	bash-completion \
 	texlive-pictures \
 	i3status \
 	swaybg \

@@ -12,6 +12,7 @@
 .config/*
 !.config/git/
 !.config/bash/
+!.config/fish/
 !.config/gtk-3.0/
 !.config/sway/
 !.config/i3status/
