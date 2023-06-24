@@ -13,4 +13,4 @@ config=${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/
 [[ ! -f "$config/sway-config" ]] && install -Dm644 sway-config -t "$config"
 
 rustup default stable
-cargo install cargo-update cargo-script
+cargo install cargo-update rust-script
