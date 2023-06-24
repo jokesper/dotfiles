@@ -44,6 +44,7 @@ pacman --needed --noconfirm -S \
 		grim slurp \
 	kitty \
 		ttf-fira-code \
+	rustup \
 	firefox \
 	cmus \
 	2>/dev/null
