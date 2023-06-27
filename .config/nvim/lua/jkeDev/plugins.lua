@@ -32,6 +32,7 @@ return require 'packer'.startup(function(use)
 		setup = [[vim.cmd.packadd 'firenvim']],
 	}
 	use 'lukas-reineke/indent-blankline.nvim'
+	use 'laytan/cloak.nvim'
 
 	use {
 		'VonHeikemen/lsp-zero.nvim',
