@@ -14,6 +14,7 @@ return require 'packer'.startup(function(use)
 		'nvim-treesitter/nvim-treesitter',
 		run = function() require 'nvim-treesitter.install'.update{with_sync = true}() end,
 	}
+	use 'nvim-treesitter/nvim-treesitter-context'
 	use {
 		'lervag/vimtex',
 		opt = true,
@@ -31,6 +32,22 @@ return require 'packer'.startup(function(use)
 		setup = [[vim.cmd.packadd 'firenvim']],
 	}
 	use 'lukas-reineke/indent-blankline.nvim'
+
+	use {
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v2.x',
+		requires = {
+			{'neovim/nvim-lspconfig'},
+			{
+				'williamboman/mason.nvim',
+				run = function() pcall(cmd, 'MasonUpdate') end
+			},
+			{'williamboman/mason-lspconfig.nvim'},
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'L3MON4D3/LuaSnip'},
+		},
+	}
 
 	if bootstrap then require('packer').sync() end
 end)
