@@ -50,6 +50,7 @@ for name,augroup in pairs{custom = {
 		desc = 'Automatically close terminal window when exiting shells.',
 		command = 'quit!',
 	},
+	-- FIXME: not triggered when closing windows and switching to old
 	{'WinEnter',
 		pattern = 'term://*',
 		desc = 'Automatically enter terminal mode when entering a terminal window.',
