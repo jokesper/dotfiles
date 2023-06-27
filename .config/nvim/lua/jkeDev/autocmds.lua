@@ -41,8 +41,6 @@ for name,augroup in pairs{custom = {
 		desc = 'Automatically configure new terminal windows',
 		callback = function()
 			local opt = vim.opt_local
-			opt.modifiable = false
-			opt.modified = false
 			opt.bufhidden = 'delete'
 			exec 'startinsert'
 		end,
