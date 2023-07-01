@@ -3,7 +3,7 @@
 local theme = require 'jkeDev.colors'
 
 for name,val in pairs{
---	ColorColumn = {},
+	ColorColumn = {bg = 'red'},
 --	Conceal = {},
 --	Cursor = {},
 --	lCursor = {},
@@ -12,8 +12,8 @@ for name,val in pairs{
 --	TermCursor = {},
 --	TermCursorNC = {},
 --	Folded = {},
---	FoldColumn = {},
---	SignColumn = {},
+	FoldColumn = {},
+	SignColumn = {},
 --	Substitute = {},
 	CursorLine = {bold = true},
 	CursorColumn = {bold = true},

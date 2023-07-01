@@ -17,6 +17,9 @@ local function setOptionsOnFocus(enable)
 		for opt,val in pairs{
 			'number', 'relativenumber',
 			fillchars = {'eob: ', ''},
+			signcolumn = {'no', 'yes'},
+			foldcolumn = {'0', 'auto'},
+			colorcolumn = {'', '81'},
 		} do
 			if type(opt) == 'number' then opt,val = val, {false, true} end
 			val = {off = val[1], on = val[2]}
