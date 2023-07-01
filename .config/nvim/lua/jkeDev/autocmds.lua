@@ -19,7 +19,7 @@ local function setOptionsOnFocus(enable)
 			fillchars = {'eob: ', ''},
 			signcolumn = {'no', 'yes'},
 			foldcolumn = {'0', 'auto'},
-			colorcolumn = {'', '101'},
+			--colorcolumn = {'', '101'},
 		} do
 			if type(opt) == 'number' then opt,val = val, {false, true} end
 			val = {off = val[1], on = val[2]}
