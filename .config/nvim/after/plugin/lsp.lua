@@ -84,6 +84,9 @@ cmp.setup{
 	performance = {
 		max_view_entries = 12,
 	},
+	experimental = {
+		ghost_text = true,
+	},
 }
 cmp.setup.cmdline('/', {
 	mapping = cmp.mapping.preset.cmdline(),
