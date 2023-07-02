@@ -11,11 +11,13 @@ lsp.format_on_save{
 	},
 	servers = {
 		texlab = {'tex'},
+		rust_analyzer = {'rust'},
 	},
 }
 
 local lspconf = require 'lspconfig'
 lspconf.texlab.setup{}
+lspconf.rust_analyzer.setup{}
 
 lsp.setup()
 
