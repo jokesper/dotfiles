@@ -24,6 +24,7 @@ cmp.setup{
 				async_path = '/',
 				nvim_lsp = '∃',
 				buffer = '~',
+				cmdline = ':',
 			})[entry.source.name]
 			item.kind = setmetatable({
 				-- ToDo: find fitting symbols for long names
@@ -73,3 +74,16 @@ cmp.setup{
 		max_view_entries = 12,
 	},
 }
+cmp.setup.cmdline('/', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{name = 'buffer'},
+	},
+})
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{name = 'async_path'},
+		{name = 'cmdline'},
+	},
+})

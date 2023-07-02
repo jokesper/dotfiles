@@ -45,6 +45,7 @@ return require 'packer'.startup(function(use)
 			},
 			{'williamboman/mason-lspconfig.nvim'},
 			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-cmdline'},
 			{'hrsh7th/cmp-buffer'},
 			{'hrsh7th/cmp-calc'},
 			{'FelipeLema/cmp-async-path'},
