@@ -22,4 +22,4 @@
 !.config/nvim/lua/jkeDev/
 !.config/cmus/
 .config/cmus/*
-!.config/cmus/rc
+!.config/cmus/rc/
