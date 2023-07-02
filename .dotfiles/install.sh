@@ -39,6 +39,7 @@ pacman --needed --noconfirm -S \
 	neovim \
 		ripgrep \
 		texlive-latexextra \
+			texlab \
 	sway \
 		bemenu-wayland \
 		grim slurp \

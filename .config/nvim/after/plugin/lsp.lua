@@ -4,6 +4,19 @@ lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps{buffer = bufnr}
 end)
 
+lsp.format_on_save{
+	format_opts = {
+		async = true,
+		timeout_ms = 10e3,
+	},
+	servers = {
+		texlab = {'tex'},
+	},
+}
+
+local lspconf = require 'lspconfig'
+lspconf.texlab.setup{}
+
 lsp.setup()
 
 local cmp = require 'cmp'
