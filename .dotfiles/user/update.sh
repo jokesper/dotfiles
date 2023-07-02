@@ -16,4 +16,4 @@ printf "$lv2 Updating rust toolchain\n"
 rustup update
 
 printf "$lv2 Updating cargo packages\n"
-cargo install-update --all
+cargo install-update --quiet --all
