@@ -21,6 +21,7 @@ cmp.setup{
 			item.menu = ({
 				luasnip = '□',
 				calc = '∑',
+				async_path = '/',
 				nvim_lsp = '∃',
 				buffer = '~',
 			})[entry.source.name]
@@ -44,7 +45,7 @@ cmp.setup{
 				Color = '#',
 				File = 'File',
 				Reference = '§',
-				Folder = '▷',
+				Folder = 'Folder',
 				EnumMember = '∈',
 				Constant = 'π',
 				Struct = '∪',
@@ -59,6 +60,7 @@ cmp.setup{
 	sources = {
 		{name = 'luasnip'},
 		{name = 'calc'},
+		{name = 'async_path'},
 		{name = 'nvim_lsp', group_index = 1},
 		{name = 'buffer', group_index = 2, keyword_length = 3},
 	},

@@ -47,6 +47,7 @@ return require 'packer'.startup(function(use)
 			{'hrsh7th/nvim-cmp'},
 			{'hrsh7th/cmp-buffer'},
 			{'hrsh7th/cmp-calc'},
+			{'FelipeLema/cmp-async-path'},
 			{'hrsh7th/cmp-nvim-lsp'},
 			{'L3MON4D3/LuaSnip'},
 		},
