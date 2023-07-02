@@ -16,5 +16,4 @@ printf "$lv2 Updating rust toolchain\n"
 rustup update
 
 printf "$lv2 Updating cargo packages\n"
-printf "Not working due to bashrc not running to set environment"
-#cargo install-update --all
+cargo install-update --all
