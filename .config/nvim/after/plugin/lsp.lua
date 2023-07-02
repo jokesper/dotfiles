@@ -15,6 +15,47 @@ cmp.setup{
 		['<Tab>'] = cmp_action.luasnip_supertab(),
 		['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 	},
+	formatting = {
+		fields = {'abbr', 'kind', 'menu'},
+		format = function(entry, item)
+			item.menu = ({
+				luasnip = '□',
+				calc = '∑',
+				nvim_lsp = '∃',
+				buffer = '~',
+			})[entry.source.name]
+			item.kind = setmetatable({
+				-- ToDo: find fitting symbols for long names
+				Text = 'a',
+				Method = 'Method',
+				Function = 'λ',
+				Constructor = 'Constructor',
+				Field = 'Field',
+				Variable = '𝕏',
+				Class = 'Class',
+				Interface = 'Interface',
+				Module = 'Module',
+				Property = 'Property',
+				Unit = '$', -- ToDo: find a better currency or some other symbol
+				Value = '1',
+				Enum = 'Enum',
+				Keyword = 'Keyword',
+				Snippet = '□',
+				Color = '#',
+				File = 'File',
+				Reference = '§',
+				Folder = '▷',
+				EnumMember = '∈',
+				Constant = 'π',
+				Struct = '∪',
+				Event = 'e',
+				Operator = '×',
+				TypeParameter = '<T>', -- ToDo: replace with single charater
+			}, {__index = function(_,type) return type..'?!' end})
+				[require 'cmp.types.lsp'.CompletionItemKind[entry:get_kind()]]
+			return item
+		end,
+	},
 	sources = {
 		{name = 'luasnip'},
 		{name = 'calc'},
