@@ -39,9 +39,8 @@ cmp.setup{
 				buffer = '~',
 				cmdline = ':',
 			})[entry.source.name]
-			item.kind = setmetatable({
+			item.kind = ({
 				-- ToDo: find fitting symbols for long names
-				Text = 'a',
 				Method = 'Method',
 				Function = 'λ',
 				Constructor = 'Constructor',
@@ -66,8 +65,7 @@ cmp.setup{
 				Event = 'e',
 				Operator = '×',
 				TypeParameter = '<T>', -- ToDo: replace with single charater
-			}, {__index = function(_,type) return type..'?!' end})
-				[require 'cmp.types.lsp'.CompletionItemKind[entry:get_kind()]]
+			})[require 'cmp.types.lsp'.CompletionItemKind[entry:get_kind()]]
 			return item
 		end,
 	},
