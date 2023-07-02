@@ -1,5 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
 	ensure_installed = {
+		'vimdoc',
 		'bash', 'awk',
 		'lua', 'rust',
 		'markdown', 'latex',

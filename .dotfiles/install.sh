@@ -17,6 +17,7 @@ install -Dm644 ./grub -t /etc/default/
 install -Dm644 ./doas.conf -t /etc/
 install -Dm644 ./faillock.conf -t /etc/security/
 install -Dm644 ./25-wireless.network -t /etc/systemd/network/
+install -Dm644 ./pam_env.conf -t /etc/security/
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
@@ -39,6 +40,7 @@ pacman --needed --noconfirm -S \
 	neovim \
 		ripgrep \
 		texlive-latexextra \
+			texlab \
 	sway \
 		bemenu-wayland \
 		grim slurp \

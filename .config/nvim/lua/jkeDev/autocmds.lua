@@ -17,6 +17,9 @@ local function setOptionsOnFocus(enable)
 		for opt,val in pairs{
 			'number', 'relativenumber',
 			fillchars = {'eob: ', ''},
+			signcolumn = {'no', 'yes'},
+			foldcolumn = {'0', 'auto'},
+			--colorcolumn = {'', '101'},
 		} do
 			if type(opt) == 'number' then opt,val = val, {false, true} end
 			val = {off = val[1], on = val[2]}
@@ -41,8 +44,6 @@ for name,augroup in pairs{custom = {
 		desc = 'Automatically configure new terminal windows',
 		callback = function()
 			local opt = vim.opt_local
-			opt.modifiable = false
-			opt.modified = false
 			opt.bufhidden = 'delete'
 			exec 'startinsert'
 		end,
@@ -52,6 +53,7 @@ for name,augroup in pairs{custom = {
 		desc = 'Automatically close terminal window when exiting shells.',
 		command = 'quit!',
 	},
+	-- FIXME: not triggered when closing windows and switching to old
 	{'WinEnter',
 		pattern = 'term://*',
 		desc = 'Automatically enter terminal mode when entering a terminal window.',
