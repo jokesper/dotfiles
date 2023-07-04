@@ -1,4 +1,5 @@
 if not status is-interactive; return; end
+if not set -q DISPLAY; and [ (tty) = '/dev/tty1' ]; exec sway; end
 
 function fish_prompt -d 'Write out the prompt'
 	printf '%s%s@%s%s:%s%s%s$ ' \

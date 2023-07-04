@@ -49,7 +49,7 @@ for name,augroup in pairs{custom = {
 		end,
 	},
 	{'TermClose',
-		pattern = 'term://*:*{bash,sl}*',
+		pattern = 'term://*:*{fish,bash,sl}*',
 		desc = 'Automatically close terminal window when exiting shells.',
 		command = 'quit!',
 	},

@@ -11,7 +11,7 @@ set $left h
 set $down j
 set $up k
 set $right l
-set $term kitty -- nvim term://bash
+set $term kitty -- nvim term://fish
 set $editor kitty -d ~/Documents -- nvim
 set $menu $config/menu.sh | xargs swaymsg exec --
 set $lock swaylock -fec 0F0000
