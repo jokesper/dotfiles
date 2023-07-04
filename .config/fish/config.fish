@@ -6,3 +6,6 @@ function fish_prompt -d 'Write out the prompt'
 		(set_color magenta) (basename (prompt_pwd)) (set_color normal) \
 
 end
+function fish_greeting -d 'Show unpushed git commits when starting fish'
+	git log -n8 @{u}..HEAD -- 2>/dev/null
+end
