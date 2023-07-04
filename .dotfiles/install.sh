@@ -82,7 +82,7 @@ if [[ -d /sys/firmware/efi/efivars ]]; then
 else
 	error 'BIOS systems are currently not supported.'
 	warn 'Please install manually'
-	bash
+	fish
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 

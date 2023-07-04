@@ -1,9 +1,6 @@
 /*
 !.gitattributes
 !.gitignore
-!.bash_profile
-!.bashrc
-!.inputrc
 
 !.dotfiles/
 !docs/
@@ -11,7 +8,6 @@
 !.config/
 .config/*
 !.config/git/
-!.config/bash/
 !.config/fish/
 !.config/gtk-3.0/
 !.config/sway/
