@@ -11,3 +11,9 @@ printf "$lv2 Synchronizing music playlists\n"
 
 printf "$lv2 Updating neovim plugins\n"
 nvim --headless -c 'autocmd User PackerComplete quitall' -c PackerSync 2>/dev/null
+
+printf "$lv2 Updating rust toolchain\n"
+rustup update
+
+printf "$lv2 Updating cargo packages\n"
+cargo install-update --quiet --all

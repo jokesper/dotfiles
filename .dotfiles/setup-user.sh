@@ -12,4 +12,8 @@ config=${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/
 [[ ! -f "$config/update.sh" ]] && install -Dm755 update.sh -t "$config"
 [[ ! -f "$config/sway-config" ]] && install -Dm644 sway-config -t "$config"
 
+rustup default stable
+rustup component add rust-analyzer
+cargo install cargo-update rust-script
+
 chsh -s "/usr/bin/fish"

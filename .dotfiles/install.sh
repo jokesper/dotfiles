@@ -47,6 +47,7 @@ pacman --needed --noconfirm -S \
 	kitty \
 		ttf-fira-code \
 		fish \
+	rustup \
 	firefox \
 	cmus \
 	2>/dev/null
