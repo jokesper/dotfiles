@@ -30,7 +30,7 @@ volume master {
 }
 
 battery all {
-	format = "%status %percentage %remaining"
+	format = "%status %percentage (%remaining)"
 	format_down = ""
 	format_percentage = "%.00f%s"
 	low_threshold = 20
