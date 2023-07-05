@@ -14,8 +14,8 @@ keycode 29 = Escape
 
 # Swap Alt and Left Shift
 keycode 42 = Alt
-keycode 56 = ShiftL
+keycode 56 = Shift
 
 # Swap Backspace and Right Shift
 keycode 54 = BackSpace
-keycode 14 = ShiftR
+keycode 14 = Shift
