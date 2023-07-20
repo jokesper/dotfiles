@@ -114,6 +114,7 @@ for name,val in pairs{
 	-- Indent Blankline
 	IndentBlanklineChar = {fg = 5},
 	IndentBlanklineContextChar = {fg = 4},
+	IndentBlanklineContextStart = {underline = true},
 } do
 	val.fg = theme.fg[val.fg] == nil and val.fg or theme.fg[val.fg]
 	val.bg = theme.bg[val.bg] == nil and val.bg or theme.bg[val.bg]
