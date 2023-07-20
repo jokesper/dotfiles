@@ -4,7 +4,7 @@ function which -w which -d 'Show more information about the file'
 	or command which $argv
 end
 function doasedit -d 'An alias to edit files without running nvim as root'
-	command doas ~/.dotfiles/doasedit.sh nvim
+	command doas ~/.dotfiles/doasedit.sh nvim "$argv"
 end
 function up -d 'Upgrade the entire system'
 	doas -n pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
