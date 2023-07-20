@@ -38,13 +38,13 @@ map('n', '<Leader>x', '<Cmd>Ex<CR>')
 
 -- System clipboard
 map('nv', '<Leader>y', '"+y')
-map('nv', '<Leader>Y', '"+y$')
+map('n', '<Leader>Y', '"+y$')
 map('nv', '<Leader>p', '"+p')
 map('nv', '<Leader>P', '"+P')
 map('nv', '<Leader>d', '"+d')
-map('nv', '<Leader>D', '"+d$')
+map('n', '<Leader>D', '"+d$')
 map('nv', '<Leader>c', '"+c')
-map('nv', '<Leader>C', '"+c$')
+map('n', '<Leader>C', '"+c$')
 map('v', '<Leader>x', '"+x')
 map('v', '<Leader>X', '"+X')
 
