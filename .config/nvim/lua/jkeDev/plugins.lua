@@ -1,47 +1,43 @@
-local fn, cmd = vim.fn, vim.cmd
-local bootstrap = (function()
-	local install_path = fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system{'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path}
-		cmd.packadd 'packer.nvim'
-		return true
-	else return false end
-end)()
-
-return require 'packer'.startup(function(use)
-	use 'wbthomason/packer.nvim'
-	use {
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system{'git', 'clone',
+		'--filter=blob:none',
+		'https://github.com/folke/lazy.nvim.git',
+		'--branch=stable',
+		lazypath}
+end
+vim.opt.rtp:prepend(lazypath)
+require 'lazy'.setup{
+	{
 		'nvim-treesitter/nvim-treesitter',
-		run = function() require 'nvim-treesitter.install'.update{with_sync = true}() end,
-	}
-	use 'nvim-treesitter/nvim-treesitter-context'
-	use {
-		'lervag/vimtex',
-		opt = true,
-		event = 'BufWinEnter *.tex',
-	}
-	use {
+		build = function() require 'nvim-treesitter.install'.update{with_sync = true}() end,
+	},
+	'nvim-treesitter/nvim-treesitter-context',
+	{'lervag/vimtex', ft = 'tex', lazy = true},
+	{
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
-		requires = 'nvim-lua/plenary.nvim',
-	}
-	use {
+		dependencies = 'nvim-lua/plenary.nvim',
+	},
+	{
 		'glacambre/firenvim',
-		opt = true,
-		run = function() fn['firenvim#install'](0) end,
-		setup = [[vim.cmd.packadd 'firenvim']],
-	}
-	use 'lukas-reineke/indent-blankline.nvim'
-	use 'laytan/cloak.nvim'
+		cond = vim.g.started_by_firenvim,
+		build = function()
+			require 'lazy'.load{plugins = 'firenvim', wait = true}
+			vim.fn['firenvim#install'](0)
+		end
+	},
+	'lukas-reineke/indent-blankline.nvim',
+	'laytan/cloak.nvim',
 
-	use {
+	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
-		requires = {
+		dependencies = {
 			{'neovim/nvim-lspconfig'},
 			{
 				'williamboman/mason.nvim',
-				run = function() pcall(cmd, 'MasonUpdate') end
+				build = function() pcall(cmd, 'MasonUpdate') end
 			},
 			{'williamboman/mason-lspconfig.nvim'},
 			{'hrsh7th/nvim-cmp'},
@@ -52,7 +48,5 @@ return require 'packer'.startup(function(use)
 			{'hrsh7th/cmp-nvim-lsp'},
 			{'L3MON4D3/LuaSnip'},
 		},
-	}
-
-	if bootstrap then require('packer').sync() end
-end)
+	},
+}
