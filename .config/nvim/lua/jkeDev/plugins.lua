@@ -27,8 +27,27 @@ require 'lazy'.setup{
 			vim.fn['firenvim#install'](0)
 		end
 	},
-	'lukas-reineke/indent-blankline.nvim',
-	'laytan/cloak.nvim',
+	{
+		'lukas-reineke/indent-blankline.nvim',
+		opts = {
+			char = '▎',
+			context_char_list = {'▎'},
+			show_current_context = true,
+			show_current_context_start = true,
+		},
+	},
+	{
+		'jkeDev/cloak.nvim',
+		opts = {
+			patterns = {
+				{
+					file_pattern = '*wpa_supplicant*.conf',
+					cloak_pattern = '(psk=).+',
+					replace = '%1',
+				},
+			},
+		},
+	},
 
 	{
 		'VonHeikemen/lsp-zero.nvim',
