@@ -1,5 +1,5 @@
 local function stringToTable(str)
-	return type(str) == 'string' and table.fromIter(str:gmatch '.') or str end
+	return type(str) == 'string' and vim.split(str, '.') or str end
 
 do
 	local _set, _del = vim.keymap.set, vim.keymap.del
