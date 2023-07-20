@@ -1,6 +1,5 @@
 if not status is-interactive; return; end
-
-export PATH="$PATH:$CARGO_HOME/bin"
+if status is-login; exec bash -c '. /etc/profile; exec fish'; end
 
 if not set -q DISPLAY; and [ (tty) = '/dev/tty1' ]; exec sway --unsupported-gpu; end
 
