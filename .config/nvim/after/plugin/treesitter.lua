@@ -1,7 +1,9 @@
 require 'nvim-treesitter.configs'.setup {
 	ensure_installed = {
 		'vimdoc',
-		'bash', 'awk',
+		'gitignore', 'gitcommit',
+		'diff',
+		'fish', 'bash', 'awk',
 		'lua', 'rust',
 		'markdown', 'latex',
 	},
