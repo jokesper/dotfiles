@@ -54,8 +54,8 @@ cmp.setup{
 				Property = 'Property',
 				Unit = '£',
 				Value = '1',
-				Enum = 'Enum',
-				Keyword = 'Keyword',
+				Enum = '∪',
+				Keyword = 'a',
 				Snippet = '□',
 				Color = '#',
 				File = 'File',
@@ -63,9 +63,9 @@ cmp.setup{
 				Folder = 'Folder',
 				EnumMember = '∈',
 				Constant = 'π',
-				Struct = '∪',
+				Struct = '×',
 				Event = 'e',
-				Operator = '×',
+				Operator = '±',
 				TypeParameter = '<T>', -- ToDo: replace with single charater
 			})[require 'cmp.types.lsp'.CompletionItemKind[entry:get_kind()]]
 			return item
