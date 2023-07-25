@@ -1,3 +1,9 @@
+require 'mason'.setup()
+require 'mason-lspconfig'.setup {
+	ensure_installed = {
+		'lua_ls',
+	}
+}
 local lsp = require 'lsp-zero'.preset{}
 
 lsp.on_attach(function(client, bufnr)
@@ -10,12 +16,23 @@ lsp.format_on_save{
 		timeout_ms = 10e3,
 	},
 	servers = {
+		lua_ls = {'lua'},
 		texlab = {'tex'},
 		rust_analyzer = {'rust'},
 	},
 }
 
 local lspconf = require 'lspconfig'
+lspconf.lua_ls.setup {
+	settings = {
+		Lua = {
+			runtime = { version = "Luajit" },
+			diagnostics = {
+				globals = { 'vim' },
+			},
+		},
+	},
+}
 lspconf.texlab.setup{}
 lspconf.rust_analyzer.setup{}
 
