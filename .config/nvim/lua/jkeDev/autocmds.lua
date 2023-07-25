@@ -96,7 +96,7 @@ for name, augroup in pairs { custom = {
 		callback = function() setOptionsOnFocus(false) end,
 	},
 } } do
-	if type(name) == 'string' then create_augroup(name, { clear = true }) end
+	if type(name) == 'string' then create_augroup(name, {}) end
 	for _, autocmd in ipairs(augroup) do
 		local event, opts = {}, { group = name }
 		for k, v in pairs(autocmd)
