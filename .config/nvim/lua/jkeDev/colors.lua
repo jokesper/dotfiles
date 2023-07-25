@@ -1,7 +1,9 @@
 local function negative(tbl, neg)
-	return setmetatable(tbl, {__index = function(_,key)
-		return rawget(neg, type(key) == 'number' and -key or key)
-	end})
+	return setmetatable(tbl, {
+		__index = function(_, key)
+			return rawget(neg, type(key) == 'number' and -key or key)
+		end
+	})
 end
 local fg = {
 	'#bfbfbf',

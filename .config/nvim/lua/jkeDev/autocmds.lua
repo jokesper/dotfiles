@@ -12,35 +12,40 @@ local is_buffer_modifiable = function()
 end
 
 local function setOptionsOnFocus(enable)
-	for _,win in ipairs(api.nvim_list_wins()) do
+	for _, win in ipairs(api.nvim_list_wins()) do
 		local vars, opts = vim.w[win], vim.wo[win]
-		for opt,val in pairs{
+		for opt, val in pairs {
 			'number', 'relativenumber',
-			fillchars = {'eob: ', ''},
-			signcolumn = {'no', 'yes'},
-			foldcolumn = {'0', 'auto'},
+			fillchars = { 'eob: ', '' },
+			signcolumn = { 'no', 'yes' },
+			foldcolumn = { '0', 'auto' },
 			--colorcolumn = {'', '101'},
 		} do
-			if type(opt) == 'number' then opt,val = val, {false, true} end
-			val = {off = val[1], on = val[2]}
+			if type(opt) == 'number' then opt, val = val, { false, true } end
+			val = { off = val[1], on = val[2] }
 			local old = ('original-%s'):format(opt)
-			if not enable then vars[old], opts[opt] = opts[opt], val.off
-			elseif vars[old] ~= nil then opts[opt] = vars[old]
-			else opts[opt] = val.on end
+			if not enable then
+				vars[old], opts[opt] = opts[opt], val.off
+			elseif vars[old] ~= nil then
+				opts[opt] = vars[old]
+			else
+				opts[opt] = val.on
+			end
 		end
 	end
-	for opt,val in pairs{
-		showtabline = {0,1},
-		cmdheight = {0,1},
+	for opt, val in pairs {
+		showtabline = { 0, 1 },
+		cmdheight = { 0, 1 },
 	} do
-		if type(opt) == 'number' then opt,val = val, {false, true} end
+		if type(opt) == 'number' then opt, val = val, { false, true } end
 		if enable then val = val[2] else val = val[1] end
 		vim.opt[opt] = val
 	end
 end
 
-for name,augroup in pairs{custom = {
-	{'TermOpen',
+for name, augroup in pairs { custom = {
+	{
+		'TermOpen',
 		desc = 'Automatically configure new terminal windows',
 		callback = function()
 			local opt = vim.opt_local
@@ -48,47 +53,54 @@ for name,augroup in pairs{custom = {
 			exec 'startinsert'
 		end,
 	},
-	{'TermClose',
+	{
+		'TermClose',
 		pattern = 'term://*:*{fish,bash,sl}*',
 		desc = 'Automatically close terminal window when exiting shells.',
 		command = 'quit!',
 	},
 	-- FIXME: not triggered when closing windows and switching to old
-	{'WinEnter',
+	{
+		'WinEnter',
 		pattern = 'term://*',
 		desc = 'Automatically enter terminal mode when entering a terminal window.',
 		command = 'startinsert',
 	},
-	{'BufLeave',
+	{
+		'BufLeave',
 		desc = 'Automatically leave insert mode when changing terminal window buffer.',
 		command = 'stopinsert',
 	},
-	{'BufWritePre',
+	{
+		'BufWritePre',
 		-- FIXME: Disable on binary files
 		desc = 'Automatically remove trailing whitespaces.',
 		callback = function()
 			if not is_buffer_modifiable() then return end
-			for _,pattern in ipairs{
+			for _, pattern in ipairs {
 				[[\s\+$]], -- Remove trailing spaces
 				[[\%^\n\+]], -- Remove leading newlines
 				[[\n\+\%$]], -- Remove trailing newlines
 			} do exec(('%%s/%s//e'):format(pattern)) end
 		end,
 	},
-	{'VimEnter', 'FocusGained',
+	{
+		'VimEnter',
+		'FocusGained',
 		desc = 'Show line numbers when focused',
 		callback = function() setOptionsOnFocus(true) end,
 	},
-	{'FocusLost',
+	{
+		'FocusLost',
 		desc = 'Hide line numbers when not focused',
 		callback = function() setOptionsOnFocus(false) end,
 	},
-}} do
-	if type(name) == 'string' then create_augroup(name, {clear = true}) end
-	for _,autocmd in ipairs(augroup) do
-		event, opts = {}, {group = name}
-		for k,v in pairs(autocmd)
-			do (type(k) == 'number' and event or opts)[k] = v end
+} } do
+	if type(name) == 'string' then create_augroup(name, { clear = true }) end
+	for _, autocmd in ipairs(augroup) do
+		local event, opts = {}, { group = name }
+		for k, v in pairs(autocmd)
+		do (type(k) == 'number' and event or opts)[k] = v end
 		create_autocmd(event, opts)
 	end
 end

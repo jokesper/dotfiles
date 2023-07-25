@@ -7,12 +7,12 @@ opt.titlestring = '%<%F - nvim'
 -- FIXME:
 -- 1. Scrolloff faction is hard coded
 -- 2. For NeoVim < 0.8 nvim_create_autocmd is not supported
-api.nvim_create_augroup('options', {clear = true})
-api.nvim_create_autocmd({'VimEnter','VimResume','VimResized','WinNew','WinClosed'}, {
+api.nvim_create_augroup('options', { clear = true })
+api.nvim_create_autocmd({ 'VimEnter', 'VimResume', 'VimResized', 'WinNew', 'WinClosed' }, {
 	group = 'options',
 	desc = 'Update scrolloff value',
 	callback = function()
-		for _,id in pairs(api.nvim_list_wins()) do
+		for _, id in pairs(api.nvim_list_wins()) do
 			local wo = vim.wo[id]
 			wo.scrolloff, wo.sidescrolloff =
 				math.ceil(api.nvim_win_get_height(id) / 10),

@@ -4,21 +4,21 @@ require 'mason-lspconfig'.setup {
 		'lua_ls',
 	}
 }
-local lsp = require 'lsp-zero'.preset{}
+local lsp = require 'lsp-zero'.preset {}
 
 lsp.on_attach(function(client, bufnr)
-	lsp.default_keymaps{buffer = bufnr}
+	lsp.default_keymaps { buffer = bufnr }
 end)
 
-lsp.format_on_save{
+lsp.format_on_save {
 	format_opts = {
 		async = true,
 		timeout_ms = 10e3,
 	},
 	servers = {
-		lua_ls = {'lua'},
-		texlab = {'tex'},
-		rust_analyzer = {'rust'},
+		lua_ls = { 'lua' },
+		texlab = { 'tex' },
+		rust_analyzer = { 'rust' },
 	},
 }
 
@@ -26,21 +26,21 @@ local lspconf = require 'lspconfig'
 lspconf.lua_ls.setup {
 	settings = {
 		Lua = {
-			runtime = { version = "Luajit" },
+			runtime = { version = "LuaJIT" },
 			diagnostics = {
 				globals = { 'vim' },
 			},
 		},
 	},
 }
-lspconf.texlab.setup{}
-lspconf.rust_analyzer.setup{}
+lspconf.texlab.setup {}
+lspconf.rust_analyzer.setup {}
 
 lsp.setup()
 
 local cmp = require 'cmp'
 local cmp_action = require 'lsp-zero'.cmp_action()
-cmp.setup{
+cmp.setup {
 	mapping = {
 		['<C-f>'] = cmp_action.luasnip_jump_forward(),
 		['<C-b>'] = cmp_action.luasnip_jump_backward(),
@@ -48,7 +48,7 @@ cmp.setup{
 		['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
 	},
 	formatting = {
-		fields = {'abbr', 'kind', 'menu'},
+		fields = { 'abbr', 'kind', 'menu' },
 		format = function(entry, item)
 			item.menu = ({
 				luasnip = '□',
@@ -89,11 +89,11 @@ cmp.setup{
 		end,
 	},
 	sources = {
-		{name = 'luasnip'},
-		{name = 'calc'},
-		{name = 'async_path'},
-		{name = 'nvim_lsp', group_index = 1},
-		{name = 'buffer', group_index = 2, keyword_length = 3},
+		{ name = 'luasnip' },
+		{ name = 'calc' },
+		{ name = 'async_path' },
+		{ name = 'nvim_lsp',  group_index = 1 },
+		{ name = 'buffer',    group_index = 2, keyword_length = 3 },
 	},
 	window = {
 		completion = {
@@ -110,13 +110,13 @@ cmp.setup{
 cmp.setup.cmdline('/', {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{name = 'buffer'},
+		{ name = 'buffer' },
 	},
 })
 cmp.setup.cmdline(':', {
 	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{name = 'async_path'},
-		{name = 'cmdline'},
+		{ name = 'async_path' },
+		{ name = 'cmdline' },
 	},
 })

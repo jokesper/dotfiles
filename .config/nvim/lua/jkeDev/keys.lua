@@ -1,5 +1,6 @@
 local function stringToTable(str)
-	return type(str) == 'string' and vim.split(str, '') or str end
+	return type(str) == 'string' and vim.split(str, '') or str
+end
 
 do
 	local _set, _del = vim.keymap.set, vim.keymap.del
@@ -23,7 +24,7 @@ map('n', '<C-y>', '<C-y>Mg0')
 map('n', 'n', 'nzz')
 map('n', 'N', 'Nzz')
 
-for lhs,rhs in pairs{
+for lhs, rhs in pairs {
 	['<A-h>'] = '<C-w>h', ['<A-H>'] = '<C-w>H',
 	['<A-j>'] = '<C-w>j', ['<A-J>'] = '<C-w>J',
 	['<A-k>'] = '<C-w>k', ['<A-K>'] = '<C-w>K',
@@ -31,7 +32,7 @@ for lhs,rhs in pairs{
 	['<A-n>'] = '<Cmd>new<CR>', ['<A-m>'] = '<Cmd>vnew<CR>',
 	['<A-t>'] = '<Cmd>vnew +terminal<CR>', ['<A-T>'] = '<Cmd>new +terminal<CR>',
 	['<A-=>'] = '<C-w>=',
-} do map('nvot!', lhs, '<Cmd>stopinsert<CR>'..rhs) end
+} do map('nvot!', lhs, '<Cmd>stopinsert<CR>' .. rhs) end
 
 map('i', '<C-c>', '<ESC>')
 map('n', '<Leader>x', '<Cmd>Ex<CR>')
@@ -57,5 +58,5 @@ map('n', 'zz', anti_bad_habits)
 map('n', 'zb', anti_bad_habits)
 
 local v, max = vim.v, math.max
-map('v', 'J', function() return (":m '>+%i<CR>gv=gv"):format(max(1,v.count)) end, {expr = true})
-map('v', 'K', function() return (":m '<-%i<CR>gv=gv"):format(1+max(1,v.count)) end, {expr = true})
+map('v', 'J', function() return (":m '>+%i<CR>gv=gv"):format(max(1, v.count)) end, { expr = true })
+map('v', 'K', function() return (":m '<-%i<CR>gv=gv"):format(1 + max(1, v.count)) end, { expr = true })

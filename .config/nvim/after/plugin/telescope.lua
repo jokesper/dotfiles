@@ -14,7 +14,7 @@ require 'telescope'.setup {
 				['<C-c>'] = false,
 				['<esc>'] = actions.close,
 			},
-			n = {['<C-c>'] = actions.close},
+			n = { ['<C-c>'] = actions.close },
 		},
 	},
 }

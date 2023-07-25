@@ -1,6 +1,7 @@
 local sys = vim.fn.system
 local env = vim.env
-return function(loader, event) loader([[
+return function(loader, event)
+	loader([[
 	\documentclass{article}
 
 	\usepackage{amsmath}
@@ -32,7 +33,7 @@ return function(loader, event) loader([[
 	\begin{document}
 		%^\maketitle
 	\end{document}]],
-	event.match:match '([^/]+)%.[^%.]+$',
-	sys{'getent', 'passwd', env.USER}:split ':'[5],
-	os.date '%d.%m.%Y')
+		event.match:match '([^/]+)%.[^%.]+$',
+		sys { 'getent', 'passwd', env.USER }:split ':'[5],
+		os.date '%d.%m.%Y')
 end
