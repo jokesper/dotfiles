@@ -26,10 +26,21 @@ local lspconf = require 'lspconfig'
 lspconf.lua_ls.setup {
 	settings = {
 		Lua = {
-			runtime = { version = "LuaJIT" },
+			runtime = { version = 'LuaJIT' },
 			diagnostics = {
 				globals = { 'vim' },
 			},
+			format = {
+				enable = true,
+				defaultConfig = {
+					end_of_line = 'lf',
+					table_seperator_style = 'comma',
+					trailing_table_seperator = 'smart',
+					call_arg_parentheses = 'remove',
+					quote_style = 'single',
+					align_continuous_inline_comment = 'false',
+				},
+			}
 		},
 	},
 }
