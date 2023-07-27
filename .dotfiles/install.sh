@@ -58,6 +58,7 @@ pacman --needed --noconfirm --asdeps -S \
 	swaybg \
 	swayidle \
 	swaylock \
+	mako \
 	wl-clipboard \
 	2>/dev/null
 

@@ -138,6 +138,7 @@ exec swayidle -w \
 	timeout 310 "$lock" \
 	before-sleep "cmus-remote --stop" \
 	before-sleep "$lock"
+exec mako
 
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen

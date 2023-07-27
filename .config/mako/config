@@ -1,0 +1,21 @@
+max-history=0
+font=NimbusSans 8
+background-color=#0000007F
+width=180
+height=50
+margin=16,0
+padding=2
+border-size=1
+border-color=#FFBF007F
+max-icon-size=32
+format=<i>%a</i> %s\n%b
+default-timeout=10000
+max-visible=10
+anchor=bottom-right
+
+[urgency=low]
+border-color=#FFFFFF7F
+[urgency=normal]
+border-color=#00FFFF7F
+[urgency=critical]
+border-color=#FF00007F
