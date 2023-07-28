@@ -4,7 +4,7 @@ require 'nvim-treesitter.configs'.setup {
 		'gitignore', 'gitcommit',
 		'diff',
 		'fish', 'bash', 'awk',
-		'lua', 'rust',
+		'lua', 'rust', 'haskell',
 		'markdown', 'latex',
 	},
 	sync_install = false,
