@@ -19,6 +19,7 @@ lsp.format_on_save {
 		lua_ls = { 'lua' },
 		texlab = { 'tex' },
 		rust_analyzer = { 'rust' },
+		hsl = { 'hs' },
 	},
 }
 
@@ -51,6 +52,9 @@ lspconf.lua_ls.setup {
 }
 lspconf.texlab.setup {}
 lspconf.rust_analyzer.setup {}
+lspconf.hls.setup {
+	filetypes = { 'haskell', 'lhaskell', 'cabal' },
+}
 
 lsp.setup()
 
