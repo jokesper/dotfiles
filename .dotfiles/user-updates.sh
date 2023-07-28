@@ -17,3 +17,6 @@ rustup update
 
 printf "$lv2 Updating cargo packages\n"
 cargo install-update --quiet --all
+
+printf "$lv2 Updating cabal\n"
+cabal update

@@ -19,6 +19,7 @@
 .config/nvim/lazy-lock.json
 .config/nvim/lua/*
 !.config/nvim/lua/jkeDev/
+!.config/cabal/
 !.config/cmus/
 .config/cmus/*
 !.config/cmus/rc/

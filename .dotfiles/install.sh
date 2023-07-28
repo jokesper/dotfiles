@@ -48,6 +48,9 @@ pacman --needed --noconfirm -S \
 		ttf-fira-code \
 		fish \
 	rustup \
+	cabal-install \
+		haskell-language-server \
+		hoogle \
 	firefox \
 	cmus \
 	2>/dev/null

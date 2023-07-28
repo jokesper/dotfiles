@@ -15,4 +15,6 @@ rustup default stable
 rustup component add rust-analyzer
 cargo install cargo-update rust-script
 
+hoogle generate
+
 chsh -s "/usr/bin/fish"
