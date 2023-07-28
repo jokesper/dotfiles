@@ -42,11 +42,11 @@ local function loader(template, ...)
 	api.nvim_win_set_cursor(0, cursor)
 end
 
-for _, format in ipairs({
-	{ '*.sh',  'bash' },
-	{ '*.rs',  'rust' },
+for _, format in ipairs {
+	{ '*.sh', 'bash' },
+	{ '*.rs', 'rust' },
 	{ '*.tex', 'latex' },
-}) do
+} do
 	local template = table.remove(format)
 	local callback
 	if type(template) == 'string' then

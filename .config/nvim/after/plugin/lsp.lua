@@ -38,6 +38,11 @@ lspconf.lua_ls.setup {
 					trailing_table_seperator = 'smart',
 					call_arg_parentheses = 'remove',
 					quote_style = 'single',
+					align_function_params = 'false',
+					align_continuous_assign_statement = 'false',
+					align_continuous_rect_table_field = 'false',
+					align_continuous_line_space = '0',
+					align_array_table = 'none',
 					align_continuous_inline_comment = 'false',
 				},
 			}
@@ -105,8 +110,8 @@ cmp.setup {
 		{ name = 'calc' },
 		{ name = 'async_path' },
 		{ name = 'nvim_lua' },
-		{ name = 'nvim_lsp',  group_index = 1 },
-		{ name = 'buffer',    group_index = 2, keyword_length = 3 },
+		{ name = 'nvim_lsp', group_index = 1 },
+		{ name = 'buffer', group_index = 2, keyword_length = 3 },
 	},
 	window = {
 		completion = {
