@@ -10,7 +10,7 @@ printf "$lv2 Synchronizing music playlists\n"
 ~/.dotfiles/music-sync.sh
 
 printf "$lv2 Updating neovim plugins\n"
-nvim --headless '+Lazy! sync' +quitall 2>/dev/null
+nvim --headless '+Lazy! sync' +MasonUpdate +quitall 2>/dev/null
 
 printf "$lv2 Updating rust toolchain\n"
 rustup update
