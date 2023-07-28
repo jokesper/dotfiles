@@ -23,7 +23,7 @@ local function setOptionsOnFocus(enable)
 		} do
 			if type(opt) == 'number' then opt, val = val, { false, true } end
 			val = { off = val[1], on = val[2] }
-			local old = ('original-%s'):format(opt)
+			local old = ('original_%s'):format(opt)
 			if not enable then
 				vars[old], opts[opt] = opts[opt], val.off
 			elseif vars[old] ~= nil then
