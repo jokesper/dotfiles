@@ -21,7 +21,7 @@ require 'lazy'.setup {
 	},
 	{
 		'glacambre/firenvim',
-		cond = vim.g.started_by_firenvim,
+		cond = vim.g.started_by_firenvim == true,
 		build = function()
 			require 'lazy'.load { plugins = 'firenvim', wait = true }
 			vim.fn['firenvim#install'](0)
