@@ -6,60 +6,29 @@ font NimbusSans 6
 
 set $config ${XDG_CONFIG_HOME:-$HOME/.config}/sway
 
-set $mod Mod4
+set $return mode 'default'
 set $left h
 set $down j
 set $up k
 set $right l
-set $term kitty -- nvim term://fish
-set $editor kitty -d ~/Documents -- nvim
-set $menu $config/menu.sh | xargs swaymsg exec --
-set $lock swaylock -fec 0F0000
+set $term exec kitty -- nvim term://fish
+set $editor exec kitty -d ~/Documents -- nvim
+set $menu exec $config/menu.sh | xargs swaymsg exec --
+set $lock exec swaylock -fec 0F0000
 set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
+set $exit_sway exec bash -c "\
+	swaymsg set '\$swaynag_exit_pid' \$\$; \
+	exec swaynag -t warning \
+		-m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
+		-Z 'No' 'swaymsg mode default' \
+		-B 'Yes, exit sway' 'swaymsg exit'"; \
+	mode 'sway-exit'
+set $cancel_exit exec kill '$swaynag_exit_pid'; $return
 
 exec_always ~/.dotfiles/swap-background.sh
 # https://github.com/swaywm/sway/commit/7d0351b41195671263a92997caab620c763d9d65
 #exec_always swaymsg -t subscribe -m '["output"]' | while read -r data; do :; done
 exec wpa_cli -Ba ~/.dotfiles/swap-background.sh
-
-bindsym $mod+t exec $term
-bindsym $mod+q kill
-bindsym $mod+d exec $menu
-floating_modifier $mod normal
-bindsym $mod+c reload
-bindsym $mod+Alt+e exec \
-	swaynag -t warning \
-		-m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' \
-		-B 'Yes, exit sway' \
-		'swaymsg exit'
-bindsym $mod+x exec $lock
-bindsym Print exec grim -g "$($select)" - | wl-copy
-bindsym Alt+Print exec \
-	swaymsg -t get_tree \
-	| jq -r '.. \
-		| select(.pid? and .visible?) \
-		| .rect \
-		| "\(.x),\(.y) \(.width)x\(.height)"' \
-	| $select -or \
-	| grim -g - - \
-	| wl-copy
-bindsym $mod+v exec $editor
-
-# Show edge borders only when necessary.
-default_border pixel
-hide_edge_borders smart
-
-# Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-
-# Move the focused window with the same, but add Alt
-bindsym $mod+Alt+$left move left
-bindsym $mod+Alt+$down move down
-bindsym $mod+Alt+$up move up
-bindsym $mod+Alt+$right move right
 
 set $ws1 1
 set $ws2 2
@@ -78,59 +47,133 @@ for_window [app_id="firefox"] move workspace $ws3
 for_window [class="steam"] move workspace $ws8
 for_window [class="discord"] move workspace $ws9
 
-# Switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-# Move focused container to workspace
-bindsym $mod+Alt+1 move workspace $ws1
-bindsym $mod+Alt+2 move workspace $ws2
-bindsym $mod+Alt+3 move workspace $ws3
-bindsym $mod+Alt+4 move workspace $ws4
-bindsym $mod+Alt+5 move workspace $ws5
-bindsym $mod+Alt+6 move workspace $ws6
-bindsym $mod+Alt+7 move workspace $ws7
-bindsym $mod+Alt+8 move workspace $ws8
-bindsym $mod+Alt+9 move workspace $ws9
-bindsym $mod+Alt+0 move workspace $ws10
+# Show edge borders only when necessary.
+default_border pixel
+hide_edge_borders smart
 
-# Split the current object of your focus
-bindsym $mod+m split h
-bindsym $mod+n split v
-# Switch the current container between different layout styles
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
+# Fixme:
+# - You need to release the old modifier key first
+#   see: https://github.com/swaywm/sway/pull/7602
+bindsym  Super_L mode 'sway'
+bindsym  Super_R mode 'sway'
+mode 'sway' {
+	bindsym Super_L $return
+	bindsym Super_R $return
+	bindsym Escape $return
+	bindsym Ctrl+c $return
 
-bindsym $mod+f fullscreen toggle
-bindsym $mod+Alt+i floating toggle
-# Swap focus between the tiling area and the floating area
-bindsym $mod+i focus mode_toggle
-bindsym $mod+a focus parent
+	bindsym t $term; $return
+	bindsym v $editor; $return
+	bindsym q kill; $return
+	bindsym d $menu; $return
+	# Todo:
+	#floating_modifier $mod normal
+	bindsym c reload; $return
+	bindsym e $exit_sway
+	bindsym x $lock; $return
 
-bindsym $mod+Alt+minus move scratchpad
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
+	# Move your focus around
+	bindsym $left focus left
+	bindsym $down focus down
+	bindsym $up focus up
+	bindsym $right focus right
+
+	# Move the focused window with the same, but add Alt
+	bindsym Alt+$left move left
+	bindsym Alt+$down move down
+	bindsym Alt+$up move up
+	bindsym Alt+$right move right
+
+	# Switch to workspace
+	bindsym 1 workspace $ws1; $return
+	bindsym 2 workspace $ws2; $return
+	bindsym 3 workspace $ws3; $return
+	bindsym 4 workspace $ws4; $return
+	bindsym 5 workspace $ws5; $return
+	bindsym 6 workspace $ws6; $return
+	bindsym 7 workspace $ws7; $return
+	bindsym 8 workspace $ws8; $return
+	bindsym 9 workspace $ws9; $return
+	bindsym 0 workspace $ws10; $return
+	bindsym Alt_L mode 'move-window'
+	bindsym Control_L mode 'move-workspace'
+
+	# Split the current object of your focus
+	bindsym m split h; $return
+	bindsym n split v; $return
+
+	bindsym f fullscreen toggle; $return
+	# Swap focus between the tiling area and the floating area
+	bindsym i focus mode_toggle; $return
+	bindsym a focus parent; $return
+	# Show the next scratchpad window or hide the focused scratchpad window.
+	# If there are multiple scratchpad windows, this command cycles through them.
+	bindsym minus scratchpad show; $return
+
+	bindsym r mode "resize"
+}
+mode 'sway-exit' {
+	bindsym Super_L $cancel_exit
+	bindsym Super_R $cancel_exit
+	bindsym Escape $cancel_exit
+	bindsym Ctrl+c $cancel_exit
+	bindsym Return exit
+}
+mode 'move-window' {
+	bindsym Super_L $return
+	bindsym Super_R $return
+	bindsym Escape $return
+	bindsym Ctrl+c $return
+	bindsym Alt_L mode 'sway'
+
+	# Move focused container to workspace
+	bindsym 1 move workspace $ws1; $return
+	bindsym 2 move workspace $ws2; $return
+	bindsym 3 move workspace $ws3; $return
+	bindsym 4 move workspace $ws4; $return
+	bindsym 5 move workspace $ws5; $return
+	bindsym 6 move workspace $ws6; $return
+	bindsym 7 move workspace $ws7; $return
+	bindsym 8 move workspace $ws8; $return
+	bindsym 9 move workspace $ws9; $return
+	bindsym 0 move workspace $ws10; $return
+
+	bindsym i floating toggle; $return
+	bindsym minus move scratchpad; $return
+}
+mode 'move-workspace' {
+	bindsym Super_L $return
+	bindsym Super_R $return
+	bindsym Escape $return
+	bindsym Ctrl+c $return
+	bindsym c $return
+	bindsym Control_L mode 'sway'
+	# Keybindings defined by local sway config at `$XDG_CONFIG_HOME/dotfiles/sway-config`
+}
+
+bindsym Print exec grim -g "$($select)" - | wl-copy
+bindsym Alt+Print exec \
+	swaymsg -t get_tree \
+	| jq -r '.. \
+		| select(.pid? and .visible?) \
+		| .rect \
+		| "\(.x),\(.y) \(.width)x\(.height)"' \
+	| $select -or \
+	| grim -g - - \
+	| wl-copy
 
 mode "resize" {
+	bindsym Super_L $return
+	bindsym Super_R $return
+	bindsym Escape $return
+	bindsym Ctrl+c $return
+	bindsym r mode "sway"
+
 	bindsym $left resize shrink width 10 px
 	bindsym $down resize grow height 10 px
 	bindsym $up resize shrink height 10 px
 	bindsym $right resize grow width 10 px
-
-	# Return to default mode
-	bindsym Return mode "default"
-	bindsym Escape mode "default"
-	bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "resize"
 
 exec swayidle -w \
 	timeout 300 'swaymsg "output * power off"' \
@@ -167,12 +210,14 @@ bar {
 	status_command i3status
 	strip_workspace_numbers yes
 	mode hide
+	modifier ''
 	colors {
 		background #0000007F
 		inactive_workspace #000000BF #000000BF #FFFFFFFF
 		active_workspace #000000BF #000000BF #FFBF00FF
 		focused_workspace #000000BF #000000BF #00FFFFFF
 		urgent_workspace #000000BF #000000BF #FF0000FF
+		binding_mode #7F7F7FFF #7F7F7FFF #000000FF
 	}
 }
 
