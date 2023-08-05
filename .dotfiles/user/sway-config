@@ -10,6 +10,6 @@
 # Move focused workspace to output
 mode 'move-workspace' {
 	# Define numbers for outputs. E.g.:
-	#bindsym 1 move workspace output <primary-output>
-	#bindsym 2 move workspace output <secondary-output>
+	#bindsym 1 move workspace output <primary-output>; $dreturn
+	#bindsym 2 move workspace output <secondary-output>; $return
 }
