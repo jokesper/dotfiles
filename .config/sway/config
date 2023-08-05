@@ -78,12 +78,6 @@ mode 'sway' {
 	bindsym $up focus up
 	bindsym $right focus right
 
-	# Move the focused window with the same, but add Alt
-	bindsym Alt+$left move left
-	bindsym Alt+$down move down
-	bindsym Alt+$up move up
-	bindsym Alt+$right move right
-
 	# Switch to workspace
 	bindsym 1 workspace $ws1; $return
 	bindsym 2 workspace $ws2; $return
@@ -137,6 +131,11 @@ mode 'move-window' {
 	bindsym 8 move workspace $ws8; $return
 	bindsym 9 move workspace $ws9; $return
 	bindsym 0 move workspace $ws10; $return
+
+	bindsym $left move left
+	bindsym $down move down
+	bindsym $up move up
+	bindsym $right move right
 
 	bindsym i floating toggle; $return
 	bindsym minus move scratchpad; $return
