@@ -95,6 +95,11 @@ for name, augroup in pairs { custom = {
 		desc = 'Hide line numbers when not focused',
 		callback = function() setOptionsOnFocus(false) end,
 	},
+	{
+		'CursorHold',
+		'CursorHoldI',
+		callback = function() vim.diagnostic.open_float() end
+	},
 } } do
 	if type(name) == 'string' then create_augroup(name, {}) end
 	for _, autocmd in ipairs(augroup) do
