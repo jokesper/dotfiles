@@ -19,7 +19,7 @@ lsp.format_on_save {
 		lua_ls = { 'lua' },
 		texlab = { 'tex' },
 		rust_analyzer = { 'rust' },
-		hsl = { 'haskell', 'lhaskell', 'cabal' },
+		hls = { 'haskell', 'lhaskell', 'cabal' },
 	},
 }
 
