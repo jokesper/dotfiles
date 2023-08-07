@@ -6,6 +6,8 @@ local env = vim.env
 g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 g.netrw_banner = 0
 g.vimtex_compiler_latexmk = {
-	build_dir = ('%s/Documents/Output'):format(env.HOME)
+	options = {
+		('--output-directory=%s/Documents/Output'):format(env.HOME),
+	},
 }
 g.vimtex_indent_on_ampersands = 0
