@@ -34,6 +34,6 @@ return function(loader, event)
 		%^\maketitle
 	\end{document}]],
 		event.match:match '([^/]+)%.[^%.]+$',
-		sys { 'getent', 'passwd', env.USER }:split ':'[5],
+		vim.split(sys { 'getent', 'passwd', env.USER }, ':')[5],
 		os.date '%d.%m.%Y')
 end
