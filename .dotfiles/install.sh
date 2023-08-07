@@ -39,7 +39,7 @@ pacman --needed --noconfirm -S \
 	doas \
 	neovim \
 		ripgrep \
-		texlive-latexextra \
+		texlive-meta \
 			texlab \
 	sway \
 		bemenu-wayland \
@@ -56,7 +56,6 @@ pacman --needed --noconfirm -S \
 	2>/dev/null
 
 pacman --needed --noconfirm --asdeps -S \
-	texlive-pictures \
 	i3status \
 	swaybg \
 	swayidle \
