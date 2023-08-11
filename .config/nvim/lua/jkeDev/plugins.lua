@@ -1,12 +1,16 @@
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+vim.opt.rtp:prepend(lazypath)
+if os.getenv 'NVIM' ~= nil then
+	require 'lazy'.setup { { 'willothy/flatten.nvim', config = true } }
+	return false
+elseif not vim.loop.fs_stat(lazypath) then
 	vim.fn.system { 'git', 'clone',
 		'--filter=blob:none',
 		'https://github.com/folke/lazy.nvim.git',
 		'--branch=stable',
 		lazypath }
 end
-vim.opt.rtp:prepend(lazypath)
+
 require 'lazy'.setup {
 	{
 		'nvim-treesitter/nvim-treesitter',
@@ -68,5 +72,11 @@ require 'lazy'.setup {
 			{ 'hrsh7th/cmp-nvim-lsp' },
 			{ 'L3MON4D3/LuaSnip' },
 		},
+	},
+	{
+		'willothy/flatten.nvim',
+		config = true,
+		lazy = false,
+		priority = 1001,
 	},
 }

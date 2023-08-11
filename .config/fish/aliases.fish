@@ -17,7 +17,6 @@ function grep -w grep -d 'Color `grep` output'; command grep --color=auto $argv;
 function ll -w ls -d '`ls` but with long listing format'; ls -Alh $argv; end
 function la -w ls -d '`ls` but listing every item'; ls -A $argv; end
 function file -w file -d '`file` but with the `--brief` option'; command file -b $argv; end
-function man -w man -d '`man` but open in neovim if it is already running'; ~/.dotfiles/man.sh $argv; end
 function h -w hoogle -d 'Classic hoogle search with extras'
 	set arg (string join " " $argv)
 	if test -z "$arg"; read -P'λ>' arg; end
