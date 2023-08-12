@@ -4,10 +4,13 @@ if status is-login; exec bash -c '. /etc/profile; exec fish'; end
 if not set -q DISPLAY; and [ (tty) = '/dev/tty1' ]; exec sway --unsupported-gpu; end
 
 function fish_prompt -d 'Write out the prompt'
-	printf '%s%s@%s%s:%s%s%s$ ' \
-		(set_color cyan) $USER $hostname (set_color normal) \
-		(set_color magenta) (basename (prompt_pwd)) (set_color normal) \
-
+	printf '%s%s@%s%s%s:%s%s%s%s ' \
+		(set_color $fish_color_user) $USER \
+		(set_color $fish_color_host) $hostname \
+		(set_color $fish_color_normal) \
+		(set_color $fish_color_cwd) (basename (prompt_pwd)) \
+		(set_color $fish_color_normal) \
+		(if fish_is_root_user; printf '#'; else; printf '$'; end)
 end
 function fish_mode_prompt -d 'Disable Indicator for modes'; end
 function fish_greeting -d 'Show unpushed git commits when starting fish'
