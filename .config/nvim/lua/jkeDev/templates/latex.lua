@@ -5,12 +5,15 @@ return function(loader, event)
 	\documentclass{article}
 
 	\usepackage{amsmath}
+	\usepackage{mathtools}
 	\usepackage{amssymb}
+	\usepackage{fdsymbol}
+	\usepackage{slashed}
 	\usepackage{geometry}
 	\usepackage[shortlabels]{enumitem}
 	\usepackage{graphicx}
 	\usepackage{amsfonts}
-	\usepackage{units}
+	\usepackage[exponent-product = \cdot]{siunitx}
 	\usepackage{pgfplots}
 	\usepackage{pgfplotstable}
 	\usepackage[autostyle]{csquotes}
