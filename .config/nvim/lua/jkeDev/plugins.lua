@@ -1,6 +1,6 @@
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 vim.opt.rtp:prepend(lazypath)
-if os.getenv 'NVIM' ~= nil then
+if os.getenv 'NVIM' ~= nil and #vim.api.nvim_list_uis() > 0 then
 	require 'lazy'.setup { { 'willothy/flatten.nvim', config = true } }
 	return false
 elseif not vim.loop.fs_stat(lazypath) then
