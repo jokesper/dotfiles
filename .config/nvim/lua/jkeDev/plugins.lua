@@ -75,7 +75,9 @@ require 'lazy'.setup {
 	},
 	{
 		'willothy/flatten.nvim',
-		config = true,
+		opts = {
+			window = { open = 'tab' },
+		},
 		lazy = false,
 		priority = 1001,
 	},
