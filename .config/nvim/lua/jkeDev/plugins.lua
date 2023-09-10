@@ -1,12 +1,13 @@
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 vim.opt.rtp:prepend(lazypath)
+local should_nest = #vim.api.nvim_list_uis() <= 0
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system { 'git', 'clone',
 		'--filter=blob:none',
 		'https://github.com/folke/lazy.nvim.git',
 		'--branch=stable',
 		lazypath }
-elseif os.getenv 'NVIM' ~= nil and #vim.api.nvim_list_uis() > 0 then
+elseif not should_nest and os.getenv 'NVIM' ~= nil then
 	require 'lazy'.setup { { 'willothy/flatten.nvim', config = true } }
 	return false
 end
@@ -76,6 +77,11 @@ require 'lazy'.setup {
 	{
 		'willothy/flatten.nvim',
 		opts = {
+			callbacks = {
+				should_nest = function()
+					return should_nest or require 'flatten'.default_should_nest
+				end,
+			},
 			window = { open = 'tab' },
 		},
 		lazy = false,
