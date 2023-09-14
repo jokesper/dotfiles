@@ -1,8 +1,15 @@
-hidden partial modifier_keys
+default partial alphanumeric_keys modifier_keys
 xkb_symbols "basic" {
 
 	include "us(dvorak)"
 	name[Group1] = "Dvorak (customized)";
+
+	key <AB01> { [ colon, semicolon ] };
+
+	key <AC01> { [ a, A, adiaeresis, Adiaeresis ] };
+	key <AC02> { [ o, O, odiaeresis, Odiaeresis ] };
+	key <AC04> { [ u, U, udiaeresis, Udiaeresis ] };
+	key <AC10> { [ s, S, ssharp, U1E9E ] };
 
 	key <CAPS> { [ Control_L ] };
 	modifier_map Control { <CAPS> };
@@ -16,4 +23,6 @@ xkb_symbols "basic" {
 
 	replace key <BKSP> { [ Shift_R ] };
 	replace key <RTSH> { [ BackSpace ] };
+
+	include "level3(ralt_switch)"
 };

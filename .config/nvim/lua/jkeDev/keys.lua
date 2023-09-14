@@ -60,3 +60,7 @@ map('n', 'zb', anti_bad_habits)
 local v, max = vim.v, math.max
 map('v', 'J', function() return (":m '>+%i<CR>gv=gv"):format(max(1, v.count)) end, { expr = true })
 map('v', 'K', function() return (":m '<-%i<CR>gv=gv"):format(1 + max(1, v.count)) end, { expr = true })
+
+-- switch `,` and `;` for a more convenient typing experience
+map('nv', ';', ',')
+map('nv', ',', ';')
