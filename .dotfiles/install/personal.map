@@ -1,5 +1,8 @@
 include "/usr/share/kbd/keymaps/i386/dvorak/dvorak.map.gz"
 
+# Swap colon and semicolon
+keycode 44 = colon semicolon
+
 # Enable mapping independent of modifier keys
 keymaps 0-511
 
