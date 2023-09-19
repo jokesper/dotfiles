@@ -11,13 +11,6 @@ xkb_symbols "basic" {
 	key <AC04> { [ u, U, udiaeresis, Udiaeresis ] };
 	key <AC10> { [ s, S, ssharp, U1E9E ] };
 
-	key <CAPS> { [ Control_L ] };
-	modifier_map Control { <CAPS> };
-
-	key <ESC> { [ Caps_Lock ] };
-
-	replace key <LCTL> { [ Escape ] };
-
 	replace key <LALT> { [ Shift_L ] };
 	replace key <LFSH> { [ Alt_L ] };
 

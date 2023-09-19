@@ -34,7 +34,6 @@ for lhs, rhs in pairs {
 	['<A-=>'] = '<C-w>=',
 } do map('nvot!', lhs, '<Cmd>stopinsert<CR>' .. rhs) end
 
-map('i', '<C-c>', '<ESC>')
 map('n', '<Leader>x', '<Cmd>Ex<CR>')
 
 -- System clipboard

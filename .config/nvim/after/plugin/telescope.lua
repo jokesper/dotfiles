@@ -1,5 +1,4 @@
 local telescope = require 'telescope.builtin'
-local actions = require 'telescope.actions'
 local map = vim.keymap.set
 
 require 'telescope'.setup {
@@ -8,13 +7,6 @@ require 'telescope'.setup {
 			'Output/',
 			'bin/',
 			'obj/',
-		},
-		mappings = {
-			i = {
-				['<C-c>'] = false,
-				['<esc>'] = actions.close,
-			},
-			n = { ['<C-c>'] = actions.close },
 		},
 	},
 }

@@ -18,6 +18,8 @@ install -Dm644 ./doas.conf -t /etc/
 install -Dm644 ./faillock.conf -t /etc/security/
 install -Dm644 ./25-wireless.network -t /etc/systemd/network/
 install -Dm644 ./pam_env.conf -t /etc/security/
+install -Dm644 ./udevmon.yaml -t /etc/interception/
+install -Dm644 ./keyboard.yaml -t /etc/interception/dual-function-keys/
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
@@ -53,6 +55,7 @@ pacman --needed --noconfirm -S \
 		hoogle \
 	firefox \
 	cmus \
+	interception-dual-function-keys \
 	2>/dev/null
 
 pacman --needed --noconfirm --asdeps -S \
@@ -106,3 +109,4 @@ systemctl enable \
 	systemd-networkd \
 	systemd-resolved \
 	systemd-timesyncd \
+	udevmon \

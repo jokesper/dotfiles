@@ -6,15 +6,6 @@ keycode 44 = colon semicolon
 # Enable mapping independent of modifier keys
 keymaps 0-511
 
-# Cycling Ctrl, Caps and Esc
-# i.e.
-# Control -> Caps_Lock
-# Caps_Lock -> Escape
-# Escape -> Control
-keycode 58 = Control
-keycode 1 = Caps_Lock
-keycode 29 = Escape
-
 # Swap Alt and Left Shift
 keycode 42 = Alt
 keycode 56 = Shift
