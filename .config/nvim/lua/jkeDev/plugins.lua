@@ -34,11 +34,15 @@ require 'lazy'.setup {
 	},
 	{
 		'lukas-reineke/indent-blankline.nvim',
+		main = 'ibl',
 		opts = {
-			char = '▎',
-			context_char_list = { '▎' },
-			show_current_context = true,
-			show_current_context_start = true,
+			scope = {
+				include = {
+					node_type = {
+						lua = { 'table_constructor' },
+					},
+				},
+			},
 		},
 	},
 	{

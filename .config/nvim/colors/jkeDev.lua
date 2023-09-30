@@ -112,9 +112,8 @@ for name, val in pairs {
 	TelescopePromptBorder = { fg = 'cyan', bg = 3 },
 
 	-- Indent Blankline
-	IndentBlanklineChar = { fg = 5 },
-	IndentBlanklineContextChar = { fg = 4 },
-	IndentBlanklineContextStart = { underline = true },
+	IblIndent = { fg = 5 },
+	IblScope = { fg = 4 },
 } do
 	val.fg = theme.fg[val.fg] == nil and val.fg or theme.fg[val.fg]
 	val.bg = theme.bg[val.bg] == nil and val.bg or theme.bg[val.bg]
