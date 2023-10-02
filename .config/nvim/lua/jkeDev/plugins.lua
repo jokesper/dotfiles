@@ -1,6 +1,19 @@
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 vim.opt.rtp:prepend(lazypath)
 local should_nest = #vim.api.nvim_list_uis() <= 0
+local flatten = {
+	'willothy/flatten.nvim',
+	opts = {
+		callbacks = {
+			should_nest = function()
+				return should_nest or require 'flatten'.default_should_nest
+			end,
+		},
+		window = { open = 'tab' },
+	},
+	lazy = false,
+	priority = 1001,
+}
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system { 'git', 'clone',
 		'--filter=blob:none',
@@ -8,11 +21,12 @@ if not vim.loop.fs_stat(lazypath) then
 		'--branch=stable',
 		lazypath }
 elseif not should_nest and os.getenv 'NVIM' ~= nil then
-	require 'lazy'.setup { { 'willothy/flatten.nvim', config = true } }
+	require 'lazy'.setup { flatten }
 	return false
 end
 
 require 'lazy'.setup {
+	flatten,
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = function() require 'nvim-treesitter.install'.update { with_sync = true } () end,
@@ -92,18 +106,5 @@ require 'lazy'.setup {
 				PERF = { icon = 'P', alt = { 'PERFORMANCE', 'OPTIMIZE' } },
 			},
 		},
-	},
-	{
-		'willothy/flatten.nvim',
-		opts = {
-			callbacks = {
-				should_nest = function()
-					return should_nest or require 'flatten'.default_should_nest
-				end,
-			},
-			window = { open = 'tab' },
-		},
-		lazy = false,
-		priority = 1001,
 	},
 }
