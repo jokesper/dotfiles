@@ -5,8 +5,8 @@ local flatten = {
 	'willothy/flatten.nvim',
 	opts = {
 		callbacks = {
-			should_nest = function()
-				return should_nest or require 'flatten'.default_should_nest
+			should_nest = function(...)
+				return should_nest or require 'flatten'.default_should_nest(...)
 			end,
 		},
 		window = { open = 'tab' },
