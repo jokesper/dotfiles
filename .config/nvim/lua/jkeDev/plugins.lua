@@ -45,6 +45,7 @@ require 'lazy'.setup {
 			},
 		},
 	},
+	{ 'nacro90/numb.nvim', config = true },
 	{
 		'jkeDev/cloak.nvim',
 		opts = {
