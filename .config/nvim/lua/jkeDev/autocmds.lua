@@ -21,7 +21,10 @@ local function setOptionsOnFocus(enable)
 			foldcolumn = { '0', 'auto' },
 			--colorcolumn = {'', '101'},
 		} do
+			---@diagnostic disable-next-line
 			if type(opt) == 'number' then opt, val = val, { false, true } end
+			---@cast opt string
+			---@cast val any[]
 			val = { off = val[1], on = val[2] }
 			local old = ('original_%s'):format(opt)
 			if not enable then
@@ -37,7 +40,10 @@ local function setOptionsOnFocus(enable)
 		showtabline = { 0, 1 },
 		cmdheight = { 0, 1 },
 	} do
+		---@diagnostic disable-next-line
 		if type(opt) == 'number' then opt, val = val, { false, true } end
+		---@cast opt string
+		---@cast val any[]
 		if enable then val = val[2] else val = val[1] end
 		vim.opt[opt] = val
 	end
