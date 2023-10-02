@@ -3,6 +3,7 @@ local map = vim.keymap.set
 
 require 'telescope'.setup {
 	defaults = {
+		borderchars = vim.fn.getenv 'TERM' == 'linux' and { '─', '│', '─', '│', '+', '+', '+', '+' } or nil,
 		file_ignore_patterns = {
 			'Output/',
 			'bin/',
