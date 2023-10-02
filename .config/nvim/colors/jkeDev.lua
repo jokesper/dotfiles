@@ -102,6 +102,12 @@ for name, val in pairs {
 
 	ToDo = { underline = true },
 
+	-- Diagnostics
+	DiagnosticError = { fg = 'red' },
+	DiagnosticWarn = { fg = 'yellow' },
+	DiagnosticInfo = { fg = 'blue' },
+	DiagnosticHint = { fg = 'green' },
+
 	-- Treesitter
 
 	-- Telescope

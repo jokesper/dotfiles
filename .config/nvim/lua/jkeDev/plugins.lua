@@ -79,6 +79,20 @@ require 'lazy'.setup {
 		},
 	},
 	{
+		'folke/todo-comments.nvim',
+		opts = {
+			merge_keywords = false,
+			keywords = {
+				NOTE = { icon = 'N', color = 'hint', alt = { 'INFO' } },
+				TODO = { icon = 'T', color = 'info' },
+				FIXME = { icon = 'F', color = 'error' },
+				WARN = { icon = 'W', color = 'warning', alt = { 'WARNING' } },
+				HACK = { icon = 'H', color = 'warning' },
+				PERF = { icon = 'P', alt = { 'PERFORMANCE', 'OPTIMIZE' } },
+			},
+		},
+	},
+	{
 		'willothy/flatten.nvim',
 		opts = {
 			callbacks = {
