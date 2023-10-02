@@ -50,6 +50,9 @@ require 'lazy'.setup {
 		'lukas-reineke/indent-blankline.nvim',
 		main = 'ibl',
 		opts = {
+			indent = {
+				char = vim.fn.getenv 'TERM' == 'linux' and '│' or nil,
+			},
 			scope = {
 				include = {
 					node_type = {
