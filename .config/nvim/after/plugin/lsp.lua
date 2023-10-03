@@ -80,25 +80,26 @@ cmp.setup {
 				cmdline = ':',
 			})[entry.source.name]
 			item.kind = ({
-				-- ToDo: find fitting symbols for long names
+				-- NOTE: NF = Nerd Fonts
+				-- TODO: find fitting symbols for long names
 				Method = 'Method',
 				Function = 'λ',
 				Constructor = 'Constructor',
-				Field = 'Field',
+				Field = '', -- NF
 				Variable = '𝕏',
 				Class = '⑆',
 				Interface = '∩',
-				Module = 'Module',
-				Property = 'Property',
+				Module = '', -- NF
+				Property = '', -- NF
 				Unit = '£',
 				Value = '1',
 				Enum = '∪',
 				Keyword = 'a',
 				Snippet = '□',
 				Color = '#',
-				File = 'File',
+				File = '', -- NF
 				Reference = '§',
-				Folder = 'Folder',
+				Folder = '', -- NF
 				EnumMember = '∈',
 				Constant = 'π',
 				Struct = '×',
