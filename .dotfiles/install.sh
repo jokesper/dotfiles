@@ -47,7 +47,7 @@ pacman --needed --noconfirm -S \
 		bemenu-wayland \
 		grim slurp \
 	kitty \
-		ttf-fira-code \
+		ttf-firacode-nerd \
 		fish \
 	rustup \
 	cabal-install \
