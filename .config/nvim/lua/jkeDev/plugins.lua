@@ -25,6 +25,7 @@ elseif not should_nest and os.getenv 'NVIM' ~= nil then
 	return false
 end
 
+local tty = vim.fn.getenv 'TERM' == 'linux'
 require 'lazy'.setup {
 	flatten,
 	{
@@ -100,13 +101,13 @@ require 'lazy'.setup {
 		'folke/todo-comments.nvim',
 		opts = {
 			merge_keywords = false,
-			keywords = {
-				NOTE = { icon = 'N', color = 'hint', alt = { 'INFO' } },
-				TODO = { icon = 'T', color = 'info' },
-				FIXME = { icon = 'F', color = 'error' },
-				WARN = { icon = 'W', color = 'warning', alt = { 'WARNING' } },
-				HACK = { icon = 'H', color = 'warning' },
-				PERF = { icon = 'P', alt = { 'PERFORMANCE', 'OPTIMIZE' } },
+			keywords = { -- NOTE: non tty icons are from nerd fonts
+				NOTE = { icon = tty and 'N' or '󰍩', color = 'hint', alt = { 'INFO' } },
+				TODO = { icon = tty and 'T' or '', color = 'info' },
+				FIX = { icon = tty and 'F' or 'F', color = 'error', alt = { 'FIXME' } },
+				WARN = { icon = tty and 'W' or '', color = 'warning', alt = { 'WARNING' } },
+				HACK = { icon = tty and 'H' or '', color = 'warning' },
+				PERF = { icon = tty and 'P' or '󰁫', alt = { 'PERFORMANCE', 'OPTIMIZE' } },
 			},
 		},
 	},
