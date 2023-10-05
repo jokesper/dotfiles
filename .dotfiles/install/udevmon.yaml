@@ -5,3 +5,7 @@
   DEVICE:
     EVENTS:
       EV_KEY: [KEY_ESC, KEY_CAPSLOCK]
+- JOB: intercept $DEVNODE | mux -o dfk-pre
+  DEVICE:
+    EVENTS:
+      EV_KEY: [BTN_LEFT, BTN_RIGHT]
