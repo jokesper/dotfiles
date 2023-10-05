@@ -11,6 +11,7 @@ install -Dm644 <(echo 'en_US.UTF-8 UTF-8') -T /etc/locale.gen
 install -Dm644 <(echo 'LANG=en_US.UTF-8') -T /etc/locale.conf
 install -Dm644 ./personal.map -t /usr/local/share/kbd/keymaps/
 install -Dm644 ./personal-xkb -T /usr/share/X11/xkb/symbols/personal
+install -Dm644 ./reflector-mirrorlist.hook -t /usr/share/libalpm/hooks/
 install -Dm644 ./vconsole.conf -t /etc/
 install -Dm644 ./pacman.conf -t /etc/
 install -Dm644 ./grub -t /etc/default/
@@ -33,6 +34,7 @@ pacman --needed --noconfirm -S \
 		fakeroot \
 		make \
 		patch \
+		reflector \
 	grub \
 	wireplumber \
 		pipewire-pulse \

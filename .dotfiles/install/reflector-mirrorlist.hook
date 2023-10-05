@@ -1,0 +1,9 @@
+[Trigger]
+Type = Package
+Operation = Upgrade
+Target = pacman-mirrorlist
+
+[Action]
+Description = Running reflector for new mirror list...
+When = PostTransaction
+Exec = /usr/bin/reflector --save /etc/pacman.d/mirrorlist --country Germany --protocol https --latest 5
