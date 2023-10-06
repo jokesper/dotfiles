@@ -1,62 +1,43 @@
-require 'mason'.setup()
-require 'mason-lspconfig'.setup {
-	ensure_installed = {
-		'lua_ls',
-	}
-}
-local lsp = require 'lsp-zero'.preset {}
+local lsp = require 'lsp-zero'
 
 lsp.on_attach(function(client, bufnr)
 	lsp.default_keymaps { buffer = bufnr }
+	lsp.buffer_autoformat()
 end)
 
-lsp.format_on_save {
-	format_opts = {
-		async = true,
-		timeout_ms = 10e3,
+require 'mason'.setup {}
+require 'mason-lspconfig'.setup {
+	ensure_installed = {
+		'lua_ls',
 	},
-	servers = {
-		lua_ls = { 'lua' },
-		texlab = { 'tex' },
-		rust_analyzer = { 'rust' },
-		hls = { 'haskell', 'lhaskell', 'cabal' },
-	},
-}
-
-local lspconf = require 'lspconfig'
-lspconf.lua_ls.setup {
-	settings = {
-		Lua = {
-			runtime = { version = 'LuaJIT' },
-			diagnostics = {
-				globals = { 'vim' },
-			},
-			format = {
-				enable = true,
-				defaultConfig = {
-					end_of_line = 'lf',
-					table_seperator_style = 'comma',
-					trailing_table_seperator = 'smart',
-					call_arg_parentheses = 'remove',
-					quote_style = 'single',
-					align_function_params = 'false',
-					align_continuous_assign_statement = 'false',
-					align_continuous_rect_table_field = 'false',
-					align_continuous_line_space = '0',
-					align_array_table = 'none',
-					align_continuous_inline_comment = 'false',
+	handlers = {
+		lsp.default_setup,
+		lua_ls = function()
+			require 'lspconfig'.lua_ls.setup(lsp.nvim_lua_ls {
+				settings = {
+					Lua = {
+						format = {
+							enable = true,
+							defaultConfig = {
+								end_of_line = 'lf',
+								table_seperator_style = 'comma',
+								trailing_table_seperator = 'smart',
+								call_arg_parentheses = 'remove',
+								quote_style = 'single',
+								align_function_params = 'false',
+								align_continuous_assign_statement = 'false',
+								align_continuous_rect_table_field = 'false',
+								align_continuous_line_space = '0',
+								align_array_table = 'none',
+								align_continuous_inline_comment = 'false',
+							},
+						},
+					},
 				},
-			}
-		},
+			})
+		end,
 	},
 }
-lspconf.texlab.setup {}
-lspconf.rust_analyzer.setup {}
-lspconf.hls.setup {
-	filetypes = { 'haskell', 'lhaskell', 'cabal' },
-}
-
-lsp.setup()
 
 local cmp = require 'cmp'
 local cmp_action = require 'lsp-zero'.cmp_action()
