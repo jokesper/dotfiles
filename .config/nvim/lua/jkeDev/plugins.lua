@@ -32,12 +32,51 @@ require 'lazy'.setup {
 		'nvim-treesitter/nvim-treesitter',
 		build = function() require 'nvim-treesitter.install'.update { with_sync = true } () end,
 	},
-	'nvim-treesitter/nvim-treesitter-context',
+	{
+		'nvim-treesitter/nvim-treesitter-context',
+		main = 'nvim-treesitter.configs',
+		opts = {
+			ensure_installed = {
+				'vimdoc',
+				'gitignore', 'gitcommit',
+				'diff',
+				'fish', 'bash', 'awk',
+				'lua', 'rust', 'haskell',
+				'markdown', 'latex',
+			},
+			sync_install = false,
+			auto_install = true,
+			highlight = {
+				enable = true,
+				additional_vim_regex_highlighting = false,
+			},
+			indent = { enable = true },
+		},
+	},
 	{ 'lervag/vimtex', ft = 'tex', lazy = true },
 	{
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
 		dependencies = 'nvim-lua/plenary.nvim',
+		opts = {
+			defaults = {
+				borderchars = vim.fn.getenv 'TERM' == 'linux'
+					and { '─', '│', '─', '│', '+', '+', '+', '+' } or nil,
+				file_ignore_patterns = {
+					'Output/',
+					'bin/',
+					'obj/',
+				},
+			},
+		},
+		init = function()
+			local telescope = require 'telescope.builtin'
+			for lhs, rhs in pairs {
+				f = telescope.find_files,
+				['<Tab>'] = telescope.git_files,
+				s = telescope.live_grep,
+			} do vim.keymap.set('n', '<Leader>' .. lhs, rhs) end
+		end,
 	},
 	{
 		'glacambre/firenvim',
