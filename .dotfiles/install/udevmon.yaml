@@ -1,11 +1,9 @@
-- CMD: mux -c dfk-pre -c dfk-post
-- JOB:
-  - mux -i dfk-pre | dual-function-keys -c /etc/interception/dual-function-keys/keyboard.yaml | mux -o dfk-post
-- JOB: intercept -g $DEVNODE | mux -o dfk-pre & mux -i dfk-post | uinput -d $DEVNODE
+- CMD: mux -c dfk
+- JOB: sh -c "intercept -g $DEVNODE & mux -i dfk & wait" | dual-function-keys -c /etc/interception/dual-function-keys/keyboard.yaml | uinput -d $DEVNODE
   DEVICE:
     EVENTS:
       EV_KEY: [KEY_ESC, KEY_CAPSLOCK]
-- JOB: intercept $DEVNODE | mux -o dfk-pre
+- JOB: intercept $DEVNODE | mux -o dfk
   DEVICE:
     EVENTS:
       EV_KEY: [BTN_LEFT, BTN_RIGHT]
