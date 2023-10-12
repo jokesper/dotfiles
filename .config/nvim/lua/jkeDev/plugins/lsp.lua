@@ -160,6 +160,12 @@ return {
 					end,
 				},
 			}
+			local lspconfig = require 'lspconfig'
+			lspconfig.texlab.setup {}
+			lspconfig.rust_analyzer.setup {}
+			lspconfig.hls.setup {
+				filetypes = { 'haskell', 'lhaskell', 'cabal' },
+			}
 		end
 	},
 }
