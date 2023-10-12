@@ -164,6 +164,11 @@ return {
 			lspconfig.texlab.setup {}
 			lspconfig.rust_analyzer.setup {}
 			lspconfig.hls.setup {
+				settings = {
+					haskell = {
+						formattingProvider = 'fourmolu',
+					},
+				},
 				filetypes = { 'haskell', 'lhaskell', 'cabal' },
 			}
 		end
