@@ -203,21 +203,10 @@ bindsym --locked XF86AudioPlay exec cmus-remote --pause-playback
 bindsym XF86AudioNext exec cmus-remote --next
 bindsym XF86AudioPrev exec cmus-remote --prev
 
-# Read `man 5 sway-bar` for more information about this section.
 bar {
-	position top
-	status_command i3status
-	strip_workspace_numbers yes
 	mode hide
-	modifier ''
-	colors {
-		background #0000007F
-		inactive_workspace #000000BF #000000BF #FFFFFFFF
-		active_workspace #000000BF #000000BF #FFBF00FF
-		focused_workspace #000000BF #000000BF #00FFFFFF
-		urgent_workspace #000000BF #000000BF #FF0000FF
-		binding_mode #7F7F7FFF #7F7F7FFF #000000FF
-	}
+	modifier none
+	swaybar_command waybar
 }
 
 include ../dotfiles/sway-config

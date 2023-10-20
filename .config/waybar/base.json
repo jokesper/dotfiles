@@ -1,0 +1,57 @@
+{
+	"layer": "top",
+	"mode": "hide",
+	"ipc": true,
+	"sway/workspaces": {
+		"format": "{name}",
+	},
+	"network": {
+		"interval": 5,
+		"format-wifi": "W: {ipaddr} ({signalStrength}% at {essid})",
+		"format-ethernet": "E: {ipaddr}",
+		"format-linked": "L: {essid} on {ifname}",
+		"format-disconnected": "Offline",
+	},
+	"wireplumber": {
+		"format": "VOL {volume}%",
+		"format-muted": "MUT {volume}%",
+	},
+	"battery": {
+		"design-capacity": true,
+		"format": "N/A {capacity}%",
+		"format-discharging": "BAT {capacity}%",
+		"format-charging": "CHR {capacity}%",
+		"states": {
+			"warn": 30,
+			"critical": 15,
+		},
+	},
+	"disk": {
+		"format": "{free}",
+	},
+	"cpu": {
+		"format": "{usage:02d}%",
+		"states": {
+			"warning": 60,
+			"critical": 85,
+		},
+	},
+	"temperature": {
+		"critical-treshold": 85,
+		// "states": {
+		// 	"warning": 60,
+		// 	"critical": 85,
+		// },
+	},
+	"memory": {
+		"format": "{used:0.1f} GiB / {total:0.1f} GiB",
+		"format-low": "{avail:0.2f} GiB (+ {swayAvail} GiB) free",
+		"states": {
+			"low": 90,
+		},
+	},
+	"clock": {
+		"interval": 5,
+		"format": "{:%d.%m.%Y %H:%M:%S}",
+	},
+}

@@ -1,0 +1,15 @@
+[
+	{
+		"include": "$XDG_CONFIG_HOME/waybar/base.json",
+		"position": "top",
+		"modules-left": ["sway/workspaces"],
+		"modules-center": ["sway/mode"], // TODO: Remove but still show bar when non default mode.
+		"modules-right": ["network", "wireplumber", "battery", "disk", "cpu", "temperature", "memory", "clock"],
+	},
+	{
+		"include": "$XDG_CONFIG_HOME/waybar/base.json",
+		"layer": "overlay",
+		"position": "bottom",
+		"modules-right": ["sway/mode"],
+	},
+]
