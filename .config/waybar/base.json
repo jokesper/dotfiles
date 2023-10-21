@@ -19,6 +19,7 @@
 	"battery": {
 		"design-capacity": true,
 		"format": "N/A {capacity}%",
+		"format-plugged": "PLU {capacity}%",
 		"format-discharging": "BAT {capacity}%",
 		"format-charging": "CHR {capacity}%",
 		"states": {
