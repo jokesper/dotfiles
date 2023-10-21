@@ -13,8 +13,8 @@ window#waybar {background-color: transparent;}
 #workspaces button,
 .top .modules-right > * > *,
 #mode {padding: .1em .5em;}
-#workspaces button.active {color: #FFBF00;}
-#workspaces button.visible {color: #00FFFF;}
+#workspaces button.visible {color: #FFBF00;}
+#workspaces button.focused {color: #00FFFF;}
 #workspaces button.urgent {color: #FF0000;}
 #workspaces button.persistent {border-top: 1px solid #7F7F7F;}
 #mode {
