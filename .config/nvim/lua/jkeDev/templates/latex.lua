@@ -5,6 +5,7 @@ return function(loader, event)
 	\documentclass{article}
 
 	\usepackage{amsmath}
+	\usepackage{isotope}
 	\usepackage{mathtools}
 	\usepackage{amssymb}
 	\usepackage{fdsymbol}
