@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [core]
-	whitespace = indent-with-non-tab,space-before-tab,tabwith=4,trailing-space
+	whitespace = space-before-tab,tabwith=4,trailing-space
 [user]
 	name = jkeDev
 	email = 52346246+jkeDev@users.noreply.github.com
@@ -11,5 +11,3 @@
 	helper = !/usr/bin/gh auth git-credential
 [format]
 	pretty = "format:%C(auto)%h%d %s"
-[apply]
-	whitespace = fix
