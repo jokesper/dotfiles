@@ -1,4 +1,4 @@
-function which -w which -d 'Show more information about the file'
+function which -w which -w 'pacman -Qi' -d 'Show more information about the file'
 	pacman -Qi $argv 2>/dev/null
 	or pacman -Qo $argv 2>/dev/null
 	or command which $argv
