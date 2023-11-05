@@ -51,7 +51,8 @@ pacman --needed --noconfirm -S \
 	kitty \
 		ttf-firacode-nerd \
 		fish \
-	rustup \
+	rust \
+		rust-analyzer \
 	cabal-install \
 		haskell-language-server \
 		hoogle \

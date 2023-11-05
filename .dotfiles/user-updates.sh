@@ -12,9 +12,6 @@ printf "$lv2 Synchronizing music playlists\n"
 printf "$lv2 Updating neovim plugins\n"
 nvim --headless '+Lazy! sync' +MasonUpdate +quitall 2>/dev/null
 
-printf "$lv2 Updating rust toolchain\n"
-rustup update
-
 printf "$lv2 Updating cargo packages\n"
 cargo install-update --quiet --all
 
