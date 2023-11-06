@@ -24,3 +24,9 @@
 !.config/cmus/
 .config/cmus/*
 !.config/cmus/rc/
+
+!.mozilla/
+.mozilla/*
+!.mozilla/firefox/
+.mozilla/firefox/*
+!.mozilla/firefox/*.ini
