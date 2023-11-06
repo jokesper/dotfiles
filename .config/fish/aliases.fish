@@ -22,10 +22,8 @@ function h -w hoogle -d 'Classic hoogle search with extras'
 	if test -z "$arg"; read -P'λ> ' arg; end
 	command hoogle search --count=10 --json -- "$arg" \
 		| jq -rR "fromjson? | .[] | [ \
-			(if .package | has(\"name\") then \
-				\"($(set_color green)\(.package.name)$(set_color normal))\" \
-			else \"\" end), \
-			\"$(set_color cyan)\(.module.name // \"\")$(set_color normal)\", \
+			\"$(set_color green)\(.package.name // \"\")\", \
+			\"$(set_color cyan)\(.module.name // \"\")\", \
 			\"$(set_color magenta)\(.item)$(set_color normal)\" \
 			] | @tsv" \
 		| column -ts\t
