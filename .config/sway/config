@@ -45,6 +45,9 @@ set $ws10 10:Music
 for_window [shell="xwayland"] title_format "%title [XWayland]"
 for_window [class="steam"] move workspace $ws8
 for_window [class="discord"] move workspace $ws9
+# Transparency
+for_window [app_id="firefox"] opacity 0.9
+for_window [class="discord"] opacity 0.9
 
 # Show edge borders only when necessary.
 default_border pixel
