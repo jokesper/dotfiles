@@ -2,6 +2,8 @@
 
 set -eu
 
+data=${XDG_DATA_HOME:-$HOME/.local/share}/dotfiles
+
 lv1="\e[32m==>\e[0m"
 lv2="\e[34m  ->\e[0m"
 printf "$lv1 $USER\n"
@@ -11,6 +13,12 @@ printf "$lv2 Synchronizing music playlists\n"
 
 printf "$lv2 Updating neovim plugins\n"
 nvim --headless '+Lazy! sync' +MasonUpdate +quitall 2>/dev/null
+
+printf "$lv2 Fetching changes for arkenfox/user.js\n"
+git --git-dir="$data/user.js.git" fetch
+
+printf "$lv2 Updating firefox user.js\n"
+~/.dotfiles/merge-firefox-config.sh
 
 printf "$lv2 Updating cargo packages\n"
 cargo install-update --quiet --all

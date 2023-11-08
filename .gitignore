@@ -30,3 +30,6 @@
 !.mozilla/firefox/
 .mozilla/firefox/*
 !.mozilla/firefox/*.ini
+!.mozilla/firefox/dotfiles/
+.mozilla/firefox/dotfiles/*
+!.mozilla/firefox/dotfiles/user-override.js
