@@ -33,3 +33,4 @@
 !.mozilla/firefox/dotfiles/
 .mozilla/firefox/dotfiles/*
 !.mozilla/firefox/dotfiles/user-override.js
+!.mozilla/firefox/dotfiles/search.json.mozlz4
