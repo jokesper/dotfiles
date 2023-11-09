@@ -20,6 +20,7 @@ cargo install cargo-update rust-script
 		'https://github.com/arkenfox/user.js.git' \
 		"$data/user.js.git"
 
-hoogle generate
+[[ ! -d "$HOME/.hoogle" ]] && hoogle generate
 
-chsh -s "/usr/bin/fish"
+[[ "$(getent passwd "$USER" | cut -d: -f7)" != "$(which fish)" ]] \
+	&& chsh -s "$(which fish)"
