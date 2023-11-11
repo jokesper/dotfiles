@@ -28,6 +28,7 @@ fi
 
 pacman --needed --noconfirm -S \
 		gcc \
+		git \
 		jq \
 		which \
 		xdg-utils \
