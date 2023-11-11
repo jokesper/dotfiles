@@ -17,6 +17,10 @@ window#waybar {background-color: transparent;}
 #workspaces button.focused {color: #00FFFF;}
 #workspaces button.urgent {color: #FF0000;}
 #workspaces button.persistent {border-top: 1px solid #7F7F7F;}
+.top #mode {
+	background-color: rgba(0,0,0,0);
+	color: rgba(0,0,0,0);
+}
 #mode {
 	margin: 0;
 	background-color: #7F7F7F;
