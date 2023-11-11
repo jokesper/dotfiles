@@ -15,6 +15,10 @@ cd "${0%/*}/user/"
 
 cargo install cargo-update rust-script
 
+[[ ! -d "$data/json.lua.git" ]] \
+	&& git clone --bare -- \
+		'https://github.com/rxi/json.lua.git' \
+		"$data/json.lua.git"
 [[ ! -d "$data/user.js.git" ]] \
 	&& git clone --bare -- \
 		'https://github.com/arkenfox/user.js.git' \

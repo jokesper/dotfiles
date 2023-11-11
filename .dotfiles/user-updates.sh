@@ -14,8 +14,8 @@ printf "$lv2 Synchronizing music playlists\n"
 printf "$lv2 Updating neovim plugins\n"
 nvim --headless '+Lazy! sync' +MasonUpdate +quitall 2>/dev/null
 
-printf "$lv2 Fetching changes for arkenfox/user.js\n"
-git --git-dir="$data/user.js.git" fetch
+printf "$lv2 Fetching changes for local git repos\n"
+for gitDir in "$data"/*.git; do git --git-dir="$gitDir" fetch --quiet; done
 
 printf "$lv2 Updating firefox user.js\n"
 ~/.dotfiles/merge-firefox-config.sh

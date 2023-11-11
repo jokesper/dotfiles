@@ -32,5 +32,5 @@
 !.mozilla/firefox/*.ini
 !.mozilla/firefox/dotfiles/
 .mozilla/firefox/dotfiles/*
-!.mozilla/firefox/dotfiles/user-override.js
+!.mozilla/firefox/dotfiles/user-override.lua
 !.mozilla/firefox/dotfiles/search.json.mozlz4
