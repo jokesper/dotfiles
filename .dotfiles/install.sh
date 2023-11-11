@@ -7,8 +7,8 @@ warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$@" >&2; }
 
 path=${0%/*}
 cd "$path/install/"
-install -Dm644 <(echo 'en_US.UTF-8 UTF-8') -T /etc/locale.gen
-install -Dm644 <(echo 'LANG=en_US.UTF-8') -T /etc/locale.conf
+install -Dm644 <(printf 'en_US.UTF-8 UTF-8') -T /etc/locale.gen
+install -Dm644 <(printf 'LANG=en_US.UTF-8') -T /etc/locale.conf
 install -Dm644 ./personal.map -t /usr/local/share/kbd/keymaps/
 install -Dm644 ./personal-xkb -T /usr/share/X11/xkb/symbols/personal
 install -Dm644 ./reflector-mirrorlist.hook -t /usr/share/libalpm/hooks/
