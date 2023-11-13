@@ -4,7 +4,9 @@ if status is-login; exec bash -c '. /etc/profile; exec fish'; end
 if not set -q DISPLAY; and [ (tty) = '/dev/tty1' ]; exec sway --unsupported-gpu; end
 
 function fish_prompt -d 'Write out the prompt'
-	printf '%s%s@%s%s%s:%s%s%s%s ' \
+	printf \
+		(printf (if test -n "$fish_private_mode"; echo '(%s)%s'; else; echo '%s%s'; end) \
+			'%s%s@%s%s%s' ':%s%s%s%s ') \
 		(set_color $fish_color_user) $USER \
 		(set_color $fish_color_host) $hostname \
 		(set_color $fish_color_normal) \
