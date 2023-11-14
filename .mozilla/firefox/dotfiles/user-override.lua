@@ -29,7 +29,7 @@ return
 				},
 				['toolbar-menubar'] = { 'menubar-items' },
 				TabsToolbar = { 'tabbrowser-tabs', 'new-tab-button', 'alltabs-button' },
-				PersonalToolbar = { 'import-button', 'personal-bookmarks' }
+				PersonalToolbar = { 'personal-bookmarks' }
 			},
 			seen = {
 				'save-to-pocket-button',
