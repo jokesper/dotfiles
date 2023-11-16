@@ -3,8 +3,8 @@
 [core]
 	whitespace = space-before-tab,tabwith=4,trailing-space
 [user]
-	name = jkeDev
-	email = 52346246+jkeDev@users.noreply.github.com
+	name = Joschua Kesper
+	email = jokesper@proton.me
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://github.com"]
