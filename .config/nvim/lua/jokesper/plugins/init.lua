@@ -25,7 +25,7 @@ return {
 		},
 	},
 	{
-		'jkeDev/cloak.nvim',
+		'jokesper/cloak.nvim',
 		opts = {
 			patterns = {
 				{

@@ -1,6 +1,6 @@
 -- https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/theme.lua
 
-local theme = require 'jkeDev.colors'
+local theme = require 'jokesper.colors'
 
 for name, val in pairs {
 	ColorColumn = { bg = 'red' },

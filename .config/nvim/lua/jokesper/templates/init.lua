@@ -50,7 +50,7 @@ for _, format in ipairs {
 	local template = table.remove(format)
 	local callback
 	if type(template) == 'string' then
-		template = ('jkeDev.templates.%s'):format(template)
+		template = ('jokesper.templates.%s'):format(template)
 		callback = function(e) require(template)(loader, e) end
 	else
 		callback = function(e) template(loader, e) end

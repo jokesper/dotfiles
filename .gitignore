@@ -19,7 +19,7 @@
 .config/nvim/plugin
 .config/nvim/lazy-lock.json
 .config/nvim/lua/*
-!.config/nvim/lua/jkeDev/
+!.config/nvim/lua/jokesper/
 !.config/cabal/
 !.config/cmus/
 .config/cmus/*

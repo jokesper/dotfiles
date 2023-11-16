@@ -7,14 +7,14 @@ if not vim.loop.fs_stat(lazypath) then
 		'--branch=stable',
 		lazypath }
 elseif #vim.api.nvim_list_uis() > 0 and os.getenv 'NVIM' ~= nil then
-	require 'lazy'.setup 'jkeDev/plugins/flatten'
+	require 'lazy'.setup 'jokesper/plugins/flatten'
 	return
 end
 
 vim.g.mapleader = ' '
 
-require 'lazy'.setup 'jkeDev/plugins'
+require 'lazy'.setup 'jokesper/plugins'
 for _, name in ipairs {
 	'vars', 'opts', 'keys', 'templates', 'autocmds',
-} do if require(('jkeDev.%s'):format(name)) == false then return end end
-vim.cmd.colorscheme 'jkeDev'
+} do if require(('jokesper.%s'):format(name)) == false then return end end
+vim.cmd.colorscheme 'jokesper'

@@ -1,1 +1,1 @@
-require 'jkeDev'
+require 'jokesper'
