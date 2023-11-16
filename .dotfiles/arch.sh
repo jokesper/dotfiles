@@ -6,7 +6,7 @@ error="\e[31;1m$0: %s\e[0m\n"
 missing="\e[31;1m$0: Missing parameter '%s'\e[0m\n"
 warn="\e[33;1m$0: %s\e[0m\n"
 
-# Install via `curl https://raw.githubusercontent.com/jkeDev/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>`
+# Install via `curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>`
 [[ -v 1 && $1 == @(-h|--help) ]] && printf \
 'Usage: install.sh <path> <hostname> <kernel> <username>
 	To create a new installation preferably used with a live
@@ -24,7 +24,7 @@ warn="\e[33;1m$0: %s\e[0m\n"
 [[ ! -v 2 ]] && printf "$missing" hostname >&2 && exit || hostname=$2
 [[ ! -v 3 ]] && printf "$missing" kernel >&2 && exit || kernel=$3
 [[ ! -v 4 ]] && printf "$missing" username  >&2 && exit || username=$4
-url="https://github.com/jkeDev/dotfiles.git"
+url="https://github.com/jokesper/dotfiles.git"
 
 case ${kernel:-stable} in
 	stable) kernel='linux';;

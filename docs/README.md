@@ -6,7 +6,7 @@ Here are my dotfiles, if you find anything usefull feel free to copy it.
 For a full installation follow step 1 and all substeps from [Archlinux - Installation guide](https://wiki.archlinux.org/title/Installation_guide).
 After this you will want to run:
 ```bash
-curl https://raw.githubusercontent.com/jkeDev/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>
+curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>
 ```
 The paramaters are as follows:
 - `<path>` is your mount point, e.g. if you followed step 1.11 it should be `/mnt`
@@ -23,7 +23,7 @@ The paramaters are as follows:
 
 An example of this command may be:
 ```bash
-curl https://raw.githubusercontent.com/jkeDev/dotfiles/main/.dotfiles/arch.sh | bash -s /mnt my-new-computer stable "John Doe"
+curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh | bash -s /mnt my-new-computer stable "John Doe"
 ```
 
 ### On a new User
@@ -31,7 +31,7 @@ Run the following commands, but be warned, they will destroy your previous home 
 ```bash
 shopt -s dotglob
 rm -rf ~/*
-git clone https://github.com/jkeDev/dotfiles.git ~
+git clone https://github.com/jokesper/dotfiles.git ~
 ```
 
 ## License
