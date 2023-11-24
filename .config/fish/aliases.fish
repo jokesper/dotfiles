@@ -18,7 +18,7 @@ function ll -w ls -d '`ls` but with long listing format'; ls -Alh $argv; end
 function la -w ls -d '`ls` but listing every item'; ls -A $argv; end
 function file -w file -d '`file` but with the `--brief` option'; command file -b $argv; end
 function h -w hoogle -d 'Classic hoogle search with extras'
-	set arg (string join " " $argv)
+	set arg (string join " " -- $argv)
 	if test -z "$arg"; read -P'λ> ' arg; end
 	command hoogle search --count=10 --json -- "$arg" \
 		| jq -rR "fromjson? | .[] | [ \
