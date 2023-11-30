@@ -13,7 +13,7 @@ set $up k
 set $right l
 set $term exec kitty -- nvim term://fish
 set $editor exec kitty -d ~/Documents -- nvim
-set $menu exec $config/menu.sh | xargs swaymsg exec --
+set $menu exec wofi --show=drun
 set $lock exec swaylock -fec 0F0000
 set $select slurp -b \#FF007F1F -B \#FF007F1F -c \#007F7F
 set $exit_sway exec bash -c "\

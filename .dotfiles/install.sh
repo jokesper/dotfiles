@@ -47,7 +47,7 @@ pacman --needed --noconfirm -S \
 		texlive-meta \
 			texlab \
 	sway \
-		bemenu-wayland \
+		wofi \
 		grim slurp \
 	kitty \
 		ttf-firacode-nerd \

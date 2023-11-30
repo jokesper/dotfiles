@@ -12,6 +12,7 @@
 !.config/gtk-3.0/
 !.config/sway/
 !.config/waybar/
+!.config/wofi/
 !.config/i3status/
 !.config/mako/
 !.config/kitty/
