@@ -12,7 +12,7 @@ printf "$lv2 Synchronizing music playlists\n"
 ~/.dotfiles/music-sync.sh
 
 printf "$lv2 Updating neovim plugins\n"
-nvim --headless '+Lazy! sync' +MasonUpdate +quitall 2>/dev/null
+nvim --headless '+Lazy! sync' '+silent MasonUpdate' +quitall
 
 printf "$lv2 Fetching changes for local git repos\n"
 for gitDir in "$data"/*.git; do git --git-dir="$gitDir" fetch --quiet; done
