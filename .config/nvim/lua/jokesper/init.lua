@@ -13,8 +13,16 @@ end
 
 vim.g.mapleader = ' '
 
-require 'lazy'.setup 'jokesper/plugins'
 for _, name in ipairs {
 	'vars', 'opts', 'keys', 'templates', 'autocmds',
 } do if require(('jokesper.%s'):format(name)) == false then return end end
 vim.cmd.colorscheme 'jokesper'
+
+require 'lazy'.setup('jokesper/plugins', {
+	install = {
+		colorscheme = { 'jokesper' },
+	},
+	change_detection = {
+		notify = false,
+	},
+})
