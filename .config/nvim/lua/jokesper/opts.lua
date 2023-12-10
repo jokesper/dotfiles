@@ -22,7 +22,7 @@ api.nvim_create_autocmd({ 'VimEnter', 'VimResume', 'VimResized', 'WinNew', 'WinC
 })
 
 opt.linebreak = true
-opt.textwidth = 100
+opt.breakindent = true
 
 opt.termguicolors = true
 
