@@ -21,6 +21,7 @@ install -Dm644 ./25-wireless.network -t /etc/systemd/network/
 install -Dm644 ./pam_env.conf -t /etc/security/
 install -Dm644 ./udevmon.yaml -t /etc/interception/
 install -Dm644 ./keyboard.yaml -t /etc/interception/dual-function-keys/
+install -Dm644 ./cabal.sh -t /etc/profile.d/
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
