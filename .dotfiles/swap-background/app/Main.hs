@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE PartialTypeSignatures #-}
 
 module Main where
 
@@ -114,7 +115,7 @@ setWallpapers base ssid outputs =
       , base </> "background-" <> ssid
       , base </> "background"
       ]
-  groupByFilePath = fmap ((,) <$> fmap fst <*> snd . head) <$> groupSortOn snd
+  groupByFilePath = fmap ((,) <$> fmap fst <*> snd . head) . groupSortOn snd
   findDirAndFollowSymLink = findM doesDirectoryExist >|=> traverse getSymbolicLinkTarget
 
 shuffleInf :: RandomGen g => [a] -> State g [a]
