@@ -101,7 +101,10 @@ setWallpapers base ssid outputs =
   handleMissingWallpaper (paired, Nothing) = traverse setToFallbackColor paired $> Nothing
   setWallpaperForOutput (output, wallpaper) = lift $ swaySetBackground output wallpaper "fill"
   setToFallbackColor output = swaySetBackground output "#0F0F0F" "solid_color"
-  swaySetBackground output background mode = void $ shell "swaymsg" ["output", name output, "background", background, mode, "#7F0000"] ""
+  swaySetBackground output background mode =
+    void $ shell "swaymsg" ("output" : name output : "background" : background : mode : fallbackColor) ""
+   where
+    fallbackColor = bool ["#7F0000"] [] (mode == "solid_color")
   getFilesRecursive' maybeFiles = join <$> traverse (fmap nonEmpty . getFilesRecursive) maybeFiles
   toSndM f = fmap <$> (,) <*> f
   subDirs (Output{name}) =
