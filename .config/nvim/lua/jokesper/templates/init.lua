@@ -44,7 +44,6 @@ end
 
 for _, format in ipairs {
 	{ '*.sh', 'bash' },
-	{ '*.rs', 'rust' },
 	{ '*.tex', 'latex' },
 } do
 	local template = table.remove(format)

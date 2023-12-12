@@ -17,7 +17,7 @@ for cabalProject in "$HOME"/.dotfiles/**/*.cabal; do
 	(cd "${cabalProject%/*}"; cabal install --overwrite-policy=always)
 done
 
-cargo install cargo-update rust-script
+cargo install cargo-update
 
 [[ ! -d "$data/json.lua.git" ]] \
 	&& git clone --bare -- \
