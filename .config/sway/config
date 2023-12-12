@@ -187,6 +187,7 @@ exec mako
 for_window [class=".*"] inhibit_idle fullscreen
 for_window [app_id=".*"] inhibit_idle fullscreen
 
+seat * hide_cursor 8000
 input type:touchpad tap enabled
 input type:keyboard {
 	xkb_layout "personal"
