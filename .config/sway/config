@@ -25,10 +25,10 @@ set $exit_sway exec bash -c "\
 	mode 'sway-exit'
 set $cancel_exit exec kill '$swaynag_exit_pid'; $return
 
-exec_always ~/.dotfiles/swap-background.sh
+exec_always swap-background
 # https://github.com/swaywm/sway/commit/7d0351b41195671263a92997caab620c763d9d65
 #exec_always swaymsg -t subscribe -m '["output"]' | while read -r data; do :; done
-exec wpa_cli -Ba ~/.dotfiles/swap-background.sh
+exec wpa_cli -Ba "$(which swap-background)"
 
 set $ws1 1
 set $ws2 2

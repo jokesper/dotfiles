@@ -13,6 +13,10 @@ mkdir -p \
 cd "${0%/*}/user/"
 [[ ! -f "$config/sway-config" ]] && install -Dm644 sway-config -t "$config"
 
+for cabalProject in "$HOME"/.dotfiles/**/*.cabal; do
+	(cd "${cabalProject%/*}"; cabal install --overwrite-policy=always)
+done
+
 cargo install cargo-update rust-script
 
 [[ ! -d "$data/json.lua.git" ]] \

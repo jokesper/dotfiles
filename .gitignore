@@ -3,6 +3,7 @@
 !.gitignore
 
 !.dotfiles/
+.dotfiles/**/dist-newstyle
 !docs/
 
 !.config/
