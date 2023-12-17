@@ -104,7 +104,7 @@ for name, augroup in pairs { custom = {
 	{
 		'CursorHold',
 		'CursorHoldI',
-		callback = function() vim.diagnostic.open_float() end
+		callback = function() vim.diagnostic.open_float { focus = false } end
 	},
 } } do
 	if type(name) == 'string' then create_augroup(name, {}) end
