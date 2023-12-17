@@ -11,7 +11,7 @@ return {
 	{
 		'williamboman/mason.nvim',
 		config = true,
-		build = function() pcall(vim.cmd.MasonUpdate) end
+		build = function() pcall(vim.cmd.MasonUpdate) end,
 	},
 	{
 		'hrsh7th/nvim-cmp',
@@ -171,6 +171,6 @@ return {
 				},
 				filetypes = { 'haskell', 'lhaskell', 'cabal' },
 			}
-		end
+		end,
 	},
 }
