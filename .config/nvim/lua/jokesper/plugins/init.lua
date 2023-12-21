@@ -50,4 +50,10 @@ return {
 			},
 		},
 	},
+	{
+		'ggandor/leap.nvim',
+		config = function(plugin, opts)
+			require 'leap'.add_default_mappings()
+		end,
+	},
 }
