@@ -4,7 +4,7 @@ local theme = require 'jokesper.colors'
 
 for name, val in pairs {
 	ColorColumn = { bg = 'red' },
-	--Conceal = {},
+	Conceal = { bg = 'gray' },
 	--Cursor = {},
 	--lCursor = {},
 	--CursorIM = {},
@@ -58,7 +58,7 @@ for name, val in pairs {
 	--WildMenu = {},
 	--WinBar = {},
 	--WinBarNC = {},
-	--
+
 	ErrorMsg = { fg = 'red' },
 	WarningMsg = { fg = 'orange' },
 
@@ -109,6 +109,8 @@ for name, val in pairs {
 	DiagnosticHint = { fg = 'green' },
 
 	-- Treesitter
+	['@text.literal'] = { fg = 'cyan' },
+	['@text.uri'] = { fg = 'blue', underline = true },
 
 	-- Telescope
 	TelescopeNormal = { link = 'Pmenu' },
@@ -118,7 +120,7 @@ for name, val in pairs {
 	TelescopePromptBorder = { fg = 'cyan', bg = 3 },
 
 	-- Indent Blankline
-	IblIndent = { fg = 5 },
+	IblIndent = { fg = 6 },
 	IblScope = { fg = 4 },
 } do
 	val.fg = theme.fg[val.fg] == nil and val.fg or theme.fg[val.fg]

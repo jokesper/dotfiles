@@ -10,6 +10,7 @@ local fg = {
 	'#ffbfff',
 	'#bf7fbf',
 	'#7f3f7f',
+	'#7f7fcf',
 	'#5f5f7f',
 
 	blue = '#5f7fff',
@@ -28,6 +29,7 @@ local bg = {
 	green = '#1f3f1f',
 	orange = '#7f3f0f',
 	red = '#3f0f0f',
+	gray = '#5f5f5f',
 }
 
 return {
