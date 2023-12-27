@@ -29,6 +29,7 @@ return {
 			lsp_zero.extend_cmp()
 			local cmp_action = lsp_zero.cmp_action()
 			cmp.setup {
+				preselect = cmp.PreselectMode.None,
 				mapping = {
 					['<C-f>'] = cmp_action.luasnip_jump_forward(),
 					['<C-b>'] = cmp_action.luasnip_jump_backward(),
