@@ -11,7 +11,7 @@ for name, val in pairs {
 	Directory = { fg = 'cyan' },
 	--TermCursor = {},
 	--TermCursorNC = {},
-	--Folded = {},
+	Folded = { bg = 3 },
 	FoldColumn = {},
 	SignColumn = {},
 	--Substitute = {},
