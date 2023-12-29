@@ -122,6 +122,11 @@ for name, val in pairs {
 	-- Indent Blankline
 	IblIndent = { fg = 6 },
 	IblScope = { fg = 4 },
+
+	-- leap.nvim
+	LeapLabelPrimary = { fg = 'orange' },
+	LeapLabelSecondary = { fg = 'red' },
+	LeapBackdrop = { underline = false },
 } do
 	val.fg = theme.fg[val.fg] == nil and val.fg or theme.fg[val.fg]
 	val.bg = theme.bg[val.bg] == nil and val.bg or theme.bg[val.bg]
