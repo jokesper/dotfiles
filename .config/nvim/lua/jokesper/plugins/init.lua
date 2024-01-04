@@ -1,7 +1,12 @@
 local tty = vim.fn.getenv 'TERM' == 'linux'
 return {
 	{ 'lervag/vimtex', ft = 'tex', lazy = true },
-	{ 'nacro90/numb.nvim', config = true },
+	{
+		'nacro90/numb.nvim',
+		opts = {
+			hide_relativenumbers = false,
+		},
+	},
 	{
 		'glacambre/firenvim',
 		cond = vim.g.started_by_firenvim == true,
