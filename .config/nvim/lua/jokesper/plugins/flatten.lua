@@ -7,6 +7,11 @@ return { {
 			end,
 		},
 		window = { open = 'tab' },
+		block_for = {
+			gitcommit = true,
+			gitrebase = true,
+			diff = true,
+		},
 	},
 	lazy = false,
 	priority = 1001,
