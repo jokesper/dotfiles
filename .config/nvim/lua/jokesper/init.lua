@@ -13,8 +13,17 @@ end
 
 vim.g.mapleader = ' '
 
+-- Some settings should always be there for netrw to function properly
+-- see `:echo g:netrw_bufsettings` when in `nvim --clean`
+vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
+vim.g.netrw_banner = 0
+vim.g.vimtex_compiler_latexmk = {
+	out_dir = ('%s/Documents/Output'):format(vim.env.HOME),
+}
+vim.g.vimtex_indent_on_ampersands = 0
+
 for _, name in ipairs {
-	'vars', 'opts', 'keys', 'templates', 'autocmds',
+	'opts', 'keys', 'templates', 'autocmds',
 } do if require(('jokesper.%s'):format(name)) == false then return end end
 vim.cmd.colorscheme 'jokesper'
 

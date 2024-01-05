@@ -1,8 +1,4 @@
-local api = vim.api
-local augroup = api.nvim_create_augroup
-local autocmd = api.nvim_create_autocmd
-
-augroup('templates', { clear = true })
+vim.api.nvim_create_augroup('templates', { clear = true })
 local function mapVararg(f, ...)
 	local res = {}
 	for k, v in pairs { ... } do res[k] = f(v) end
@@ -37,9 +33,9 @@ local function loader(template, ...)
 		end
 		table.insert(cnt, line)
 	end
-	api.nvim_buf_set_lines(0, 0, -1, true, cnt)
+	vim.api.nvim_buf_set_lines(0, 0, -1, true, cnt)
 	if cursor[2] == nil then cursor[2] = #cnt[#cnt] end
-	api.nvim_win_set_cursor(0, cursor)
+	vim.api.nvim_win_set_cursor(0, cursor)
 end
 
 for _, format in ipairs {
@@ -55,7 +51,7 @@ for _, format in ipairs {
 		callback = function(e) template(loader, e) end
 	end
 
-	autocmd('BufNewFile', {
+	vim.api.nvim_create_autocmd('BufNewFile', {
 		group = 'templates',
 		desc = ('A template for files with extensions: %s'):format(tostring(format)),
 		pattern = format,

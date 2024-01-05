@@ -1,5 +1,3 @@
-local sys = vim.fn.system
-local env = vim.env
 return function(loader, event)
 	loader([[
 	\documentclass{article}
@@ -38,6 +36,6 @@ return function(loader, event)
 		%^\maketitle
 	\end{document}]],
 		event.match:match '([^/]+)%.[^%.]+$',
-		vim.split(sys { 'getent', 'passwd', env.USER }, ':')[5],
+		vim.split(vim.fn.system { 'getent', 'passwd', vim.env.USER }, ':')[5],
 		os.date '%d.%m.%Y')
 end

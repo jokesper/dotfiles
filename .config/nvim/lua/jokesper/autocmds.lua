@@ -1,18 +1,11 @@
-local api = vim.api
-local create_augroup = api.nvim_create_augroup
-local create_autocmd = api.nvim_create_autocmd
-local exec = function(src, output)
-	api.nvim_exec(src, output ~= nil and output)
-end
-local buf_get_option = api.nvim_buf_get_option
 local is_buffer_modifiable = function()
-	local buf = api.nvim_get_current_buf()
-	return buf_get_option(buf, 'modifiable')
-		and not buf_get_option(buf, 'binary')
+	local buf = vim.api.nvim_get_current_buf()
+	return vim.api.nvim_buf_get_option(buf, 'modifiable')
+		and not vim.api.nvim_buf_get_option(buf, 'binary')
 end
 
 local function setOptionsOnFocus(enable)
-	for _, win in ipairs(api.nvim_list_wins()) do
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		local vars, opts = vim.w[win], vim.wo[win]
 		for opt, val in pairs {
 			'number', 'relativenumber',
@@ -56,7 +49,7 @@ for name, augroup in pairs { custom = {
 		callback = function()
 			local opt = vim.opt_local
 			opt.bufhidden = 'delete'
-			exec 'startinsert'
+			vim.cmd 'startinsert'
 		end,
 	},
 	{
@@ -87,7 +80,7 @@ for name, augroup in pairs { custom = {
 				[[\s\+$]], -- Remove trailing spaces
 				[[\%^\n\+]], -- Remove leading newlines
 				[[\n\+\%$]], -- Remove trailing newlines
-			} do exec(('%%s/%s//e'):format(pattern)) end
+			} do vim.api.nvim_exec2(('%%s/%s//e'):format(pattern), {}) end
 		end,
 	},
 	{
@@ -107,11 +100,11 @@ for name, augroup in pairs { custom = {
 		callback = function() vim.diagnostic.open_float { focus = false } end
 	},
 } } do
-	if type(name) == 'string' then create_augroup(name, {}) end
+	if type(name) == 'string' then vim.api.nvim_create_augroup(name, {}) end
 	for _, autocmd in ipairs(augroup) do
 		local event, opts = {}, { group = name }
 		for k, v in pairs(autocmd)
 		do (type(k) == 'number' and event or opts)[k] = v end
-		create_autocmd(event, opts)
+		vim.api.nvim_create_autocmd(event, opts)
 	end
 end
