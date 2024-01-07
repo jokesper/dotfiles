@@ -203,6 +203,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl -e set 10%+
 bindsym XF86MonBrightnessDown exec brightnessctl -e set 10%-
 bindsym XF86AudioPlay exec $config/toggle-window-action.sh \
 	'pgrep cmus' 'cmus-remote --pause' $ws10 'kitty -d ~/Music cmus' 'cmus-remote --play'
+bindsym XF86AudioStop exec cmus-remote --raw quit
 bindsym --locked XF86AudioPlay exec cmus-remote --pause-playback
 bindsym XF86AudioNext exec cmus-remote --next
 bindsym XF86AudioPrev exec cmus-remote --prev
