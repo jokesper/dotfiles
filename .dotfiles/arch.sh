@@ -51,8 +51,8 @@ chroot "$path" bash -c "set -eu
 	useradd -mG wheel -s /bin/bash '$username'
 	until passwd '$username' < /dev/tty; do :; done
 	runuser - '$username' -c '
-		shopt -s dotglob
-		rm -r *
+		shopt -s dotglob nullglob
+		rm -r ~/*
 		git clone $url .
 		~/.dotfiles/setup-user.sh'
 	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\"

@@ -29,8 +29,7 @@ curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh 
 ### On a new User
 Run the following commands, but be warned, they will destroy your previous home directory.
 ```bash
-shopt -s dotglob
-rm -rf ~/*
+bash +O dotglob +O nullglob -c 'rm -rf ~/*'
 git clone https://github.com/jokesper/dotfiles.git ~
 ```
 
