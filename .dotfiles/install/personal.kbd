@@ -8,6 +8,8 @@
 ;;   - Extra -> Game
 ;;   - Tap
 ;; - switched numbers from bottom ascending to top ascending
+;; - modified Media layout as it is mostly unassigned in the
+;;   KMonad implementation
 
 (defcfg
   input (device-file "keyboard")
@@ -82,7 +84,7 @@
 	             XX XX XX  XX XX XX
 )
 (deflayer media
-	XX  XX   @gme @bse XX  XX XX   XX   XX   XX
+	XX  XX   @gme @bse XX  XX brup brdn XX   XX
 	met alt   ctl  sft XX  XX prev vold volu next
 	XX  ralt @fun @mdi XX  XX XX   XX   XX   XX XX
 
