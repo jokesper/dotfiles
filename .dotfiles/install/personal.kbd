@@ -1,0 +1,118 @@
+;; Copyright 2021 Manna Harbour
+;; github.com/manna-harbour/miryoku
+
+;; Modifications:
+;; - Dvorak Layout
+;; - Replaced / Removed Layers:
+;;   - Mouse
+;;   - Extra -> Game
+;;   - Tap
+;; - switched numbers from bottom ascending to top ascending
+
+(defcfg
+  input (device-file "keyboard")
+  output (uinput-sink "Custom Miryoku KMonad output")
+  fallthrough false
+)
+
+;; Thanks to ISO and ANSI existing, I need both `\` and `ent`
+(defsrc
+	grv  1 2 3 4  8 9 0 - =
+	tab  q w e r  i o p [ ]
+	caps a s d f  k l ; ' \ ent
+
+	      z x c    , . /
+)
+
+(defalias
+	a (tap-hold-next-release 200 a met)
+	o (tap-hold-next-release 200 o alt)
+	e (tap-hold-next-release 200 e ctl)
+	u (tap-hold-next-release 200 u sft)
+	q (tap-hold-next-release 200 q ralt)
+
+	v (tap-hold-next-release 200 v ralt)
+	h (tap-hold-next-release 200 h sft)
+	t (tap-hold-next-release 200 t ctl)
+	n (tap-hold-next-release 200 n alt)
+	s (tap-hold-next-release 200 s met)
+
+	esc (tap-hold-next-release 200 esc (layer-toggle media))
+	spc (tap-hold-next-release 200 spc (layer-toggle navigation))
+	tab (tap-hold-next-release 200 tab (layer-toggle right_empty))
+	ent (tap-hold-next-release 200 ent (layer-toggle symbol))
+	bspc (tap-hold-next-release 200 bspc (layer-toggle numeric))
+	del (tap-hold-next-release 200 del (layer-toggle function))
+
+	bse (multi-tap 200 XX (layer-switch dvorak))
+	gme (multi-tap 200 XX (layer-switch gaming))
+
+	mdi (multi-tap 200 XX (layer-switch media))
+	nav (multi-tap 200 XX (layer-switch navigation))
+	;; empty (multi-tap 200 XX (layer-switch right_empty))
+
+	sym (multi-tap 200 XX (layer-switch symbol))
+	num (multi-tap 200 XX (layer-switch numeric))
+	fun (multi-tap 200 XX (layer-switch function))
+
+	pst S-ins
+	cpy C-ins
+	cut S-del
+)
+
+(deflayer dvorak
+	 '  ,  .  p y  f  g  c  r  l
+	@a @o @e @u i  d @h @t @n @s
+	 / @q  j  k x  b  m  w @v  z z
+
+	@esc @spc @tab  @ent @bspc @del
+)
+(deflayer navigation
+	XX  XX   @gme @bse XX  again @pst @cpy @cut undo
+	met alt	  ctl  sft XX  caps  left down  up  right
+	XX  ralt @num @nav XX  ins   home pgdn pgup end end
+
+	             XX XX XX  ent bspc del
+)
+(deflayer right_empty
+	XX  XX   @gme @bse XX  XX XX XX XX XX
+	met alt   ctl  sft XX  XX XX XX XX XX
+	XX  ralt @sym  XX  XX  XX XX XX XX XX XX
+
+	             XX XX XX  XX XX XX
+)
+(deflayer media
+	XX  XX   @gme @bse XX  XX XX   XX   XX   XX
+	met alt   ctl  sft XX  XX prev vold volu next
+	XX  ralt @fun @mdi XX  XX XX   XX   XX   XX XX
+
+	             XX XX XX  stopcd playpause mute
+)
+(deflayer numeric
+	[ 1 2 3 ]   XX @bse @gme XX   XX
+	; 4 5 6 =   XX  sft  ctl alt  met
+	` 7 8 9 \\  XX @num @nav ralt XX XX
+
+	     . 0 -  XX XX XX
+)
+(deflayer symbol
+	{ ! @ #  }  XX @bse @gme XX   XX
+	: $ % ^  +  XX  sft  ctl alt  met
+	~ & * \( |  XX @sym  XX  ralt XX XX
+
+	  \( \) \_  XX XX XX
+)
+(deflayer function
+	f10 f1 f2 f3 sysrq  XX @bse @gme XX   XX
+	f11 f4 f5 f6 slck   XX  sft  ctl alt  met
+	f12 f7 f8 f9 pause  XX @fun @mdi ralt XX XX
+
+	      comp spc tab  XX XX XX
+)
+(deflayer gaming
+	tab  q w e r   XX  f1 f2 f3 f10
+	lctl a s d f  @bse f4 f5 f6 f11
+	lsft z x c v   XX  f7 f8 f9 f12 f12
+
+	lalt spc XX  stopcd playpause mute
+)

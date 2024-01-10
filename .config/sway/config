@@ -191,7 +191,7 @@ seat * hide_cursor 8000
 seat * hide_cursor when-typing enabled
 input type:touchpad tap enabled
 input type:keyboard {
-	xkb_layout "personal"
+	xkb_layout "us"
 	xkb_options "grp:win_space_toggle"
 	xkb_numlock enabled
 }
