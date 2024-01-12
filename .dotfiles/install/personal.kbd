@@ -116,5 +116,5 @@
 	lctl a s d f  @bse f4 f5 f6 f11
 	lsft z x c v   XX  f7 f8 f9 f12 f12
 
-	lalt spc XX  stopcd playpause mute
+	lalt spc esc  stopcd playpause mute
 )
