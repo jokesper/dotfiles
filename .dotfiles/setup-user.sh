@@ -28,3 +28,5 @@ cargo install cargo-update
 
 [[ "$(getent passwd "$USER" | cut -d: -f7)" != "$(which fish)" ]] \
 	&& chsh -s "$(which fish)"
+
+~/.dotfiles/user-updates.sh
