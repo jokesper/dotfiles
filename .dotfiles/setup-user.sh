@@ -13,10 +13,6 @@ mkdir -p \
 cd "${0%/*}/user/"
 [[ ! -f "$config/hyprland-config" ]] && install -Dm644 hyprland-config -t "$config"
 
-for cabalProject in "$HOME"/.dotfiles/**/*.cabal; do
-	(cd "${cabalProject%/*}"; cabal install --overwrite-policy=always)
-done
-
 cargo install cargo-update
 
 [[ ! -d "$data/json.lua.git" ]] \
