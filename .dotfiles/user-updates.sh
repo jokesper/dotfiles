@@ -27,4 +27,6 @@ printf "$lv2 Updating haskell package index\n"
 cabal update
 
 printf "$lv2 Updating local haskell binaries\n"
-for bin in "$HOME"/.dotfiles/*/*.cabal; do cabal install --ghc-options=-dynamic --overwrite-policy=always "$bin"; done
+for bin in "$HOME"/.dotfiles/*/*.cabal; do
+	(cd "${bin%/*}"; cabal install --ghc-options=-dynamic --overwrite-policy=always)
+done
