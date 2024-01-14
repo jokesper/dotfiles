@@ -23,5 +23,8 @@ printf "$lv2 Updating firefox user.js\n"
 printf "$lv2 Updating cargo packages\n"
 cargo install-update --quiet --all
 
-printf "$lv2 Updating cabal\n"
+printf "$lv2 Updating haskell package index\n"
 cabal update
+
+printf "$lv2 Updating local haskell binaries\n"
+for bin in "$HOME"/.dotfiles/*/*.cabal; do cabal install --ghc-options=-dynamic --overwrite-policy=always "$bin"; done
