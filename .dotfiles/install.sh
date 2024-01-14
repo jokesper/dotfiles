@@ -46,7 +46,13 @@ pacman --needed --noconfirm -S \
 		ripgrep \
 		texlive-meta \
 			texlab \
-	sway \
+	hyprland \
+		wl-clipboard \
+		xdg-desktop-portal-hyprland \
+		`#polkit-kde-agent` \
+		swaylock \
+		swayidle \
+		waybar \
 		wofi \
 		grim slurp \
 	kitty \
@@ -64,13 +70,7 @@ pacman --needed --noconfirm -S \
 	2>/dev/null
 
 pacman --needed --noconfirm --asdeps -S \
-	i3status \
 	swaybg \
-	swayidle \
-	swaylock \
-	waybar \
-	mako \
-	wl-clipboard \
 	2>/dev/null
 
 pacman --needed --noconfirm -S \

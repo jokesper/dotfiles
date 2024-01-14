@@ -1,0 +1,9 @@
+# User and machine specific configuration for Hyprland
+#
+# Use this to setup multiple monitors or custom input settings
+
+# Example commands:
+# - scale output: `monitor = <some-monitor>, preferred, auto, 1.2`
+# - bind workspace: `workspace = 1, monitor:<some-monitor>`
+# - move workspace to output:
+# `bind = $mod CTRL, 1, movecurrentworkspacetomonitor, <some-monitor>`

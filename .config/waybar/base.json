@@ -1,8 +1,8 @@
 {
 	"layer": "top",
-	"mode": "hide",
-	"ipc": true,
-	"sway/workspaces": {
+	"mode": "overlay",
+	"start_hidden": true,
+	"hyprland/workspaces": {
 		"format": "{name}",
 	},
 	"network": {

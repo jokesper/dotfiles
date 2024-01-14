@@ -14,14 +14,10 @@ window#waybar {background-color: transparent;}
 .top .modules-right > * > *,
 #mode {padding: .1em .5em;}
 #workspaces button.visible {color: #FFBF00;}
-#workspaces button.focused {color: #00FFFF;}
-#workspaces button.urgent {color: #FF0000;}
+#workspaces button.active {color: #00FFFF;}
+#workspaces button.special {color: #FF0000;}
 #workspaces button.persistent {border-top: 1px solid #7F7F7F;}
-.top #mode {
-	background-color: rgba(0,0,0,0);
-	color: rgba(0,0,0,0);
-}
-#mode {
+#submap {
 	margin: 0;
 	background-color: #7F7F7F;
 	color: #000000;

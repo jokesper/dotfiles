@@ -1,4 +1,3 @@
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE PartialTypeSignatures #-}
 
@@ -9,10 +8,8 @@ import Control.Monad (join, mfilter, void, (<=<))
 import Control.Monad.Extra (findM)
 import Control.Monad.Trans.Class (lift)
 import Control.Monad.Trans.State (State, evalState, evalStateT, mapStateT, runState, state)
-import Data.Aeson (FromJSON, decode)
 import Data.Bifunctor (Bifunctor (first, second))
 import Data.Bool (bool)
-import Data.ByteString.Lazy.UTF8 (fromString)
 import Data.Distributive (distribute)
 import Data.Foldable (toList)
 import Data.Functor (($>))
@@ -22,7 +19,6 @@ import Data.List.Extra (groupSortOn, stripPrefix, (!?))
 import Data.List.NonEmpty (nonEmpty, unfoldr)
 import Data.Maybe (fromMaybe)
 import Data.Tuple.Extra (secondM)
-import GHC.Generics (Generic)
 import System.Directory (doesDirectoryExist, findExecutable, getHomeDirectory, getSymbolicLinkTarget)
 import System.Directory.Recursive (getFilesRecursive)
 import System.Environment (getArgs, lookupEnv)
@@ -41,14 +37,21 @@ infixl 6 >|=>
 type NetworkId = String
 type SSID = String
 
-instance FromJSON Output
-newtype Output = Output
+data Output = Output
   { name :: String
+  , resolution :: String
   }
-  deriving (Generic, Show)
+  deriving (Show)
+
+getOutputs :: IO [Output]
+getOutputs = traverse parse . lines =<< shell "swww" ["query"] ""
+ where
+  parse = parse' . second (break (== ',')) . break (== ':')
+  parse' (name, (':' : ' ' : resolution, _)) = pure $ Output name resolution
+  parse' _ = fail "Could not parse `swww query`"
 
 main :: IO ()
-main = join $ setWallpapers <$> backgrounds <*> ssid'' <*> outputs
+main = join $ setWallpapers <$> backgrounds <*> ssid'' <*> getOutputs
  where
   ssid'' = networkId >>= maybe ssidViaQuery ssidByNId
 
@@ -63,9 +66,6 @@ main = join $ setWallpapers <$> backgrounds <*> ssid'' <*> outputs
   only = fmap fst . mfilter (null . snd) . uncons
 
   offline = "offline"
-
-  outputs :: IO [Output]
-  outputs = maybeToM "Could not parse `swaymsg -t get_outputs`" . decode . fromString =<< shell "swaymsg" ["-t", "get_outputs"] ""
 
   backgrounds = (</> "Desktop") <$> getHomeDirectory
 
@@ -100,12 +100,10 @@ setWallpapers base ssid outputs =
       . secondM (shuffleInf . toList)
   handleMissingWallpaper (paired, Just path) = pure $ Just (paired, path)
   handleMissingWallpaper (paired, Nothing) = traverse setToFallbackColor paired $> Nothing
-  setWallpaperForOutput (output, wallpaper) = lift $ swaySetBackground output wallpaper "fill"
-  setToFallbackColor output = swaySetBackground output "#0F0F0F" "solid_color"
-  swaySetBackground output background mode =
-    void $ shell "swaymsg" ("output" : name output : "background" : background : mode : fallbackColor) ""
-   where
-    fallbackColor = bool ["#7F0000"] [] (mode == "solid_color")
+  setWallpaperForOutput (output, wallpaper) = lift $ setBackground output wallpaper
+  setToFallbackColor output = void $ shell "swww" ["clear", "-o", name output, "--", "0F0F0F"] ""
+  setBackground output background =
+    void $ shell "swww" ["img", "-o", name output, "-t", "none", "--", background] ""
   getFilesRecursive' maybeFiles = join <$> traverse (fmap nonEmpty . getFilesRecursive) maybeFiles
   toSndM f = fmap <$> (,) <*> f
   subDirs (Output{name}) =

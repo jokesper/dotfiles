@@ -11,7 +11,9 @@
 !.config/git/
 !.config/fish/
 !.config/gtk-3.0/
-!.config/sway/
+!.config/hypr/
+!.config/swaylock/
+!.config/swayidle/
 !.config/waybar/
 !.config/wofi/
 !.config/i3status/
