@@ -4,6 +4,8 @@ set -eu
 
 config=${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles
 data=${XDG_DATA_HOME:-$HOME/.local/share}/dotfiles
+state=${XDG_STATE_HOME:-$HOME/.local/state}/dotfiles
+aur=$state/aur
 
 cd
 mkdir -p \
@@ -23,6 +25,13 @@ cargo install cargo-update
 	&& git clone --bare -- \
 		'https://github.com/arkenfox/user.js.git' \
 		"$data/user.js.git"
+
+for pkg in {kmonad-bin,swww}; do
+	[[ ! -d "$aur/$pkg" ]] \
+		&& git clone -- \
+			"https://aur.archlinux.org/$pkg.git" \
+			"$aur/$pkg"
+done
 
 [[ ! -d "$HOME/.hoogle" ]] && hoogle generate
 
