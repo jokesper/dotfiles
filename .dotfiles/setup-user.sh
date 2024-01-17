@@ -27,15 +27,15 @@ cargo install cargo-update
 		"$data/user.js.git"
 
 for pkg in {kmonad-bin,swww}; do
-	[[ ! -d "$aur/$pkg" ]] \
-		&& git clone -- \
+	if [[ ! -d "$aur/$pkg" ]]; then
+		git clone -- \
 			"https://aur.archlinux.org/$pkg.git" \
 			"$aur/$pkg"
+		(cd "$aur/$pkg"; makepkg --syncdeps --rmdeps --install --needed)
+	fi
 done
 
 [[ ! -d "$HOME/.hoogle" ]] && hoogle generate
 
 [[ "$(getent passwd "$USER" | cut -d: -f7)" != "$(which fish)" ]] \
 	&& chsh -s "$(which fish)"
-
-~/.dotfiles/user-updates.sh
