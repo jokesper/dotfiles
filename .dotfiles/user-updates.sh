@@ -37,12 +37,12 @@ done
 
 printf "$lv2 Updating AUR packages\n"
 for pkg in "$aur"/*/.git; do
-	diff=$(git --git-dir="$pkg" diff HEAD...origin/master)
+	diff=$(git --git-dir="$pkg" diff --color=always HEAD...origin/master)
 	if [[ -n "$diff" ]]; then
-		printf '%s' "$diff"
+		printf '%s\n' "$diff" | less -R
 		dir=${pkg%/*}
 		name=${dir##*/}
-		read -rp "Update '$name'? [Y/n]"
+		read -rp "Update '$name'? [Y/n] "
 		if [[ $REPLY =~ ^[Yy]?$ ]]; then
 			# NOTE: potential problems with remaining build files
 			git --git-dir="$pkg" merge --ff-only --quiet origin/master
