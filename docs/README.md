@@ -33,10 +33,5 @@ bash +O dotglob +O nullglob -c 'rm -rf ~/*'
 git clone https://github.com/jokesper/dotfiles.git ~
 ```
 
-## License
-I currently do not use a license as I did not find the optimal license for me.
-If you want to copy something and are unsure due to the lack of a license,
-open an issue and I will look for one.
-
 ## Contributing
 If you want to contribute feel free, but I wouldn't encourage it as dotfiles should be a personalized configuration.
