@@ -70,10 +70,6 @@ pacman --needed --noconfirm -S \
 	interception-dual-function-keys \
 	2>/dev/null
 
-pacman --needed --noconfirm --asdeps -S \
-	swaybg \
-	2>/dev/null
-
 pacman --needed --noconfirm -S \
 	xorg-xwayland \
 	wpa_supplicant \
