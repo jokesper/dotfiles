@@ -17,18 +17,17 @@ cd "${0%/*}/user/"
 
 cargo install cargo-update
 
-[[ ! -d "$data/json.lua.git" ]] \
-	&& git clone --bare -- \
-		'https://github.com/rxi/json.lua.git' \
-		"$data/json.lua.git"
-[[ ! -d "$data/user.js.git" ]] \
-	&& git clone --bare -- \
-		'https://github.com/arkenfox/user.js.git' \
-		"$data/user.js.git"
+for repo in {'rxi/json.lua','arkenfox/user.js'}; do
+	local="$data/${repo#*/}.git"
+	[[ ! -d "$local" ]] \
+		&& git clone --filter=blob:none --bare -- \
+			"https://github.com/$repo.git" \
+			"$local"
+done
 
 for pkg in {kmonad-bin,swww}; do
 	if [[ ! -d "$aur/$pkg" ]]; then
-		git clone -- \
+		git clone --filter=blob:none -- \
 			"https://aur.archlinux.org/$pkg.git" \
 			"$aur/$pkg"
 		(cd "$aur/$pkg"; makepkg --syncdeps --rmdeps --install --needed)
