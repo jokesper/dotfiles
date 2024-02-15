@@ -54,8 +54,8 @@ chroot "$path" bash -c "set -eu
 		shopt -s dotglob nullglob
 		rm -r ~/*
 		git clone $url .
-		~/.dotfiles/setup-user.sh'
 	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\"
+	runuser - '$username' -c ~/.dotfiles/setup-user.sh
 	bash"
 umount --recursive "$path"
 reboot
