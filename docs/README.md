@@ -4,6 +4,7 @@ Here are my dotfiles, if you find anything usefull feel free to copy it.
 ## Installation
 ### From Scratch
 For a full installation follow step 1 and all substeps from [Archlinux - Installation guide](https://wiki.archlinux.org/title/Installation_guide).
+Also make sure that any other drive you want in your fstab file is also mounted.
 After this you will want to run:
 ```bash
 curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>
