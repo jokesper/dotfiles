@@ -22,6 +22,14 @@ vim.g.vimtex_compiler_latexmk = {
 }
 vim.g.vimtex_indent_on_ampersands = 0
 
+vim.g.firenvim_config = {
+	localsettings = {
+		['.*'] = {
+			takeover = 'never',
+		},
+	},
+}
+
 for _, name in ipairs {
 	'opts', 'keys', 'templates', 'autocmds',
 } do if require(('jokesper.%s'):format(name)) == false then return end end
