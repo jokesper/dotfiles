@@ -36,8 +36,7 @@ if which reflector 2>/dev/null; then reflector --country 'Germany,' >/dev/null
 else printf "$warn" "reflector not installed" >&2; fi
 
 pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
-pacstrap -K "$path" base linux-firmware "$kernel" git \
-	$(lscpu | sed -n 's/.*\(amd\|intel\).*/\L\1-ucode/ip')
+pacstrap -K "$path" base "$kernel" git
 genfstab -U "$path" >> "$path/etc/fstab"
 mount -t proc {,$path}/proc
 mount -t sysfs {,$path}/sys
