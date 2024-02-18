@@ -102,6 +102,9 @@ for name, val in pairs {
 
 	ToDo = { underline = true },
 
+	['@markup'] = { fg = 'cyan' },
+	['@markup.raw.markdown_inline'] = { fg = 'blue' },
+
 	-- Diagnostics
 	DiagnosticError = { fg = 'red' },
 	DiagnosticWarn = { fg = 'yellow' },
