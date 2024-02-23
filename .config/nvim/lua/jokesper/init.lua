@@ -23,7 +23,7 @@ vim.g.vimtex_compiler_latexmk = {
 vim.g.vimtex_indent_on_ampersands = 0
 
 vim.g.firenvim_config = {
-	localsettings = {
+	localSettings = {
 		['.*'] = {
 			takeover = 'never',
 		},
