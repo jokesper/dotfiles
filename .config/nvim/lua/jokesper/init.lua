@@ -20,6 +20,9 @@ vim.g.netrw_banner = 0
 vim.g.vimtex_compiler_latexmk = {
 	out_dir = ('%s/Documents/Output'):format(vim.env.HOME),
 }
+vim.g.vimtex_compiler_latexmk_engines = {
+	_ = '-lualatex',
+}
 vim.g.vimtex_indent_on_ampersands = 0
 
 vim.g.firenvim_config = {

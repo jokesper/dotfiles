@@ -2,6 +2,9 @@ return function(loader, event)
 	loader([[
 	\documentclass{article}
 
+	\usepackage{polyglossia}
+	\setdefaultlanguage{german}
+
 	\usepackage{amsmath}
 	\usepackage{isotope}
 	\usepackage{mathtools}
@@ -16,7 +19,6 @@ return function(loader, event)
 	\usepackage{pgfplots}
 	\usepackage{pgfplotstable}
 	\usepackage[autostyle]{csquotes}
-	\usepackage{babel}
 	\usepackage[document]{ragged2e}
 	\usepackage[skip=1em]{parskip}
 
@@ -24,7 +26,6 @@ return function(loader, event)
 
 	\pgfplotsset{compat = newest}
 
-	\newcommand{\textop}[1]{\relax\ifmmode\mathop{\text{#1}}\else\text{#1}\fi}
 
 	\geometry{margin=2cm}
 
