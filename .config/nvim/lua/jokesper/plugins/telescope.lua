@@ -19,6 +19,6 @@ return { {
 			f = telescope.find_files,
 			['<Tab>'] = telescope.git_files,
 			s = telescope.live_grep,
-		} do vim.keymap.set('n', '<Leader>' .. lhs, rhs) end
+		} do vim.keymap.set('n', '<Leader>' .. lhs, rhs, { silent = true }) end
 	end,
 } }

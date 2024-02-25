@@ -1,21 +1,8 @@
-local function stringToTable(str)
-	return type(str) == 'string' and vim.split(str, '') or str
+local function map(modes, lhs, rhs, opts)
+	opts, modes = opts or {}, vim.split(modes, '')
+	if opts.silent == nil then opts.silent = true end
+	vim.keymap.set(modes, lhs, rhs, opts)
 end
-
-do
-	local _set, _del = vim.keymap.set, vim.keymap.del
-	vim.keymap.set = function(modes, lhs, rhs, opts)
-		opts, modes = opts or {}, stringToTable(modes)
-		if opts.silent == nil then opts.silent = true end
-		_set(modes, lhs, rhs, opts)
-	end
-	vim.keymap.del = function(modes, lhs, opts)
-		_del(stringToTable(modes), lhs, opts)
-	end
-end
-
-local map = vim.keymap.set
-local del = vim.keymap.del
 
 map('n', '<C-d>', '<C-d>Mg0')
 map('n', '<C-u>', '<C-u>Mg0')
@@ -34,7 +21,7 @@ for lhs, rhs in pairs {
 	['<A-=>'] = '<C-w>=',
 } do map('nvot!', lhs, '<Cmd>stopinsert<CR>' .. rhs) end
 
-map('n', '<Leader>x', '<Cmd>Ex<CR>')
+map('n', '<Leader>x', '<Cmd>Oil<CR>')
 
 -- System clipboard
 map('nv', '<Leader>y', '"+y')

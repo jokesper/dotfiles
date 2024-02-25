@@ -61,4 +61,10 @@ return {
 			require 'leap'.add_default_mappings()
 		end,
 	},
+	{
+		'stevearc/oil.nvim',
+		opts = {
+			--skip_confirm_for_simlpe_edits = true
+		},
+	},
 }

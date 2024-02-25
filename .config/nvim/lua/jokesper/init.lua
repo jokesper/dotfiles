@@ -13,10 +13,12 @@ end
 
 vim.g.mapleader = ' '
 
+-- I don't use netrw anymore but I still keep those options set
 -- Some settings should always be there for netrw to function properly
 -- see `:echo g:netrw_bufsettings` when in `nvim --clean`
 vim.g.netrw_bufsettings = 'noma nomod nu nobl nowrap ro rnu'
 vim.g.netrw_banner = 0
+
 vim.g.vimtex_compiler_latexmk = {
 	out_dir = ('%s/Documents/Output'):format(vim.env.HOME),
 }
