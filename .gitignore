@@ -39,3 +39,4 @@
 .mozilla/firefox/dotfiles/*
 !.mozilla/firefox/dotfiles/user-override.lua
 !.mozilla/firefox/dotfiles/search.json.mozlz4
+!.mozilla/firefox/dotfiles/chrome/

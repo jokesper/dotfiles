@@ -46,5 +46,8 @@ return
 			newElementCount = 3,
 		}
 	},
+	toolkit = {
+		['legacyUserProfileCustomizations.stylesheets'] = true
+	},
 	['full-screen-api.ignore-widgets'] = true,
 }
