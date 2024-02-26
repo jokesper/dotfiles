@@ -88,6 +88,7 @@ pacman --needed --noconfirm -S \
 	sl \
 	gimp \
 	steam fuse2 \
+	element-desktop \
 	discord \
 	2>/dev/null
 
