@@ -20,7 +20,7 @@ return {
 			{ 'hrsh7th/cmp-cmdline' },
 			{ 'hrsh7th/cmp-buffer' },
 			{ 'hrsh7th/cmp-calc' },
-			{ 'FelipeLema/cmp-async-path' },
+			{ 'hrsh7th/cmp-path' },
 			{ 'hrsh7th/cmp-nvim-lua' },
 			{ 'L3MON4D3/LuaSnip' },
 		},
@@ -74,7 +74,7 @@ return {
 							Struct = '×',
 							Event = 'e',
 							Operator = '±',
-							TypeParameter = '<T>', -- ToDo: replace with single charater
+							TypeParameter = '<T>', -- TODO: replace with single charater
 						})[require 'cmp.types.lsp'.CompletionItemKind[entry:get_kind()]]
 						return item
 					end,
@@ -82,7 +82,7 @@ return {
 				sources = {
 					{ name = 'luasnip' },
 					{ name = 'calc' },
-					{ name = 'async_path' },
+					{ name = 'path' },
 					{ name = 'nvim_lua' },
 					{ name = 'nvim_lsp', group_index = 1 },
 					{ name = 'buffer', group_index = 2, keyword_length = 3 },
