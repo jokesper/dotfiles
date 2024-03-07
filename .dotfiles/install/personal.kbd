@@ -27,17 +27,17 @@
 )
 
 (defalias
-	a (tap-hold-next-release 200 a met)
+	a (tap-hold-next-release 200 a lmet)
 	o (tap-hold-next-release 200 o alt)
-	e (tap-hold-next-release 200 e ctl)
-	u (tap-hold-next-release 200 u sft)
+	e (tap-hold-next-release 200 e lctl)
+	u (tap-hold-next-release 200 u lsft)
 	q (tap-hold-next-release 200 q ralt)
 
 	v (tap-hold-next-release 200 v ralt)
-	h (tap-hold-next-release 200 h sft)
-	t (tap-hold-next-release 200 t ctl)
+	h (tap-hold-next-release 200 h rsft)
+	t (tap-hold-next-release 200 t rctl)
 	n (tap-hold-next-release 200 n alt)
-	s (tap-hold-next-release 200 s met)
+	s (tap-hold-next-release 200 s rmet)
 
 	esc (tap-hold-next-release 200 esc (layer-toggle media))
 	spc (tap-hold-next-release 200 spc (layer-toggle navigation))
@@ -70,44 +70,44 @@
 	@esc @spc @tab  @ent @bspc @del
 )
 (deflayer navigation
-	XX  XX   @gme @bse XX  again @pst @cpy @cut undo
-	met alt	  ctl  sft XX  caps  left down  up  right
-	XX  ralt @num @nav XX  ins   home pgdn pgup end end
+	 XX  XX   @gme @bse XX  again @pst @cpy @cut undo
+	lmet alt  lctl lsft XX  caps  left down  up  right
+	 XX  ralt @num @nav XX  ins   home pgdn pgup end end
 
 	             XX XX XX  ent bspc del
 )
 (deflayer right_empty
-	XX  XX   @gme @bse XX  XX XX XX XX XX
-	met alt   ctl  sft XX  XX XX XX XX XX
-	XX  ralt @sym  XX  XX  XX XX XX XX XX XX
+	 XX  XX   @gme @bse XX  XX XX XX XX XX
+	lmet alt  lctl lsft XX  XX XX XX XX XX
+	 XX  ralt @sym  XX  XX  XX XX XX XX XX XX
 
 	             XX XX XX  XX XX XX
 )
 (deflayer media
-	XX  XX   @gme @bse XX  XX brup brdn XX   XX
-	met alt   ctl  sft XX  XX prev vold volu next
-	XX  ralt @fun @mdi XX  XX XX   XX   XX   XX XX
+	XX   XX   @gme @bse XX  XX brup brdn XX   XX
+	lmet alt  lctl lsft XX  XX prev vold volu next
+	XX   ralt @fun @mdi XX  XX XX   XX   XX   XX XX
 
 	             XX XX XX  stopcd playpause mute
 )
 (deflayer numeric
-	[ 1 2 3 ]   XX @bse @gme XX   XX
-	; 4 5 6 =   XX  sft  ctl alt  met
-	` 7 8 9 \\  XX @num @nav ralt XX XX
+	[ 1 2 3 ]   XX @bse @gme XX    XX
+	; 4 5 6 =   XX rsft rctl alt  rmet
+	` 7 8 9 \\  XX @num @nav ralt  XX XX
 
 	     . 0 -  XX XX XX
 )
 (deflayer symbol
-	{ ! @ #  }  XX @bse @gme XX   XX
-	: $ % ^  +  XX  sft  ctl alt  met
-	~ & * \( |  XX @sym  XX  ralt XX XX
+	{ ! @ #  }  XX @bse @gme XX    XX
+	: $ % ^  +  XX rsft rctl alt  rmet
+	~ & * \( |  XX @sym  XX  ralt  XX XX
 
 	  \( \) \_  XX XX XX
 )
 (deflayer function
-	f10 f1 f2 f3 sysrq  XX @bse @gme XX   XX
-	f11 f4 f5 f6 slck   XX  sft  ctl alt  met
-	f12 f7 f8 f9 pause  XX @fun @mdi ralt XX XX
+	f10 f1 f2 f3 sysrq  XX @bse @gme XX    XX
+	f11 f4 f5 f6 slck   XX rsft rctl alt  rmet
+	f12 f7 f8 f9 pause  XX @fun @mdi ralt  XX XX
 
 	      comp spc tab  XX XX XX
 )
