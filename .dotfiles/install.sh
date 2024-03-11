@@ -89,7 +89,6 @@ pacman --needed --noconfirm -S \
 	gimp \
 	steam fuse2 \
 	element-desktop \
-	discord \
 	2>/dev/null
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
