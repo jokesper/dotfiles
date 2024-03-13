@@ -11,3 +11,7 @@
 	helper = !/usr/bin/gh auth git-credential
 [format]
 	pretty = "format:%C(auto)%h%d %s"
+[tag]
+	forceSignAnnotated = true
+[commit]
+	gpgSign = true

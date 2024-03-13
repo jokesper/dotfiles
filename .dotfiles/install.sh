@@ -85,6 +85,7 @@ pacman --needed --noconfirm -S \
 		bluez-utils \
 	yt-dlp \
 	cifs-utils \
+	gnupg \
 	sl \
 	gimp \
 	steam fuse2 \
