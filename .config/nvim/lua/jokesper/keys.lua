@@ -21,7 +21,7 @@ for lhs, rhs in pairs {
 	['<A-=>'] = '<C-w>=',
 } do map('nvot!', lhs, '<Cmd>stopinsert<CR>' .. rhs) end
 
-map('n', '<Leader>x', '<Cmd>Oil<CR>')
+map('n', '<Leader>u', '<Cmd>Oil<CR>')
 
 -- System clipboard
 map('nv', '<Leader>y', '"+y')

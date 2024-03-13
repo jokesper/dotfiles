@@ -16,9 +16,10 @@ return { {
 	init = function()
 		local telescope = require 'telescope.builtin'
 		for lhs, rhs in pairs {
-			f = telescope.find_files,
-			['<Tab>'] = telescope.git_files,
-			s = telescope.live_grep,
+			h = telescope.find_files,
+			g = telescope.git_files,
+			t = telescope.live_grep,
+			n = telescope.quickfix,
 		} do vim.keymap.set('n', '<Leader>' .. lhs, rhs, { silent = true }) end
 	end,
 } }
