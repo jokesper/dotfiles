@@ -22,7 +22,8 @@ return {
 			{ 'hrsh7th/cmp-calc' },
 			{ 'hrsh7th/cmp-path' },
 			{ 'hrsh7th/cmp-nvim-lua' },
-			{ 'L3MON4D3/LuaSnip' },
+			{ 'L3MON4D3/LuaSnip', version = 'v2.*' },
+			{ 'saadparwaiz1/cmp_luasnip' },
 		},
 		config = function()
 			local lsp_zero, cmp = require 'lsp-zero', require 'cmp'
