@@ -1,5 +1,6 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE PartialTypeSignatures #-}
+{-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-} -- see `pop` in `shuffle`
 
 module Main where
 
@@ -131,6 +132,5 @@ shuffle xs =
     . scanr (+) 0
     $ replicate (length xs - 1) 1
  where
-  pop n ys =
-    let (e : end) = drop n ys
-     in (e, take n ys <> end)
+  -- NOTE: errors when n >= length ys (never the case)
+  pop n ys = let (pre, e : post) = splitAt n ys in (e, pre <> post)
