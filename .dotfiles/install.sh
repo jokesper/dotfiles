@@ -9,19 +9,7 @@ path=${0%/*}
 cd "$path/install/"
 install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
 install -Dm644 <(printf 'LANG=en_US.UTF-8\n') -T /etc/locale.conf
-install -Dm644 ./personal.kbd -t /etc/kmonad/
-install -Dm644 ./reflector-mirrorlist.hook -t /usr/share/libalpm/hooks/
-install -Dm644 ./vconsole.conf -t /etc/
-install -Dm644 ./pacman.conf -t /etc/
-install -Dm644 ./grub -t /etc/default/
-install -Dm644 ./doas.conf -t /etc/
-install -Dm644 ./faillock.conf -t /etc/security/
-install -Dm644 ./25-wireless.network -t /etc/systemd/network/
-install -Dm644 ./pam_env.conf -t /etc/security/
-install -Dm644 ./udevmon.yaml -t /etc/interception/
-install -Dm644 ./keyboard.yaml -t /etc/interception/dual-function-keys/
-install -Dm644 ./cabal.sh -t /etc/profile.d/
-install -Dm644 ./makepkg.conf -t /etc/
+(cd by-path; find -type f -exec install -Dm644 "{}" -T "/{}" \;)
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
