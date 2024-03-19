@@ -2,8 +2,13 @@
 
 set -eu
 
-error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$@" >&2; }
-warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$@" >&2; }
+error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
+warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
+
+if (( EUID != 0 )); then
+	error "This script must be run with root privileges"
+	exit
+fi
 
 path=${0%/*}
 cd "$path/install/"

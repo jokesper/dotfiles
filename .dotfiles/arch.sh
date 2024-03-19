@@ -6,6 +6,11 @@ error="\e[31;1m$0: %s\e[0m\n"
 missing="\e[31;1m$0: Missing parameter '%s'\e[0m\n"
 warn="\e[33;1m$0: %s\e[0m\n"
 
+if (( EUID != 0 )); then
+	printf "$error" "This script must be run with root privileges" >&2
+	exit
+fi
+
 # Install via `curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh | bash -s <path> <hostname> <kernel> <username>`
 [[ -v 1 && $1 == @(-h|--help) ]] && printf \
 'Usage: install.sh <path> <hostname> <kernel> <username>
