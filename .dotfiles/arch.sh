@@ -25,7 +25,11 @@ fi
 				the root account will be disabled.
 ' && exit
 
-[[ ! -v 1 ]] && printf "$missing" path >&2 && exit || path=$1
+[[ ! -v 1 ]] && printf "$missing" path >&2 && exit || path=$(realpath -mL "$1")
+if ! mountpoint -q "$path"; then
+	printf "$error" "$path is not a mountpoint"
+	exit
+fi
 [[ ! -v 2 ]] && printf "$missing" hostname >&2 && exit || hostname=$2
 [[ ! -v 3 ]] && printf "$missing" kernel >&2 && exit || kernel=$3
 [[ ! -v 4 ]] && printf "$missing" username  >&2 && exit || username=$4
