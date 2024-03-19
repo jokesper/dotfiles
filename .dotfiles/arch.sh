@@ -45,14 +45,23 @@ if which reflector 2>/dev/null; then reflector --country 'Germany,' >/dev/null
 else printf "$warn" "reflector not installed" >&2; fi
 
 pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
-pacstrap -K "$path" base "$kernel" git
+
 genfstab -U "$path" >> "$path/etc/fstab"
-mount -t proc {,$path}/proc
-mount -t sysfs {,$path}/sys
-mount --rbind {,$path}/dev
+
+mount --mkdir=0555 -t sysfs {,"$path"}/sys
+mount --mkdir=0555 -t proc {,"$path"}/proc
+mount --mkdir=1777 -t tmpfs -o size=100Mi,mode=1777 "$path"/tmp
+mount --mkdir=0755 --rbind {,"$path"}/dev
 uefiDir=/sys/firmware/efi/efivars
-[[ -d $uefiDir ]] && mount --rbind {,$path}$uefiDir
-cp {,$path}/etc/resolv.conf
+[[ -d $uefiDir ]] && mount --rbind {,"$path"}$uefiDir
+cp {,"$path"}/etc/resolv.conf
+
+# Setup pacman
+mkdir -m 0755 -p "$path"/var/{cache/pacman/pkg,lib/pacman,log} "$path"/{dev,run,etc/pacman.d}
+[[ ! -d $path/etc/pacman.d/gnupg ]] && pacman-key --gpgdir "$path"/etc/pacman.d/gnupg --init
+unshare --fork --pid pacman -r "$path" -Sy base "$kernel" git
+cp -a {,"$path"}/etc/pacman.d/mirrorlist
+
 chroot "$path" bash -c "set -eu
 	passwd --expire --lock root
 	printf '$hostname' > /etc/hostname
