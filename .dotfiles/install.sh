@@ -77,7 +77,6 @@ pacman --needed --noconfirm -S \
 
 pacman --needed --noconfirm -S \
 	xorg-xwayland \
-	wpa_supplicant \
 	bluez \
 		bluez-utils \
 	yt-dlp \
@@ -102,8 +101,11 @@ else
 fi
 grub-mkconfig -o /boot/grub/grub.cfg
 
-[[ -z $(pacman -T wpa_supplicant) ]] &&
-	while IFS= read -r device; do
+lspci | grep 'Network controller' >/dev/null \
+	&& pacman --needed --noconfirm -S \
+	wpa_supplicant \
+	2>/dev/null \
+	&& while IFS= read -r device; do
 		config="/etc/wpa_supplicant/wpa_supplicant-$device.conf"
 		[[ ! -f $config ]] && install -Dm600 ./wpa_supplicant.conf -T "$config"
 		systemctl enable "wpa_supplicant@$device"
