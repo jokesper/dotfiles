@@ -14,11 +14,7 @@ path=${0%/*}
 cd "$path/install/"
 install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
 install -Dm644 <(printf 'LANG=en_US.UTF-8\n') -T /etc/locale.conf
-(
-	cd by-path
-	find -type f -perm 644 -exec install -Dm644 "{}" -T "/{}" \;
-	find -type f -perm 755 -exec install -Dm755 "{}" -T "/{}" \;
-)
+cp --preserve=mode --recursive --update=older --no-target-directory -- by-path /
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
