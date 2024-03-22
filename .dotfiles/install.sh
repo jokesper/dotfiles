@@ -31,7 +31,6 @@ pacman --needed --noconfirm -S \
 		$(lscpu | sed -n \
 			-e 's/.*\(intel\|radeon\).*/\Lvulkan-\1/ip' \
 			-e 's/.*\(amd\).*/amdvlk/ip' \
-			-e 's/.*\(nvidia\).*/\L\1-utils/ip' \
 		) \
 		gcc \
 		git \
