@@ -10,6 +10,10 @@ if (( EUID != 0 )); then
 	exit
 fi
 
+# NOTE:
+# install prior to config installation due to file conflicts in preset template
+pacman --needed --noconfirm -S mkinitcpio
+
 path=${0%/*}
 cd "$path/install/"
 install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
@@ -38,7 +42,6 @@ pacman --needed --noconfirm -S \
 		make \
 		patch \
 		reflector \
-	grub \
 	wireplumber \
 		pipewire-pulse \
 	brightnessctl \
@@ -88,14 +91,12 @@ ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
 locale-gen
 if [[ -d /sys/firmware/efi/efivars ]]; then
-	pacman --needed --noconfirm -S efibootmgr 2>/dev/null
-	grub-install --target=x86_64-efi --efi-directory=/boot --removable
+	bootctl install
 else
 	error 'BIOS systems are currently not supported.'
 	warn 'Please install manually'
 	fish
 fi
-grub-mkconfig -o /boot/grub/grub.cfg
 
 lspci | grep 'Network controller' >/dev/null \
 	&& pacman --needed --noconfirm -S \

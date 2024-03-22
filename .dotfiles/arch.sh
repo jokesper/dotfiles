@@ -57,9 +57,11 @@ uefiDir=/sys/firmware/efi/efivars
 cp {,"$path"}/etc/resolv.conf
 
 # Setup pacman
+# NOTE:
+# `unshare` is needed since pacman can spawn child processes (`gnupg`) interferring with unmounting
 mkdir -m 0755 -p "$path"/var/{cache/pacman/pkg,lib/pacman,log} "$path"/{dev,run,etc/pacman.d}
 [[ ! -d $path/etc/pacman.d/gnupg ]] && pacman-key --gpgdir "$path"/etc/pacman.d/gnupg --init
-unshare --fork --pid pacman -r "$path" -Sy base "$kernel" git
+unshare --fork --pid pacman -r "$path" --noconfirm -Sy base git
 cp -a {,"$path"}/etc/pacman.d/mirrorlist
 
 chroot "$path" bash -c "set -eu
@@ -74,6 +76,11 @@ chroot "$path" bash -c "set -eu
 	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\"
 	runuser - '$username' -c ~/.dotfiles/setup-user.sh
 	bash"
+
+# NOTE:
+# Install kernel after `mkinitcpio` to allow `install.sh` to replace the preset
+unshare --fork --pid pacman -r "$path" -S "$kernel"
+
 umount --recursive "$path"
 
 # TODO:
