@@ -75,4 +75,11 @@ chroot "$path" bash -c "set -eu
 	runuser - '$username' -c ~/.dotfiles/setup-user.sh
 	bash"
 umount --recursive "$path"
+
+# TODO:
+# read connected wireless networks from `/var/lib/iwd/*.psk` and add them to
+# wpa_supplicant.
+# Also set `mac_addr=0` since we probably don't want randomized mac addresses
+# for them
+
 reboot
