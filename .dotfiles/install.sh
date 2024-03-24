@@ -50,6 +50,7 @@ pacman --needed --noconfirm -S \
 		ripgrep \
 		texlive-meta \
 			texlab \
+		typst \
 	hyprland \
 		wl-clipboard \
 		xdg-desktop-portal-hyprland \
