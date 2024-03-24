@@ -49,7 +49,7 @@ for pkg in "$aur"/*/.git; do
 		if [[ $REPLY =~ ^[Yy]?$ ]]; then
 			# NOTE: potential problems with remaining build files
 			git --git-dir="$pkg" merge --ff-only --quiet origin/master
-			(cd "$dir"; makepkg --syncdeps --rmdeps --install --needed)
+			(cd "$dir"; makepkg --syncdeps --rmdeps --install --force)
 		fi
 	fi
 done
