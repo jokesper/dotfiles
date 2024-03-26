@@ -12,7 +12,7 @@ fi
 
 # NOTE:
 # install prior to config installation due to file conflicts in preset template
-pacman --needed --noconfirm -S mkinitcpio
+pacman --needed --noconfirm -S mkinitcpio 2>/dev/null
 
 path=${0%/*}
 cd "$path/install/"
