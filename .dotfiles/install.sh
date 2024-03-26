@@ -71,7 +71,6 @@ pacman --needed --noconfirm -S \
 		hoogle \
 	firefox \
 	cmus \
-	interception-tools \
 	2>/dev/null
 
 pacman --needed --noconfirm -S \
