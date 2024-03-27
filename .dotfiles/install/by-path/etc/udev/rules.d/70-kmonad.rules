@@ -1,7 +1,15 @@
-ACTION=="add", \
-KERNEL=="event[0-9]*", \
-SUBSYSTEM=="input", \
+ACTION!="add", GOTO="kmonad_end"
+KERNEL!="event[0-9]*", GOTO="kmonad_end"
+SUBSYSTEM!="input", GOTO="kmonad_end"
+
 DRIVERS=="atkbd", \
 TAG+="systemd", \
 ENV{SYSTEMD_WANTS}+="global-kmonad@$devnode.service"
-#RUN+="/usr/bin/kmonad -i 'device-file \"$devnode\"' /etc/kmonad/personal.kbd"
+
+ATTRS{bInterfaceClass}=="03", \
+ATTRS{bInterfaceSubClass}=="01", \
+ATTRS{bInterfaceProtocol}=="01", \
+TAG+="systemd", \
+ENV{SYSTEMD_WANTS}+="global-kmonad@$devnode.service"
+
+LABEL="kmonad_end"
