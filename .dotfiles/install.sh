@@ -42,6 +42,7 @@ pacman --needed --noconfirm -S \
 		make \
 		patch \
 		reflector \
+	apparmor \
 	wireplumber \
 		pipewire-pulse \
 	brightnessctl \
@@ -117,3 +118,4 @@ systemctl enable \
 	systemd-networkd \
 	systemd-resolved \
 	systemd-timesyncd \
+	apparmor \
