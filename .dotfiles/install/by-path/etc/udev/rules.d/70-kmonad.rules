@@ -2,4 +2,6 @@ ACTION=="add", \
 KERNEL=="event[0-9]*", \
 SUBSYSTEM=="input", \
 DRIVERS=="atkbd", \
-RUN+="/usr/bin/kmonad -i 'device-file \"$devnode\"' /etc/kmonad/personal.kbd"
+TAG+="systemd", \
+ENV{SYSTEMD_WANTS}+="global-kmonad@$devnode.service"
+#RUN+="/usr/bin/kmonad -i 'device-file \"$devnode\"' /etc/kmonad/personal.kbd"

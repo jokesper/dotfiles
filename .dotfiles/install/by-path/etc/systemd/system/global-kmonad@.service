@@ -1,0 +1,6 @@
+[Unit]
+Description=Start KMonad with /etc/kmonad/personal.kbd as cunfiguration for new keyboards
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/kmonad -i 'device-file "%I"' /etc/kmonad/personal.kbd

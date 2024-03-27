@@ -116,4 +116,3 @@ systemctl enable \
 	systemd-networkd \
 	systemd-resolved \
 	systemd-timesyncd \
-	udevmon \
