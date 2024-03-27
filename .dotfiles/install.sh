@@ -18,6 +18,7 @@ path=${0%/*}
 cd "$path/install/"
 install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
 install -Dm644 <(printf 'LANG=en_US.UTF-8\n') -T /etc/locale.conf
+install -Dm644 <(printf 'root=UUID=%s rw' "$(findmnt -rno UUID /)") -T /etc/cmdline.d/root.conf
 cp --preserve=mode --recursive --update=older --no-target-directory -- by-path /
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
