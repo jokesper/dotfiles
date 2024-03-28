@@ -67,15 +67,16 @@ cp -a {,"$path"}/etc/pacman.d/mirrorlist
 chroot "$path" bash -c "set -eu
 	passwd --expire --lock root
 	printf '$hostname' > /etc/hostname
-	useradd -mG wheel -s /bin/bash '$username'
+	useradd -G wheel '$username'
 	until passwd '$username' < /dev/tty; do :; done
 	runuser - '$username' -c '
-		shopt -s dotglob nullglob
-		rm -r ~/*
+		mkdir -m 700 .
 		git clone $url .
+	' || (printf '$error' "User setup failed..."; bash)
 	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\"
 	runuser - '$username' -c ~/.dotfiles/setup-user.sh
-	bash"
+	bash
+"
 
 # NOTE:
 # Install kernel after `mkinitcpio` to allow `install.sh` to replace the preset
@@ -83,10 +84,26 @@ unshare --fork --pid pacman -r "$path" -S "$kernel"
 
 umount --recursive "$path"
 
-# TODO:
-# read connected wireless networks from `/var/lib/iwd/*.psk` and add them to
-# wpa_supplicant.
-# Also set `mac_addr=0` since we probably don't want randomized mac addresses
-# for them
+# Copy `iw` networks if applicable
+[[ -f /etc/wpa_supplicant/wpa_supplicant.conf ]] && (
+	format-for-wpa_supplicant() {
+		printf '
+network={
+	mac_addr=0
+	ssid="%s"
+	psk=%s
+}' "$1" "$(sed -ne 's/PreSharedKey=\([0-9a-f]+\)/\1/p' "$1")"
+	}
+	for network in /var/lib/iwd/[A-Za-z0-9_\-]*.psk; do
+		file=${network##*/} # <ssid>.psk
+		format-for-wpa_supplicant network "${file%.psk}"
+	done
+	for network in /var/lib/iwd/=*.psk; do
+		ssid=${network##*/=}
+		ssid=${ssid%.psk}
+		ssid=$(for i in seq 1 2 ${#ssid}; do printf "\x${ssid:i-1:2}"; done)
+		format-for-wpa_supplicant network ssid
+	done
+) >> /etc/wpa_supplicant/wpa_supplicant.conf
 
 reboot
