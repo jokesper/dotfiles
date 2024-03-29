@@ -25,6 +25,7 @@ if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 fi
 
+no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
 pacman --needed --noconfirm -S \
 	base \
 		linux-firmware \
@@ -71,7 +72,7 @@ pacman --needed --noconfirm -S \
 		hoogle \
 	firefox \
 	cmus \
-	2>/dev/null
+	2> >(no-skipping-warning)
 
 pacman --needed --noconfirm -S \
 	xorg-xwayland \
@@ -84,7 +85,7 @@ pacman --needed --noconfirm -S \
 	gimp \
 	steam fuse2 \
 	element-desktop \
-	2>/dev/null
+	2> >(no-skipping-warning)
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
@@ -100,7 +101,7 @@ fi
 lspci | grep 'Network controller' >/dev/null \
 	&& pacman --needed --noconfirm -S \
 	wpa_supplicant \
-	2>/dev/null \
+	2> >(no-skipping-warning) \
 	&& ([[ ! -f /etc/wpa_supplicant/wpa_supplicant.conf ]] \
 		&& install -Dm600 ./wpa_supplicant.conf -t /etc/wpa_supplicant/) \
 	&& while IFS= read -r device; do
