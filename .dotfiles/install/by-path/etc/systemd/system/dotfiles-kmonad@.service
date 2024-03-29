@@ -1,5 +1,6 @@
 [Unit]
-Description=Start KMonad with /etc/kmonad/personal.kbd as cunfiguration for new keyboards
+Description=KMonad configuration using /etc/kmonad/personal.kbd
+DefaultDependencies=no
 
 [Service]
 Type=exec

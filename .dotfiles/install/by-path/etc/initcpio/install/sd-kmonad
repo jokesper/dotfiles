@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
 build() {
-	add_systemd_unit 'global-kmonad@.service'
+	# HACK: `add_file` instead of `add_systemd_unit` since it doesn't look in `/etc`
+	add_file '/etc/systemd/system/dotfiles-kmonad@.service'
 	add_udev_rule '/etc/udev/rules.d/70-kmonad.rules'
+	add_module 'uinput'
 	add_file '/etc/kmonad/personal.kbd'
 	add_binary '/usr/bin/kmonad'
+	add_binary '/usr/bin/systemd-escape'
 }
 
 help() {

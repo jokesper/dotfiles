@@ -6,12 +6,12 @@ PROGRAM+="/usr/bin/systemd-escape -p '$devnode'"
 
 DRIVERS=="atkbd", \
 TAG+="systemd", \
-ENV{SYSTEMD_WANTS}+="global-kmonad@$result.service"
+ENV{SYSTEMD_WANTS}+="dotfiles-kmonad@$result.service"
 
 ATTRS{bInterfaceClass}=="03", \
 ATTRS{bInterfaceSubClass}=="01", \
 ATTRS{bInterfaceProtocol}=="01", \
 TAG+="systemd", \
-ENV{SYSTEMD_WANTS}+="global-kmonad@$result.service"
+ENV{SYSTEMD_WANTS}+="dotfiles-kmonad@$result.service"
 
 LABEL="kmonad_end"
