@@ -28,11 +28,9 @@ fi
 pacman --needed --noconfirm -S \
 	base \
 		linux-firmware \
-		$(lscpu | sed -n 's/.*\(amd\|intel\).*/\L\1-ucode/ip') \
-		$(lscpu | sed -n \
-			-e 's/.*\(intel\|radeon\).*/\Lvulkan-\1/ip' \
-			-e 's/.*\(amd\).*/amdvlk/ip' \
-		) \
+		$(lscpu | sed -ne 's/^.*\(amd\|intel\).*$/\L\1-ucode/ip') \
+		$(lscpu | sed -ne 's/^.*\(intel\|radeon\).*$/\Lvulkan-\1/ip') \
+		$(lscpu | sed -ne 's/^.*\(amd\).*$/amdvlk/ip') \
 		gcc \
 		git \
 		jq \

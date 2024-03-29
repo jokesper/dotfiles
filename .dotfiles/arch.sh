@@ -92,7 +92,7 @@ network={
 	mac_addr=0
 	ssid="%s"
 	psk=%s
-}' "$1" "$(sed -ne 's/PreSharedKey=\([0-9a-f]+\)/\1/p' "$1")"
+}' "$1" "$(sed -ne 's/^\s*PreSharedKey=\([0-9a-f]\+\)\s*$/\1/p' "$1")"
 	}
 	for network in /var/lib/iwd/[A-Za-z0-9_\-]*.psk; do
 		file=${network##*/} # <ssid>.psk
