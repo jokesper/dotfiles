@@ -51,6 +51,7 @@ pacman --needed --noconfirm -S \
 	wireplumber \
 		pipewire-pulse \
 	brightnessctl \
+	libnotify \
 	man-db \
 	doas \
 	neovim \
