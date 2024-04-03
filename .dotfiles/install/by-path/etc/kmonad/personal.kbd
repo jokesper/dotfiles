@@ -62,6 +62,14 @@
 	cut S-del
 )
 
+;; NOTE:
+;; Some characters are not documented as they are a result of pressing
+;; shift in combination with a symbol key on this layer.
+;; The following symbols are affected:
+;; - `"`: SHIFT + `'`
+;; - `<`: SHIFT + `,`
+;; - `>`: SHIFT + `.`
+;; - `?`: SHIFT + `/`
 (deflayer dvorak
 	 '  ,  .  p y  f  g  c  r  l
 	@a @o @e @u i  d @h @t @n @s
