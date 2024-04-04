@@ -74,7 +74,7 @@ chroot "$path" bash -c "set -eu
 		git clone $url .
 	' || (printf '$error' "User setup failed..."; bash)
 	\"\$(getent passwd '$username' | cut -d: -f6)/.dotfiles/install.sh\"
-	runuser - '$username' -c ~/.dotfiles/setup-user.sh
+	runuser - '$username' -c '~/.dotfiles/setup-user.sh'
 	bash
 "
 
