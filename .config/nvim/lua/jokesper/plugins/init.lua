@@ -30,7 +30,7 @@ return {
 		},
 	},
 	{
-		'jokesper/cloak.nvim',
+		'laytan/cloak.nvim',
 		opts = {
 			patterns = {
 				{
