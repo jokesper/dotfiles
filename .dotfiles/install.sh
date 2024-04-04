@@ -39,8 +39,8 @@ luksRoot=$(dmsetup deps -o devname "$(findmnt -rno SOURCE /)" \
 install -Dm644 <(printf '%s' "$luksRoot") -T /etc/cmdline.d/luks-root.conf
 install -Dm644 <(printf '[Service]\nExecStart=\nExecStart=%s\n' \
 	"$([[ -z "$user" ]] && printf '' || ([[ -n "$luksRoot" ]] \
-			&& printf '%s' "-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin "$user" %I %TERM" \
-			|| printf '%s' "-/sbin/agetty -o '-f -- $user' --noclear"))") \
+			&& printf '%s' "-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin "$user" %I \$TERM" \
+			|| printf '%s' "-/sbin/agetty -o '-p -- $user' --noclear --skip-login - \$TERM"))") \
 	-T /etc/systemd/system/getty@tty1.service.d/dotfiles.conf
 cp --preserve=mode --recursive --update=older --no-target-directory -- by-path /
 
