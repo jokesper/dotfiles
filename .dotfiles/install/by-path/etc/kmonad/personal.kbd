@@ -3,12 +3,12 @@
 
 ;; Modifications:
 ;; - Dvorak Layout
-;; - Replaced / Removed Layers:
+;; - Replaced / removed Layers:
 ;;   - Mouse
 ;;   - Extra -> Game
 ;;   - Tap
-;; - switched numbers from bottom ascending to top ascending
-;; - modified Media layout as it is mostly unassigned in the
+;; - Switched numbers from bottom ascending to top ascending
+;; - Modified Media layout as it is mostly unassigned in the
 ;;   KMonad implementation
 
 (defcfg
