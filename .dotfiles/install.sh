@@ -10,6 +10,17 @@ if (( EUID != 0 )); then
 	exit
 fi
 
+# Find all users and the user (only for single user systems)
+users=$(getent passwd \
+	| gawk -F: \
+		$(sed -ne 's/^\(UID_\(MIN\|MAX\)\)\s\+\([0-9]\+\)$/-v\1=\3/p' /etc/login.defs) '
+		{ if (UID_MIN <= $3 && $3 <= UID_MAX \
+			&& $7 !~ "(/usr)?/bin/(nologin|false)") {
+			printf "%s\n", $1
+		} }')
+[[ $(wc -l <<< "$users") == 1 ]] && user=$users || user=''
+
+
 # NOTE:
 # install prior to config installation due to file conflicts in preset template
 pacman --needed --noconfirm -S mkinitcpio 2>/dev/null
@@ -20,11 +31,16 @@ install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
 install -Dm644 <(printf 'LANG=en_US.UTF-8\n') -T /etc/locale.conf
 install -Dm644 <(printf 'root=UUID=%s rw' "$(findmnt -rno UUID /)") -T /etc/cmdline.d/root.conf
 # NOTE: Assumution of either `/` being on a physical device or on a luks device
-install -Dm644 <(dmsetup deps -o devname "$(findmnt -rno SOURCE /)" \
+luksRoot=$(dmsetup deps -o devname "$(findmnt -rno SOURCE /)" \
 	| grep -Po '(?<=\()[[:alnum:]]+(?=\))' \
 	| xargs -I{} lsblk -ndo UUID /dev/{} \
-	| sed -e 's/^/rd.luks.name=/;s/$/=root/') \
-	-T /etc/cmdline.d/luks-root.conf
+	| sed -e '/^$/d;s/^/rd.luks.name=/;s/$/=root/')
+install -Dm644 <(printf '%s' "$luksRoot") -T /etc/cmdline.d/luks-root.conf
+install -Dm644 <(printf '[Service]\nExecStart=\nExecStart=%s\n' \
+	"$([[ -z "$user" ]] && printf '' || ([[ -n "$luksRoot" ]] \
+			&& printf '%s' "-/sbin/agetty -o '-p -f -- \\\\u' --noclear --autologin "$user" %I %TERM" \
+			|| printf '%s' "-/sbin/agetty -o '-f -- $user' --noclear"))") \
+	-T /etc/systemd/system/getty@tty1.service.d/dotfiles.conf
 cp --preserve=mode --recursive --update=older --no-target-directory -- by-path /
 
 if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then

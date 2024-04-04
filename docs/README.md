@@ -28,7 +28,8 @@ curl https://raw.githubusercontent.com/jokesper/dotfiles/main/.dotfiles/arch.sh 
 ```
 
 ### On a new User
-Run the following commands, but be warned, they will destroy your previous home directory.
+This repo has strong entanglement between system and user. It is designed as a single user system.
+If you still want to add a new user run the following commands, but be warned, they will destroy your previous home directory.
 ```bash
 bash +O dotglob +O nullglob -c 'rm -rf ~/*'
 git clone https://github.com/jokesper/dotfiles.git ~
