@@ -4,6 +4,7 @@ set -eu
 
 error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
 warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
+no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
 
 if (( EUID != 0 )); then
 	error "This script must be run with root privileges"
@@ -23,7 +24,7 @@ users=$(getent passwd \
 
 # NOTE:
 # install prior to config installation due to file conflicts in preset template
-pacman --needed --noconfirm -S mkinitcpio 2>/dev/null
+pacman --needed --noconfirm -S mkinitcpio 2> >(no-skipping-warning)
 
 path=${0%/*}
 cd "$path/install/"
@@ -47,7 +48,6 @@ if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 fi
 
-no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
 pacman --needed --noconfirm -S \
 	base \
 		linux-firmware \
