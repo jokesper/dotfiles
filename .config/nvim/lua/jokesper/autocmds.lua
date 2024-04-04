@@ -4,45 +4,55 @@ local is_buffer_modifiable = function()
 		and not vim.api.nvim_buf_get_option(buf, 'binary')
 end
 
+local function setEnabledOfOpts(vars, opts, enable, opt, val, prefix)
+	---@diagnostic disable-next-line
+	if type(opt) == 'number' then opt, val = val, { false, true } end
+	---@cast opt string
+	---@cast val any[]
+	val = { off = val[1], on = val[2] }
+	local old = prefix .. opt
+	if not enable then
+		vars[old], opts[opt] = opts[opt], val.off
+	elseif vars[old] ~= nil then
+		opts[opt] = vars[old]
+	else
+		opts[opt] = val.on
+	end
+end
+local function setOptionsOnCondition(win, prefix, enable)
+	local vars, opts
+	if win ~= nil then
+		vars, opts = vim.w[win], vim.wo[win]
+	else
+		vars, opts = vim.w, vim.wo
+	end
+	for opt, val in pairs {
+		'number', 'relativenumber',
+		fillchars = { 'eob: ', '' },
+		signcolumn = { 'no', 'yes' },
+		foldcolumn = { '0', 'auto' },
+		--colorcolumn = {'', '101'},
+	} do setEnabledOfOpts(vars, opts, enable, opt, val, prefix) end
+end
 local function setOptionsOnFocus(enable)
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local vars, opts = vim.w[win], vim.wo[win]
-		for opt, val in pairs {
-			'number', 'relativenumber',
-			fillchars = { 'eob: ', '' },
-			signcolumn = { 'no', 'yes' },
-			foldcolumn = { '0', 'auto' },
-			--colorcolumn = {'', '101'},
-		} do
-			---@diagnostic disable-next-line
-			if type(opt) == 'number' then opt, val = val, { false, true } end
-			---@cast opt string
-			---@cast val any[]
-			val = { off = val[1], on = val[2] }
-			local old = ('original_%s'):format(opt)
-			if not enable then
-				vars[old], opts[opt] = opts[opt], val.off
-			elseif vars[old] ~= nil then
-				opts[opt] = vars[old]
-			else
-				opts[opt] = val.on
-			end
-		end
+		setOptionsOnCondition(win, 'when_focused_', enable)
 	end
 	for opt, val in pairs {
 		showtabline = { 0, 1 },
 		cmdheight = { 0, 1 },
-	} do
-		---@diagnostic disable-next-line
-		if type(opt) == 'number' then opt, val = val, { false, true } end
-		---@cast opt string
-		---@cast val any[]
-		if enable then val = val[2] else val = val[1] end
-		vim.opt[opt] = val
-	end
+	} do setEnabledOfOpts(vim.g, vim.o, enable, opt, val, 'when_focused_') end
 end
 
 for name, augroup in pairs { custom = {
+	{
+		'TermEnter',
+		'TermLeave',
+		desc = 'Hide linenumbers when entering terminal mode',
+		callback = function(event)
+			setOptionsOnCondition(nil, 'when_not_in_term_mode_', event.event ~= 'TermEnter')
+		end,
+	},
 	{
 		'TermOpen',
 		desc = 'Automatically configure new terminal windows',
