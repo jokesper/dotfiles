@@ -2,7 +2,10 @@ local json = ...
 
 return
 {
-	['privacy.resistFingerprinting.letterboxing'] = false,
+	privacy = {
+		['resistFingerprinting.letterboxing'] = false,
+		['globalprivacycontrol.enabled'] = true,
+	},
 	font = {
 		['minimum-size.x-western'] = 9,
 		['name.serif.x-western'] = 'FiraCode Nerd Font',
