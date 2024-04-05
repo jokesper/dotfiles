@@ -48,10 +48,10 @@ pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
 
 genfstab -U "$path" >> "$path/etc/fstab"
 
-mount --mkdir=0555 -t sysfs {,"$path"}/sys
-mount --mkdir=0555 -t proc {,"$path"}/proc
-mount --mkdir=1777 -t tmpfs -o size=100Mi,mode=1777 "$path"/tmp
-mount --mkdir=0755 --rbind {,"$path"}/dev
+mount --mkdir=0555 -t sysfs -o nosuid,noexec,nodev,ro {,"$path"}/sys
+mount --mkdir=0555 -t proc -o nosuid,noexec,nodev {,"$path"}/proc
+mount --mkdir=1777 -t tmpfs -o mode=1777,size=100Mi,nosuid,nodev tmpfs "$path"/tmp
+mount --mkdir=0755 --rbind -o nosuid {,"$path"}/dev
 uefiDir=/sys/firmware/efi/efivars
 [[ -d $uefiDir ]] && mount --rbind {,"$path"}$uefiDir
 cp {,"$path"}/etc/resolv.conf
@@ -82,8 +82,6 @@ chroot "$path" bash -c "set -eu
 # Install kernel after `mkinitcpio` to allow `install.sh` to replace the preset
 unshare --fork --pid pacman -r "$path" -S "$kernel"
 
-umount --recursive "$path"
-
 # Copy `iw` networks if applicable
 [[ -f /etc/wpa_supplicant/wpa_supplicant.conf ]] && (
 	format-for-wpa_supplicant() {
@@ -104,6 +102,8 @@ network={
 		ssid=$(for i in seq 1 2 ${#ssid}; do printf "\x${ssid:i-1:2}"; done)
 		format-for-wpa_supplicant network ssid
 	done
-) >> /etc/wpa_supplicant/wpa_supplicant.conf
+) >> "$path"/etc/wpa_supplicant/wpa_supplicant.conf
+
+umount --recursive "$path"
 
 reboot
