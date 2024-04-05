@@ -3,7 +3,7 @@
 set -eu
 
 error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
-warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
+warn() { printf "\e[33;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
 no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
 no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
 ignore-missing-package() { sed -e '/error: package \S\+ was not found/d'; }
@@ -57,6 +57,7 @@ packages=$(printf "%s\n" \
 		$(lscpu | sed -ne 's/^.*\(amd\|intel\).*$/\L\1-ucode/ip') \
 		$(lscpu | sed -ne 's/^.*\(intel\|radeon\).*$/\Lvulkan-\1/ip') \
 		$(lscpu | sed -ne 's/^.*\(amd\).*$/amdvlk/ip') \
+		$(lspci | sed -ne 's/^.*Network controller.*$/wpa_supplicant/p') \
 		gcc \
 		git \
 		jq \
@@ -100,7 +101,6 @@ packages=$(printf "%s\n" \
 	cmus \
 	xorg-xwayland \
 	bluez \
-		bluez-utils \
 	yt-dlp \
 	cifs-utils \
 	gnupg \
@@ -109,6 +109,20 @@ packages=$(printf "%s\n" \
 	steam fuse2 \
 	element-desktop \
 	| sort --unique)
+
+add-package() { packages=$(printf "%s\n" "$packages" "$*"); }
+scripts=()
+while IFS= read -rd '' script; do
+	name=${script##*/}
+	dependencies=${name%.*}
+	[[ -z "$(comm -23 -- \
+		<(sed -e 's/\s\+/\n/g' <<< "$dependencies") \
+		<(sort --unique <<< "$packages"))" ]] \
+		&& scripts+=( "$script" )
+done < <(find when-installed -type f -executable -print0)
+
+for script in "${scripts[@]}"; do before() { true; }; . "$script"; before; done
+packages=$(sort --unique <<< "$packages")
 
 packageCache=/var/cache/dotfiles/packages
 
@@ -130,6 +144,8 @@ remPackages=$(sed -ne 's/^\t\(\S\+\)$/\1/p' <<< "$deltaPackages")
 
 printf "%s" "$packages" > "$packageCache"
 
+for script in "${scripts[@]}"; do after() { true; }; . "$script"; after; done
+
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
 locale-gen
@@ -140,24 +156,6 @@ else
 	warn 'Please install manually'
 	fish
 fi
-
-lspci | grep 'Network controller' >/dev/null \
-	&& pacman --needed --noconfirm -S \
-	wpa_supplicant \
-	2> >(no-skipping-warning) \
-	&& ([[ ! -f /etc/wpa_supplicant/wpa_supplicant.conf ]] \
-		&& install -Dm600 ./wpa_supplicant.conf -t /etc/wpa_supplicant/) \
-	&& while IFS= read -r device; do
-		[[ -z $device ]] && continue
-		config="/etc/wpa_supplicant/wpa_supplicant-$device.conf"
-		[[ ! -f $config ]] && install -Dm600 /etc/wpa_supplicant/wpa_supplicant.conf -T "$config"
-		systemctl enable "wpa_supplicant@$device"
-	done <<< "$(networkctl list --json=short \
-		| jq -r '.Interfaces[]
-			| select(.Type == "wlan")
-			| .Name')"
-[[ -z $(pacman -T bluez) ]] &&
-	systemctl enable bluetooth
 
 systemctl enable \
 	systemd-networkd \
