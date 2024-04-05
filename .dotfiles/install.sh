@@ -5,6 +5,8 @@ set -eu
 error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
 warn() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
 no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
+no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
+ignore-missing-package() { sed -e '/error: package \S\+ was not found/d'; }
 
 if (( EUID != 0 )); then
 	error "This script must be run with root privileges"
@@ -49,7 +51,7 @@ if [[ "$(stat -c %d:%i /)" == "$(stat -c %d:%i /proc/$$/root/.)" ]]; then
 	ln -rsf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
 fi
 
-pacman --needed --noconfirm -S \
+packages=$(printf "%s\n" \
 	base \
 		linux-firmware \
 		$(lscpu | sed -ne 's/^.*\(amd\|intel\).*$/\L\1-ucode/ip') \
@@ -96,9 +98,6 @@ pacman --needed --noconfirm -S \
 		hoogle \
 	firefox \
 	cmus \
-	2> >(no-skipping-warning)
-
-pacman --needed --noconfirm -S \
 	xorg-xwayland \
 	bluez \
 		bluez-utils \
@@ -109,7 +108,27 @@ pacman --needed --noconfirm -S \
 	gimp \
 	steam fuse2 \
 	element-desktop \
+	| sort --unique)
+
+packageCache=/var/cache/dotfiles/packages
+
+[[ ! -f "$packageCache" ]] \
+	&& mkdir -p "${packageCache%/*}" \
+	&& touch "$packageCache"
+
+deltaPackages=$(comm -3 <(printf "%s" "$packages") "$packageCache")
+addPackages=$(sed -ne 's/^\(\S\+\)$/\1/p' <<< "$deltaPackages")
+remPackages=$(sed -ne 's/^\t\(\S\+\)$/\1/p' <<< "$deltaPackages")
+
+[[ -n "$addPackages" ]] \
+	&& pacman --needed --noconfirm -S $addPackages \
 	2> >(no-skipping-warning)
+[[ -n "$remPackages" ]] \
+	&& pacman -Qq $remPackages \
+	2> >(ignore-missing-package) \
+	| xargs pacman --noconfirm -Rsu --
+
+printf "%s" "$packages" > "$packageCache"
 
 ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 hwclock --systohc
