@@ -50,7 +50,7 @@ packages=$(printf "%s\n" \
 		wl-clipboard \
 		xdg-desktop-portal-hyprland \
 		`#polkit-kde-agent` \
-		swaylock \
+		hyprlock \
 		swayidle \
 		waybar \
 		wofi \
