@@ -27,9 +27,6 @@ done
 printf "$lv2 Updating firefox user.js\n"
 ~/.dotfiles/merge-firefox-config.sh &
 
-printf "$lv2 Updating cargo packages\n"
-cargo install-update --quiet --all &
-
 printf "$lv2 Updating haskell package index\n"
 cabal update &
 

@@ -15,8 +15,6 @@ mkdir -p \
 cd "${0%/*}/user/"
 [[ ! -f "$config/hyprland-config" ]] && install -Dm644 hyprland-config -t "$config"
 
-cargo install cargo-update
-
 for repo in {'rxi/json.lua','arkenfox/user.js'}; do
 	local="$data/${repo#*/}.git"
 	[[ ! -d "$local" ]] \

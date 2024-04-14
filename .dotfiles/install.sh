@@ -59,7 +59,6 @@ packages=$(printf "%s\n" \
 		ttf-firacode-nerd \
 		fish \
 	rust \
-		libgit2 \
 		rust-analyzer \
 	cabal-install \
 		haskell-language-server \
