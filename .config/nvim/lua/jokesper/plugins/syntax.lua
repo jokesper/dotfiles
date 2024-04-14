@@ -22,4 +22,5 @@ return {
 		},
 	},
 	{ 'nvim-treesitter/nvim-treesitter-context' },
+	{ 'kmonad/kmonad-vim' },
 }
