@@ -1,4 +1,0 @@
-timeout 300 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
-timeout 310 hyprlock
-timeout 600 'systemctl suspend'
-before-sleep "cmus-remote --stop" before-sleep hyprlock

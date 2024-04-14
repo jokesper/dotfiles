@@ -51,7 +51,7 @@ packages=$(printf "%s\n" \
 		xdg-desktop-portal-hyprland \
 		`#polkit-kde-agent` \
 		hyprlock \
-		swayidle \
+		hypridle \
 		waybar \
 		wofi \
 		grim slurp \
