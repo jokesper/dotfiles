@@ -46,7 +46,7 @@
 	},
 	"memory": {
 		"format": "{used:0.1f} GiB / {total:0.1f} GiB",
-		"format-low": "{avail:0.2f} GiB (+ {swayAvail} GiB) free",
+		"format-low": "{avail:0.2f} GiB (+ {swapAvail} GiB) free",
 		"states": {
 			"low": 90,
 		},
