@@ -26,6 +26,7 @@ packages=$(printf "%s\n" \
 		$(lspci | sed -ne 's/^.*Network controller.*$/wpa_supplicant/p') \
 		gcc \
 		git \
+			git-delta \
 		jq \
 		which \
 		xdg-utils \

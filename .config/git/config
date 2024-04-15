@@ -2,6 +2,16 @@
 	defaultBranch = main
 [core]
 	whitespace = space-before-tab,tabwith=4,trailing-space
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+
 [user]
 	name = Joschua Kesper
 	email = jokesper@proton.me
