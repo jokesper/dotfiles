@@ -36,3 +36,6 @@ opt.smartindent = true
 
 opt.splitright = true
 opt.splitbelow = true
+
+opt.updatetime = 250
+opt.timeoutlen = 300
