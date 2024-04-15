@@ -12,6 +12,7 @@ elseif #vim.api.nvim_list_uis() > 0 and os.getenv 'NVIM' ~= nil then
 end
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- I don't use netrw anymore but I still keep those options set
 -- Some settings should always be there for netrw to function properly
