@@ -46,23 +46,28 @@ else printf "$warn" "reflector not installed" >&2; fi
 
 pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
 
-genfstab -U "$path" >> "$path/etc/fstab"
+mkdir -m 0755 -p "$path"/{var/cache/pacman/pkg,lib/pacman,var/log,etc/pacman.d}
 
 mount --mkdir=0555 -t sysfs -o nosuid,noexec,nodev,ro {,"$path"}/sys
 mount --mkdir=0555 -t proc -o nosuid,noexec,nodev {,"$path"}/proc
-mount --mkdir=1777 -t tmpfs -o mode=1777,size=100Mi,nosuid,nodev tmpfs "$path"/tmp
+mount --mkdir=1777 -t tmpfs -o size=100M,nosuid,nodev tmpfs "$path"/tmp
 mount --mkdir=0755 --rbind -o nosuid {,"$path"}/dev
+mount --mkdir=0755 --bind -o nosuid,nodev {,"$path"}/run
 uefiDir=/sys/firmware/efi/efivars
 [[ -d $uefiDir ]] && mount --rbind {,"$path"}$uefiDir
 cp {,"$path"}/etc/resolv.conf
 
-# Setup pacman
-# NOTE:
+if [[ ! -d $path/etc/pacman.d/gnupg ]]; then
+	# Copy or generate new keyring
+	[[ -d "/etc/pacman.d/gnupg" ]] \
+		&& cp --archive --no-preserve=ownership -T {"$path",}/etc/pacman.d/gnupg \
+		|| pacman-key --gpgdir "$path"/etc/pacman.d/gnupg --init
+fi
 # `unshare` is needed since pacman can spawn child processes (`gnupg`) interferring with unmounting
-mkdir -m 0755 -p "$path"/var/{cache/pacman/pkg,lib/pacman,log} "$path"/{dev,run,etc/pacman.d}
-[[ ! -d $path/etc/pacman.d/gnupg ]] && pacman-key --gpgdir "$path"/etc/pacman.d/gnupg --init
 unshare --fork --pid pacman -r "$path" --noconfirm -Sy base git
-cp -a {,"$path"}/etc/pacman.d/mirrorlist
+cp --archive -T {"$path",}/etc/pacman.d/mirrorlist
+
+genfstab -U "$path" >> "$path/etc/fstab"
 
 chroot "$path" bash -c "set -eu
 	passwd --expire --lock root
@@ -90,7 +95,7 @@ network={
 	mac_addr=0
 	ssid="%s"
 	psk=%s
-}' "$1" "$(sed -ne 's/^\s*PreSharedKey=\([0-9a-f]\+\)\s*$/\1/p' "$1")"
+}' "$1" "$(sed -ne 's/^\s*\(PreSharedKey\|Passphrase\)=\(.*\)$/\2/p' "$1")"
 	}
 	for network in /var/lib/iwd/[A-Za-z0-9_\-]*.psk; do
 		file=${network##*/} # <ssid>.psk
