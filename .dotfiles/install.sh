@@ -48,14 +48,6 @@ packages=$(printf "%s\n" \
 			texlab \
 		typst \
 	hyprland \
-		wl-clipboard \
-		xdg-desktop-portal-hyprland \
-		`#polkit-kde-agent` \
-		hyprlock \
-		hypridle \
-		waybar \
-		wofi \
-		grim slurp \
 	kitty \
 		ttf-firacode-nerd \
 		fish \
@@ -66,7 +58,6 @@ packages=$(printf "%s\n" \
 		hoogle \
 	firefox \
 	cmus \
-	xorg-xwayland \
 	bluez \
 	yt-dlp \
 	cifs-utils \
