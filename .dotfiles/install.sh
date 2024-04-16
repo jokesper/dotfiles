@@ -77,7 +77,7 @@ packages=$(printf "%s\n" \
 	element-desktop \
 	| sort --unique)
 
-add-package() { packages=$(printf "%s\n" "$packages" "$*"); }
+add-package() { packages=$(printf "%s\n" "$packages" "$@"); }
 scripts=()
 while IFS= read -rd '' script; do
 	name=${script##*/}
