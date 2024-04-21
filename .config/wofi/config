@@ -12,9 +12,9 @@ orientation=vertical
 image_size=10
 layer=overlay
 
-key_up=Alt_L-k
-key_down=Alt_L-j
-key_left=Alt_L-h
-key_right=Alt_L-right
-key_pgup=Control_L-u
-key_pgdn=Control_L-d
+key_up=Alt-k
+key_down=Alt-j
+key_left=Alt-h
+key_right=Alt-right
+key_pgup=Ctrl-u
+key_pgdn=Ctrl-d
