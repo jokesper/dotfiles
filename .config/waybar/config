@@ -1,14 +1,8 @@
 [
 	{
 		"include": "$XDG_CONFIG_HOME/waybar/base.json",
-		"position": "top",
+		"position": "overlay",
 		"modules-left": ["hyprland/workspaces"],
 		"modules-right": ["network", "wireplumber", "battery", "disk", "cpu", "temperature", "memory", "clock"],
-	},
-	{
-		"include": "$XDG_CONFIG_HOME/waybar/base.json",
-		"layer": "overlay",
-		"position": "bottom",
-		"modules-right": ["hyprland/submap"],
 	},
 ]
