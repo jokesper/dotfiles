@@ -1,4 +1,3 @@
 #viewerContainer > #viewer .page > .canvasWrapper > canvas {
-    filter: grayscale(100%);
     filter: invert(100%);
 }
