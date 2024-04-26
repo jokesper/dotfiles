@@ -6,6 +6,8 @@ lists=$(find \
 	-L $(sed 's/:/ /g' <(printf "%q" "${MUSIC:-}:$HOME/Music")) \
 	-maxdepth 1 -type f -name \*.list)
 
+[[ -z "$lists" ]] && exit
+
 playlistRoot="${CMUS_HOME:-${XDG_CONFIG_HOME:-$HOME/.config}}/cmus/playlists/"
 mkdir -p "$playlistRoot"
 while IFS= read -r list; do
