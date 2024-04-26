@@ -27,6 +27,9 @@ return {
 					},
 				},
 			},
+			exclude = {
+				filetypes = { 'oil' },
+			},
 		},
 	},
 	{
