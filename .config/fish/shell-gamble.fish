@@ -13,19 +13,15 @@ switch (date | md5sum | head -c2)
 			| xargs -I{} -- bash -c 'printf "# Turtles" >> "{}"'
 	case 14
 		function fish_prompt
-			set -l last_status $status
-			printf "\n%sKönig%s@%szuhause%s %s%s%s%s%s\n]%s " \
-				(set_color -o white) \
-				(set_color -o red) \
-				(set_color -o white) \
-				(set_color normal) \
-				(set_color $fish_color_cwd) \
-				(prompt_pwd) \
-				(set_color normal) \
-				(fish_git_prompt) \
-				(fish_hg_prompt) \
-				(if [ "$last_status" != 0 ]; set_color $fish_color_error; end) \
-				(set_color normal)
+			printf \
+				(printf (if test -n "$fish_private_mode"; echo '(%s)%s'; else; echo '%s%s'; end) \
+					'%sKönig@%szuhause%s' ':%s%s%s%s ') \
+				(set_color $fish_color_user) \
+				(set_color $fish_color_host) \
+				(set_color $fish_color_normal) \
+				(set_color $fish_color_cwd) (basename (prompt_pwd)) \
+				(set_color $fish_color_normal) \
+				(if fish_is_root_user; printf '#'; else; printf '$'; end)
 		end
 	case 15
 		function fish_greeting
@@ -39,10 +35,6 @@ switch (date | md5sum | head -c2)
 	case 17
 		function ls
 			printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"
-			if command --query lsd
-				command lsd $argv
-			else
-				command ls $argv
-			end
+			command ls --color=auto -H $argv
 		end
 end
