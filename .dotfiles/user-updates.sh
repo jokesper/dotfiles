@@ -28,11 +28,11 @@ printf "$lv2 Updating firefox user.js\n"
 ~/.dotfiles/merge-firefox-config.sh &
 
 printf "$lv2 Updating haskell package index\n"
-cabal update &
+cabal update
 
 printf "$lv2 Updating local haskell binaries\n"
 for bin in "$HOME"/.dotfiles/*/*.cabal; do
-	(cd "${bin%/*}"; cabal install --ghc-options=-dynamic --overwrite-policy=always) &
+	(cd "${bin%/*}"; cabal install --ghc-options=-dynamic --overwrite-policy=always)
 done
 
 printf "$lv2 Updating AUR packages\n"
