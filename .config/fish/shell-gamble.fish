@@ -6,9 +6,10 @@ switch (date | md5sum | head -c2)
 			function python; command ghci; end
 		end
 	case 12
-		printf "sleep 0.1\n" >> "$XDG_CONFIG_HOME/fish/config.fish"
+		printf "sleep 0.1\n" >> "$__fish_config_dir/config.fish"
 	case 13
-		find "$XDG_CONFIG_HOME" -type f -name \*.fish \
+		find "$__fish_config_dir" -type f -name \*.fish \
+			| shuf -n1 \
 			| xargs -I{} -- bash -c 'printf "# Turtles" >> "{}"'
 	case 14
 		function fish_prompt
@@ -37,7 +38,7 @@ switch (date | md5sum | head -c2)
 		command xdg-open 'https://en.wikipedia.org/wiki/Turtle'
 	case 17
 		function ls
-			printf "sleep 0.01\n" >> "$XDG_CONFIG_HOME/fish/config.fish"
+			printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"
 			if command --query lsd
 				command lsd $argv
 			else
