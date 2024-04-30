@@ -45,7 +45,7 @@ for pkg in "$aur"/*/.git; do
 		read -rp "Update '$name'? [Y/n] "
 		if [[ $REPLY =~ ^[Yy]?$ ]]; then
 			# NOTE: potential problems with remaining build files
-			git --git-dir="$pkg" merge --ff-only --quiet origin/master
+			git --git-dir="$pkg" checkout --force --quiet origin/master
 			(cd "$dir"; makepkg --syncdeps --rmdeps --install --force)
 		fi
 	fi
