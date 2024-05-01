@@ -10,7 +10,7 @@ switch (date | md5sum | head -c2)
 	case 13
 		find "$__fish_config_dir" -type f -name \*.fish \
 			| shuf -n1 \
-			| xargs -I{} -- bash -c 'printf "# Turtles" >> "{}"'
+			| xargs -I{} -- bash -c 'printf "# Turtles\n" >> "{}"'
 	case 14
 		function fish_prompt
 			set -l normal (if [ "$status" != 0 ]
