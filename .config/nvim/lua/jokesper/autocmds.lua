@@ -104,11 +104,6 @@ for name, augroup in pairs { custom = {
 		desc = 'Hide line numbers when not focused',
 		callback = function() setOptionsOnFocus(false) end,
 	},
-	{
-		'CursorHold',
-		'CursorHoldI',
-		callback = function() vim.diagnostic.open_float { focus = false } end
-	},
 	{ 'BufRead', 'BufNewFile', pattern = '*.typst', callback = function() vim.o.filetype = 'typst' end },
 } } do
 	if type(name) == 'string' then vim.api.nvim_create_augroup(name, {}) end
