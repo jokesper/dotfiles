@@ -7,6 +7,9 @@
 .dotfiles/**/dist-newstyle
 !docs/
 
+# https://github.com/judah/haskeline/pull/157
+!.haskeline
+
 !.config/
 .config/*
 !.config/git/
