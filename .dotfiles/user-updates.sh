@@ -43,11 +43,10 @@ for pkg in "$aur"/*/.git; do
 		dir=${pkg%/*}
 		name=${dir##*/}
 		read -rp "Update '$name'? [Y/n] "
-		if [[ $REPLY =~ ^[Yy]?$ ]]; then
-			# NOTE: potential problems with remaining build files
-			git --git-dir="$pkg" checkout --force --quiet origin/master
-			(cd "$dir"; makepkg --syncdeps --rmdeps --install --force)
-		fi
+		if [[ $REPLY =~ ^[Yy]?$ ]]; then (
+			git merge --ff-only --quiet origin/master
+			makepkg --syncdeps --rmdeps --install --force
+		) fi
 	fi
 done
 
