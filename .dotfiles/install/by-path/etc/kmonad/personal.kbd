@@ -113,7 +113,7 @@
 	  \( \) \_  XX XX XX
 )
 (deflayer function
-	f10 f1 f2 f3 sysrq  XX @bse @gme XX   XX
+	f10 f1 f2 f3 prnt   XX @bse @gme XX   XX
 	f11 f4 f5 f6 slck   XX rsft rctl alt  met
 	f12 f7 f8 f9 pause  XX @fun @mdi ralt XX XX
 
