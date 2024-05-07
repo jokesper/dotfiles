@@ -104,7 +104,6 @@ for name, augroup in pairs { custom = {
 		desc = 'Hide line numbers when not focused',
 		callback = function() setOptionsOnFocus(false) end,
 	},
-	{ 'BufRead', 'BufNewFile', pattern = '*.typst', callback = function() vim.o.filetype = 'typst' end },
 } } do
 	if type(name) == 'string' then vim.api.nvim_create_augroup(name, {}) end
 	for _, autocmd in ipairs(augroup) do
