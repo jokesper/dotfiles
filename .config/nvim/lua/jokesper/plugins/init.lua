@@ -70,4 +70,11 @@ return {
 			--skip_confirm_for_simlpe_edits = true
 		},
 	},
+	{
+		'jokesper/align.nvim',
+		enabled = vim.fn.has 'nvim-0.10',
+		opts = {
+			align = { ' = ', ' :: ', '\t' },
+		},
+	},
 }
