@@ -35,6 +35,7 @@ packages=$(printf "%s\n" \
 		patch \
 		reflector \
 	mkinitcpio \
+	plymouth \
 	apparmor \
 	wireplumber \
 		pipewire-pulse \
