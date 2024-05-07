@@ -10,7 +10,7 @@ return {
 				'diff',
 				'fish', 'bash', 'awk',
 				'lua', 'rust', 'haskell',
-				'markdown', 'latex', 'typst',
+				'markdown', 'typst',
 			},
 			sync_install = false,
 			auto_install = true,

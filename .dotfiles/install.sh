@@ -46,7 +46,6 @@ packages=$(printf "%s\n" \
 	neovim \
 		ripgrep \
 		texlive-meta \
-			texlab \
 		typst \
 	hyprland \
 	kitty \

@@ -1,6 +1,5 @@
 local tty = vim.fn.getenv 'TERM' == 'linux'
 return {
-	{ 'lervag/vimtex', ft = 'tex', lazy = true },
 	{
 		'nacro90/numb.nvim',
 		opts = {
