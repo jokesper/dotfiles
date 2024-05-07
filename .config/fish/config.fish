@@ -22,8 +22,11 @@ function fish_prompt -d 'Write out the prompt'
 		(set_color $fish_color_normal)
 end
 function fish_mode_prompt -d 'Disable Indicator for modes'; end
-function fish_greeting -d 'Show unpushed git commits when starting fish'
+function show_unpushed -v PWD -d 'Show unpushed git commits'
 	git log -n8 @{u}..HEAD -- 2>/dev/null
+end
+function fish_greeting -d 'Show unpushed git commits when starting fish'
+	show_unpushed
 end
 
 source "$__fish_config_dir/aliases.fish"
