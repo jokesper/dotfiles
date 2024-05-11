@@ -28,7 +28,8 @@ for pkg in {kmonad-bin,swww}; do
 		git clone --filter=blob:none -- \
 			"https://aur.archlinux.org/$pkg.git" \
 			"$aur/$pkg"
-		(cd "$aur/$pkg"; makepkg --syncdeps --rmdeps --install --needed)
+		cd "$aur/$pkg"
+		makepkg --syncdeps --rmdeps --install --needed
 	fi
 done
 
