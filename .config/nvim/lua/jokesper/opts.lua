@@ -33,6 +33,7 @@ opt.smartcase = true
 opt.tabstop = 4
 opt.shiftwidth = 4
 opt.smartindent = true
+opt.listchars = 'tab:<->,multispace:·,trail:·,nbsp:+'
 
 opt.splitright = true
 opt.splitbelow = true
