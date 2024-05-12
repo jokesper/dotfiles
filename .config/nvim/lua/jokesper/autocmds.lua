@@ -87,7 +87,7 @@ for name, augroup in pairs { custom = {
 		callback = function()
 			if not is_buffer_modifiable() then return end
 			for _, pattern in ipairs {
-				[[\s\+$]], -- Remove trailing spaces
+				[[ \+$]], -- Remove trailing spaces
 				[[\%^\n\+]], -- Remove leading newlines
 				[[\n\+\%$]], -- Remove trailing newlines
 			} do vim.api.nvim_exec2(('%%s/%s//e'):format(pattern), {}) end

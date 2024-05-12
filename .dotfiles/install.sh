@@ -56,6 +56,7 @@ packages=$(printf "%s\n" \
 	cabal-install \
 		haskell-language-server \
 		hoogle \
+	hledger \
 	firefox \
 	cmus \
 	bluez \
