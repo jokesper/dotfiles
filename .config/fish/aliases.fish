@@ -24,7 +24,9 @@ function file -w file -d '`file` but with the `--brief` option'; command file -b
 function h -w hoogle -d 'Classic hoogle search with extras'
 	set arg (string join " " -- $argv)
 	if test -z "$arg"; read -P'λ> ' arg; end
-	command hoogle search --count=10 --json -- "$arg" \
+	command hoogle search --count=10 --json \
+		--database="$XDG_DATA_HOME"/hoogle/haskell.hoo \
+		-- "$arg" \
 		| jq -rR "fromjson? | .[] | [ \
 			\"$(set_color green)\(.package.name // \"\")\", \
 			\"$(set_color cyan)\(.module.name // \"\")\", \

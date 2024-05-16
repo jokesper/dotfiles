@@ -33,7 +33,8 @@ for pkg in {kmonad-bin,swww}; do
 	fi
 done
 
-[[ ! -d "$HOME/.hoogle" ]] && hoogle generate
+hoogleDB=${XDG_DATA_HOME:-$HOME/.local/share}/hoogle/haskell.hoo
+[[ ! -d "$hoogleDB" ]] && hoogle generate --database="$hoogleDB"
 
 [[ "$(getent passwd "$USER" | cut -d: -f7)" != "$(which fish)" ]] \
 	&& chsh -s "$(which fish)"
