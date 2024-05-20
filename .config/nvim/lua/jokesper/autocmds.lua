@@ -62,12 +62,6 @@ for name, augroup in pairs { custom = {
 			vim.cmd 'startinsert'
 		end,
 	},
-	{
-		'TermClose',
-		pattern = 'term://*:*{fish,bash,sl}*',
-		desc = 'Automatically close terminal window when exiting shells.',
-		command = 'quit!',
-	},
 	-- FIXME: not triggered when closing windows and switching to old
 	{
 		'WinEnter',
