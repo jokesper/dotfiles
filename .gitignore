@@ -29,7 +29,7 @@
 !.config/cabal/
 !.config/cmus/
 .config/cmus/*
-!.config/cmus/rc/
+!.config/cmus/rc
 
 !.mozilla/
 .mozilla/*
