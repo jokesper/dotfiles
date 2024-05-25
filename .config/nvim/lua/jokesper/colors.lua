@@ -14,14 +14,15 @@ local fg = {
 	'#5f5f7f',
 
 	blue = '#5f7fff',
-	cyan = '#7fbfff',
+	lightblue = '#7fbfff',
+	cyan = '#3fbfbf',
 	red = '#bf3f3f',
 	green = '#7fbf7f',
 	orange = '#ffbf7f',
 	magenta = '#bf7fff',
 }
 local bg = {
-	'',
+	nil,
 	'#1f0f1f',
 	'#171727',
 	'#1f0f3f',

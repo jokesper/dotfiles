@@ -8,18 +8,18 @@ for name, val in pairs {
 	--Cursor = {},
 	--lCursor = {},
 	--CursorIM = {},
-	Directory = { fg = 'cyan' },
+	Directory = { fg = 'lightblue' },
 	--TermCursor = {},
 	--TermCursorNC = {},
 	Folded = { bg = 3 },
-	FoldColumn = {},
-	SignColumn = {},
+	--FoldColumn = {},
+	--SignColumn = {},
 	--Substitute = {},
 	CursorLine = { bold = true },
 	CursorColumn = { bold = true },
 	CursorLineNr = { fg = 2 },
 	LineNr = { fg = 3 },
-	EndOfBuffer = { fg = 4 },
+	--EndOfBuffer = { link = 'NonText' },
 	--CursorLineSign = {},
 	--CursorLineFold = {},
 	--MsgArea = {},
@@ -34,7 +34,7 @@ for name, val in pairs {
 	--NormalFloat = {},
 	--NormalNC = {},
 	Pmenu = { fg = 1, bg = 3 },
-	PmenuSel = { fg = 'cyan', bg = 4 },
+	PmenuSel = { fg = 'lightblue', bg = 4 },
 	--PmenuSbar = {},
 	--PmenuThumb = {},
 	--Question = {},
@@ -47,9 +47,9 @@ for name, val in pairs {
 	--SpellLocal = {},
 	--SpellRare = {},
 	ModeMsg = { link = 'Normal' },
-	StatusLine = { fg = 'cyan', bg = 2 },
+	StatusLine = { fg = 'lightblue', bg = 2 },
 	StatusLineNC = { fg = 3, bg = 2 },
-	TabLineSel = { fg = 'cyan', bg = 3 },
+	TabLineSel = { fg = 'lightblue', bg = 3 },
 	TabLine = { fg = 3, bg = 3 },
 	TabLineFill = { bg = 3 },
 	WinSeparator = { fg = -2 },
@@ -78,7 +78,7 @@ for name, val in pairs {
 	Float = { link = 'Number' },
 
 	Identifier = { link = 'Normal' },
-	Function = { fg = 'cyan' },
+	Function = { fg = 'lightblue' },
 
 	Statement = { link = 'Normal' },
 	Conditional = { link = 'Keyword' },
@@ -93,7 +93,7 @@ for name, val in pairs {
 	Type = { fg = 'red' },
 
 	Special = { fg = 'blue' },
-	Delimiter = { fg = 'cyan' },
+	Delimiter = { fg = 'lightblue' },
 	Debug = { link = 'PreProc' },
 
 	Underlined = { underline = true },
@@ -102,7 +102,7 @@ for name, val in pairs {
 
 	ToDo = { underline = true },
 
-	['@markup'] = { fg = 'cyan' },
+	['@markup'] = { fg = 'lightblue' },
 	['@markup.raw.markdown_inline'] = { fg = 'blue' },
 
 	-- Diagnostics
@@ -112,7 +112,7 @@ for name, val in pairs {
 	DiagnosticHint = { fg = 'green' },
 
 	-- Treesitter
-	['@text.literal'] = { fg = 'cyan' },
+	['@text.literal'] = { fg = 'lightblue' },
 	['@text.uri'] = { fg = 'blue', underline = true },
 
 	-- Telescope
@@ -120,7 +120,7 @@ for name, val in pairs {
 	TelescopeSelection = { link = 'PmenuSel' },
 	TelescopeMultiSelection = { fg = 'blue' },
 	TelescopeBorder = { fg = 3, bg = 3 },
-	TelescopePromptBorder = { fg = 'cyan', bg = 3 },
+	TelescopePromptBorder = { fg = 'lightblue', bg = 3 },
 
 	-- Indent Blankline
 	IblIndent = { fg = 6 },
