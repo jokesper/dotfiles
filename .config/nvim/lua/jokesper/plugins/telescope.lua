@@ -10,6 +10,7 @@ return { {
 				'Output/',
 				'bin/',
 				'obj/',
+				'dist-newstyle/',
 			},
 		},
 	},
