@@ -35,5 +35,5 @@ function h -w hoogle -d 'Classic hoogle search with extras'
 		| column -ts\t
 end
 function newpass -d 'Generate password'
-	openssl rand -base64 15 | tee /dev/stderr | wl-copy
+	openssl rand -base64 30 | tee /dev/stderr | wl-copy
 end
