@@ -66,7 +66,7 @@ return {
 	{
 		'stevearc/oil.nvim',
 		opts = {
-			--skip_confirm_for_simlpe_edits = true
+			skip_confirm_for_simple_edits = true,
 		},
 	},
 	{
