@@ -73,7 +73,18 @@ return {
 		'jokesper/align.nvim',
 		enabled = vim.fn.has 'nvim-0.10',
 		opts = {
-			align = { ' = ', ' :: ', '\t' },
+			align = {
+				['*'] = {
+					' = ',
+				},
+				typst = {
+					' \\',
+				},
+				haskell = {
+					' :: ',
+					' = ',
+				},
+			},
 		},
 	},
 }
