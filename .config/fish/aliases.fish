@@ -37,3 +37,10 @@ end
 function newpass -d 'Generate password'
 	openssl rand -base64 30 | tee /dev/stderr | wl-copy
 end
+function hl -w hledger -d 'HLedger for ongoing finances'
+	hledger \
+		--pretty \
+		--file=(date +%Y).journal \
+		--begin=(date +%Y) \
+		$argv
+end
