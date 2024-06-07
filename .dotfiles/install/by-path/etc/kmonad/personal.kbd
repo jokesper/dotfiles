@@ -92,9 +92,9 @@
 	             XX XX XX  XX XX XX
 )
 (deflayer media
-	XX   XX   @gme @bse XX  XX brup brdn XX   XX
+	XX  XX   @gme @bse XX  XX brup brdn XX   XX
 	met alt  lctl lsft XX  XX prev vold volu next
-	XX   ralt @fun @mdi XX  XX XX   XX   XX   XX XX
+	XX  ralt @fun @mdi XX  XX XX   XX   XX   XX XX
 
 	             XX XX XX  stopcd playpause mute
 )
