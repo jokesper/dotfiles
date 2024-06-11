@@ -38,7 +38,7 @@ switch (date | md5sum | head -c2)
 			printf "... aber versteckt\n"
 		end
 	case 16
-		command xdg-open 'https://en.wikipedia.org/wiki/Turtle'
+		command xdg-open 'https://en.wikipedia.org/wiki/Turtle' & disown
 	case 17
 		function ls
 			printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"
