@@ -1,3 +1,11 @@
-#viewerContainer > #viewer .page > .canvasWrapper > canvas {
+#sidebarContainer,
+#viewerContainer > #viewer {
+	background-color: #171717;
+}
+.toolbar > #toolbarContainer,
+#sidebarContainer > *,
+#mainContainer > .editorParamsToolbar, /* Inverts colorpickers */
+#mainContainer > .editorParamsToolbar [type="color"], /* Reinverts colorpickers */
+#viewerContainer > #viewer .page { /* NOTE: drawings are also inverted */
     filter: invert(100%);
 }
