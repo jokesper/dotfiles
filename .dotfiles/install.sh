@@ -56,6 +56,8 @@ packages=$(printf "%s\n" \
 	cabal-install \
 		haskell-language-server \
 		hoogle \
+	agda \
+		agda-stdlib \
 	hledger \
 	firefox \
 	cmus \
