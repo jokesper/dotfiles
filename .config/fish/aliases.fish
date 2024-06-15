@@ -42,5 +42,8 @@ function hl -w hledger -d 'HLedger for ongoing finances'
 		--pretty \
 		--file=(date +%Y).journal \
 		--begin=(date +%Y) \
-		$argv
+		$argv \
+		2>/dev/null \
+	|| hledger --file=(date +%Y).journal $argv \
+
 end
