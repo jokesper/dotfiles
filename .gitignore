@@ -27,6 +27,7 @@
 .config/nvim/lua/*
 !.config/nvim/lua/jokesper/
 !.config/cabal/
+!.config/fourmolu/
 !.config/cmus/
 .config/cmus/*
 !.config/cmus/rc
