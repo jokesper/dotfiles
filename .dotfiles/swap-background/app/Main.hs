@@ -5,7 +5,7 @@
 module Main where
 
 import Control.Applicative (Alternative, (<|>))
-import Control.Monad (join, mfilter, void, (<=<))
+import Control.Monad (join, mfilter, void, (<=<), (>=>))
 import Control.Monad.Extra (findM)
 import Control.Monad.Trans.Class (lift)
 import Control.Monad.Trans.State (State, evalState, evalStateT, mapStateT, runState, state)
@@ -31,9 +31,8 @@ import Text.Read (readMaybe)
 maybeToM :: MonadFail m => String -> Maybe a -> m a
 maybeToM err = fail err `maybe` pure
 
-(>|=>) :: Alternative f => Monad f => (a -> f b) -> (b -> f b) -> a -> f b
-(f >|=> g) x = (x' >>= g) <|> x' where x' = f x
-infixl 6 >|=>
+try :: Alternative f => (a -> f a) -> a -> f a
+try f x = f x <|> pure x
 
 type NetworkId = String
 type SSID = String
@@ -115,7 +114,7 @@ setWallpapers base ssid outputs =
       , base </> "background"
       ]
   groupByFilePath = fmap ((,) <$> fmap fst <*> snd . head) . groupSortOn snd
-  findDirAndFollowSymLink = findM doesDirectoryExist >|=> traverse getSymbolicLinkTarget
+  findDirAndFollowSymLink = findM doesDirectoryExist >=> try (traverse getSymbolicLinkTarget)
 
 shuffleInf :: RandomGen g => [a] -> State g [a]
 shuffleInf xs = state $ first shuffleInf' . split
