@@ -41,11 +41,17 @@ for _, name in ipairs {
 } do if require(('jokesper.%s'):format(name)) == false then return end end
 vim.cmd.colorscheme 'jokesper'
 
-require 'lazy'.setup('jokesper/plugins', {
+require 'lazy'.setup {
+	spec = {
+		{ import = 'jokesper/plugins' },
+	},
 	install = {
 		colorscheme = { 'jokesper' },
+	},
+	headless = {
+		task = false,
 	},
 	change_detection = {
 		notify = false,
 	},
-})
+}
