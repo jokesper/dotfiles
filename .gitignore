@@ -4,41 +4,10 @@
 !LICENSE
 
 !.dotfiles/
-.dotfiles/**/dist-newstyle
 !docs/
 
 # https://github.com/judah/haskeline/pull/157
 !.haskeline
 
 !.config/
-.config/*
-!.config/git/
-!.config/fish/
-!.config/gtk-3.0/
-.config/gtk-3.0/bookmarks
-!.config/hypr/
-!.config/waybar/
-!.config/wofi/
-!.config/mako/
-!.config/kitty/
-!.config/nvim/
-.config/nvim/plugin
-.config/nvim/lazy-lock.json
-.config/nvim/lua/*
-!.config/nvim/lua/jokesper/
-!.config/cabal/
-!.config/fourmolu/
-!.config/cmus/
-.config/cmus/*
-!.config/cmus/rc
-
 !.mozilla/
-.mozilla/*
-!.mozilla/firefox/
-.mozilla/firefox/*
-!.mozilla/firefox/*.ini
-!.mozilla/firefox/dotfiles/
-.mozilla/firefox/dotfiles/*
-!.mozilla/firefox/dotfiles/user-override.lua
-!.mozilla/firefox/dotfiles/search.json.mozlz4
-!.mozilla/firefox/dotfiles/chrome/

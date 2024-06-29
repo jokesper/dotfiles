@@ -1,0 +1,11 @@
+/*
+!.gitignore
+
+!firefox/
+firefox/*
+!firefox/*.ini
+!firefox/dotfiles/
+firefox/dotfiles/*
+!firefox/dotfiles/user-override.lua
+!firefox/dotfiles/search.json.mozlz4
+!firefox/dotfiles/chrome/

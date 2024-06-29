@@ -1,0 +1,4 @@
+plugin
+lazy-lock.json
+lua/*
+!lua/jokesper/
