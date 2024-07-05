@@ -64,6 +64,8 @@ packages=$(printf "%s\n" \
 	bluez \
 	yt-dlp \
 	cifs-utils \
+	keepassxc \
+		qt5-wayland \
 	gnupg \
 	sl \
 	gimp \
