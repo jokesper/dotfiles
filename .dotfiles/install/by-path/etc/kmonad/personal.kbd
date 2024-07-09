@@ -84,42 +84,42 @@
 	met alt  lctl lsft XX  caps  left down  up  right
 	XX  ralt @num @nav XX  ins   home pgdn pgup end end
 
-	             XX XX XX  ent bspc del
+	          esc spc tab  ent bspc del
 )
 (deflayer right_empty
 	XX  XX   @gme @bse XX  XX XX XX XX XX
 	met alt  lctl lsft XX  XX XX XX XX XX
 	XX  ralt @sym  XX  XX  XX XX XX XX XX XX
 
-	             XX XX XX  XX XX XX
+	          esc spc tab  XX XX XX
 )
 (deflayer media
 	XX  XX   @gme @bse XX  XX brup brdn XX   XX
 	met alt  lctl lsft XX  XX prev vold volu next
 	XX  ralt @fun @mdi XX  XX XX   XX   XX   XX XX
 
-	             XX XX XX  stopcd playpause mute
+	          esc spc tab  stopcd playpause mute
 )
 (deflayer numeric
 	[ 1 2 3 ]   XX @bse @gme XX   XX
 	; 4 5 6 =   XX rsft rctl alt  met
 	` 7 8 9 \\  XX @num @nav ralt XX XX
 
-	     . 0 -  XX XX XX
+	     . 0 -  ent bspc del
 )
 (deflayer symbol
 	{ ! @ #  }  XX @bse @gme XX   XX
 	: $ % ^  +  XX rsft rctl alt  met
 	~ & * \( |  XX @sym  XX  ralt XX XX
 
-	  \( \) \_  XX XX XX
+	  \( \) \_  ent bspc del
 )
 (deflayer function
 	f10 f1 f2 f3 prnt   XX @bse @gme XX   XX
 	f11 f4 f5 f6 slck   XX rsft rctl alt  met
 	f12 f7 f8 f9 pause  XX @fun @mdi ralt XX XX
 
-	      comp spc tab  XX XX XX
+	      comp spc tab  ent bspc del
 )
 (deflayer gaming
 	tab  q w e r   XX  f1 f2 f3 f10
