@@ -2,10 +2,9 @@
 {-# LANGUAGE PartialTypeSignatures #-}
 {-# OPTIONS_GHC -Wno-incomplete-uni-patterns #-} -- see `pop` in `shuffle`
 
-module Main where
+module Main (main) where
 
-import Control.Applicative (Alternative, (<|>))
-import Control.Monad (join, mfilter, void, (<=<), (>=>))
+import Control.Monad (join, mfilter, void, (<=<))
 import Control.Monad.Extra (findM)
 import Control.Monad.Trans.Class (lift)
 import Control.Monad.Trans.State (State, evalState, evalStateT, mapStateT, runState, state)
@@ -20,7 +19,7 @@ import Data.List.Extra (groupSortOn, stripPrefix, (!?))
 import Data.List.NonEmpty (nonEmpty, unfoldr)
 import Data.Maybe (fromMaybe)
 import Data.Tuple.Extra (secondM)
-import System.Directory (doesDirectoryExist, findExecutable, getHomeDirectory, getSymbolicLinkTarget)
+import System.Directory (doesDirectoryExist, findExecutable, getHomeDirectory)
 import System.Directory.Recursive (getFilesRecursive)
 import System.Environment (getArgs, lookupEnv)
 import System.FilePath ((</>))
@@ -30,9 +29,6 @@ import Text.Read (readMaybe)
 
 maybeToM :: MonadFail m => String -> Maybe a -> m a
 maybeToM err = fail err `maybe` pure
-
-try :: Alternative f => (a -> f a) -> a -> f a
-try f x = f x <|> pure x
 
 type NetworkId = String
 type SSID = String
@@ -107,14 +103,14 @@ setWallpapers base ssid outputs =
   getFilesRecursive' maybeFiles = join <$> traverse (fmap nonEmpty . getFilesRecursive) maybeFiles
   toSndM f = fmap <$> (,) <*> f
   subDirs (Output{name}) =
-    findDirAndFollowSymLink
+    findM
+      doesDirectoryExist
       [ base </> "background-" <> ssid <> "=" <> name
       , base </> "background=" <> name
       , base </> "background-" <> ssid
       , base </> "background"
       ]
   groupByFilePath = fmap ((,) <$> fmap fst <*> snd . head) . groupSortOn snd
-  findDirAndFollowSymLink = findM doesDirectoryExist >=> try (traverse getSymbolicLinkTarget)
 
 shuffleInf :: RandomGen g => [a] -> State g [a]
 shuffleInf xs = state $ first shuffleInf' . split
