@@ -1,12 +1,8 @@
 return {
 	{
 		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
+		branch = 'v4.x',
 		lazy = true,
-		init = function()
-			vim.g.lsp_zero_extend_cmp = 0
-			vim.g.lsp_zero_extend_lspconfig = 0
-		end,
 	},
 	{
 		'williamboman/mason.nvim',
@@ -27,11 +23,10 @@ return {
 		},
 		config = function()
 			local lsp_zero, cmp = require 'lsp-zero', require 'cmp'
-			lsp_zero.extend_cmp()
 			local cmp_action = lsp_zero.cmp_action()
 			cmp.setup {
 				preselect = cmp.PreselectMode.None,
-				mapping = {
+				mapping = { -- NOTE: don't use preset
 					['<C-f>'] = cmp_action.luasnip_jump_forward(),
 					['<C-b>'] = cmp_action.luasnip_jump_backward(),
 					['<Tab>'] = cmp_action.luasnip_supertab(),
@@ -88,6 +83,9 @@ return {
 					{ name = 'nvim_lsp', group_index = 1 },
 					{ name = 'buffer', group_index = 2, keyword_length = 3 },
 				},
+				snippet = {
+					expand = function(args) require 'luasnip'.lsp_expand(args.body) end,
+				},
 				window = {
 					completion = {
 						col_offset = -8,
@@ -125,17 +123,19 @@ return {
 		},
 		config = function()
 			local lsp_zero = require 'lsp-zero'
-			lsp_zero.extend_lspconfig()
-			lsp_zero.on_attach(function(_, bufnr)
-				lsp_zero.default_keymaps { buffer = bufnr }
-				lsp_zero.buffer_autoformat()
-			end)
+			lsp_zero.extend_lspconfig {
+				capabilities = require 'cmp_nvim_lsp'.default_capabilities(),
+				lsp_attach = function(client, bufnr)
+					lsp_zero.default_keymaps { buffer = bufnr }
+					lsp_zero.buffer_autoformat(client, bufnr)
+				end,
+			}
 			require 'mason-lspconfig'.setup {
 				ensure_installed = {
 					'lua_ls',
 				},
 				handlers = {
-					lsp_zero.default_setup,
+					function(server) require 'lspconfig'[server].setup {} end,
 					lua_ls = function()
 						require 'lspconfig'.lua_ls.setup(lsp_zero.nvim_lua_ls {
 							settings = {
