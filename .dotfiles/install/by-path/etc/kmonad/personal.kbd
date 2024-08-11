@@ -62,6 +62,11 @@
 	pst S-ins
 	cpy C-ins
 	cut S-del
+
+	;; Music player audio levels
+	mud M-vold
+	muu M-volu
+	micm missing248 ;; micmute
 )
 
 ;; NOTE:
@@ -94,9 +99,9 @@
 	          esc spc tab  XX XX XX
 )
 (deflayer media
-	XX  XX   @gme @bse XX  XX brup brdn XX   XX
-	met alt  lctl lsft XX  XX prev vold volu next
-	XX  ralt @fun @mdi XX  XX XX   XX   XX   XX XX
+	XX  XX   @gme @bse XX  XX  brup brdn XX   XX
+	met alt  lctl lsft XX  XX  prev vold volu next
+	XX  ralt @fun @mdi XX  XX @micm @mud @muu XX XX
 
 	          esc spc tab  stopcd playpause mute
 )
