@@ -11,6 +11,7 @@
 		"format-ethernet": "E: {ipaddr}",
 		"format-linked": "L: {essid} on {ifname}",
 		"format-disconnected": "Offline",
+		"format-disabled": "Disabled",
 	},
 	"wireplumber": {
 		"format": "VOL {volume}%",

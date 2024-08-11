@@ -31,6 +31,7 @@ window#waybar {background-color: transparent;}
 /* #temperature.warning, */
 #memory.low {color: #FFBF00;}
 #network.disconnected,
+#network.disabled,
 #battery.critical,
 #cpu.critical,
 #temperature.critical {color: #FF0000;}
