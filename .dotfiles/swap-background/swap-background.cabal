@@ -3,7 +3,7 @@ name:          swap-background
 version:       0
 
 executable swap-background
-    main-is:          Main.hs
+    main-is:          swap-background.hs
     build-depends:
         , base          >=4 && <5
         , dir-traverse  ^>=0.2.3.0
@@ -17,5 +17,4 @@ executable swap-background
         , utf8-string   ^>=1.0.2
 
     ghc-options:      -Wall
-    hs-source-dirs:   app
     default-language: Haskell2010
