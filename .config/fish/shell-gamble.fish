@@ -3,7 +3,7 @@ switch (date | md5sum | head -c2)
 		if command --query sl; function ls; command sl -lGw; end; end
 	case 11
 		if command --query ghci
-			exec ghci -ghci-script (printf ':set prompt "%s"\n' (fish_prompt) | psub)
+			exec ghci -v0 -ghci-script (printf ':set prompt "%s"\n' (fish_prompt) | psub)
 		end
 	case 12
 		printf "sleep 0.1\n" >> "$__fish_config_dir/config.fish"
