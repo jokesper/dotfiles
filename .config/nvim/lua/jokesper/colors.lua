@@ -1,7 +1,15 @@
 local function negative(tbl, neg)
 	return setmetatable(tbl, {
 		__index = function(_, key)
-			return rawget(neg, type(key) == 'number' and -key or key)
+			if type(key) == 'number' then
+				return rawget(neg, -key)
+			elseif type(key) ~= 'string' then
+				return rawget(neg, key)
+			elseif key:sub(1, 1) == '-' then
+				return rawget(neg, key:sub(2))
+			else
+				return rawget(neg, key)
+			end
 		end
 	})
 end
