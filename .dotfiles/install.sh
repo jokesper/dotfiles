@@ -100,8 +100,7 @@ remPackages=$(sed -ne 's/^\t\(\S\+\)$/\1/p' <<< "$deltaPackages")
 	&& pacman --needed --noconfirm -S $addPackages \
 	2> >(no-skipping-warning)
 [[ -n "$remPackages" ]] \
-	&& pacman -Qq $remPackages \
-	2> >(ignore-missing-package) \
+	&& pacman -T $remPackages \
 	| xargs pacman --noconfirm -Rsu --
 
 printf "%s" "$packages" > "$packageCache"
