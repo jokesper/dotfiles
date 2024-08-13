@@ -9,8 +9,8 @@
 --
 -- This config file was generated using the following versions
 -- of Cabal and cabal-install:
--- Cabal library version: 3.4.1.0
--- cabal-install version: 3.4.1.0
+-- Cabal library version: 3.6.3.0
+-- cabal-install version: 3.6.2.0
 
 
 repository hackage.haskell.org
@@ -81,6 +81,7 @@ extra-prog-path: /home/joe/.local/share/cabal/bin
 -- write-ghc-environment-files:
 -- documentation: False
 -- doc-index-file: $datadir/doc/$arch-$os-$compiler/index.html
+-- only-download: False
 -- target-package-db:
 -- max-backjumps: 4000
 -- reorder-goals: False
