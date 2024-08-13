@@ -4,9 +4,8 @@ set -eu
 
 error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
 warn() { printf "\e[33;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
-no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
-no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d'; }
-ignore-missing-package() { sed -e '/error: package \S\+ was not found/d'; }
+no-skipping-warning() { sed -e '/warning: \S\+ is up to date -- skipping/d' >&2; }
+ignore-missing-package() { sed -e '/error: package \S\+ was not found/d' >&2; }
 
 if (( EUID != 0 )); then
 	error "This script must be run with root privileges"
