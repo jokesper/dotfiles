@@ -37,7 +37,7 @@ return {
 			patterns = {
 				{
 					file_pattern = '*wpa_supplicant*.conf',
-					cloak_pattern = '(psk=).+',
+					cloak_pattern = { '(psk=).+', '(password=")[^"]+' },
 					replace = '%1',
 				},
 			},
