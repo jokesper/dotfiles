@@ -1,6 +1,13 @@
 #%PAM-1.0
 
+# FIXME:
+# `pam_shells` fails with `PAM_AUTH_ERR` while
+# `pam_access` fails with `PAM_PERM_DENIED`.
+# This results in either a simple instantanious error message
+# or a newline followed by the same message with a screen clear
+# after 5 seconds.
 auth      requisite pam_shells.so
+auth      requisite pam_access.so
 auth      requisite pam_nologin.so
 auth      requisite pam_faillock.so preauth
 auth      include   system-auth

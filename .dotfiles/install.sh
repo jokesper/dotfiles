@@ -38,6 +38,7 @@ packages=$(printf "%s\n" \
 	apparmor \
 	wireplumber \
 		pipewire-pulse \
+	openssh \
 	brightnessctl \
 	libnotify \
 	man-db \
@@ -152,8 +153,23 @@ else
 	fish
 fi
 
+mkdir -p /srv/sftp/{read,write}
+chown root /srv/sftp
+chown root:wheel /srv/sftp/{read,write,share}
+chmod 0755 /srv/sftp
+chmod 0775 /srv/sftp/read
+chmod 1773 /srv/sftp/write
+chmod 1777 /srv/sftp/share
+useradd --system sftp 2>/dev/null || true
+usermod \
+	--lock \
+	--home /srv/sftp \
+	--shell /usr/bin/bash \
+	sftp
+
 systemctl enable \
 	systemd-networkd \
 	systemd-resolved \
 	systemd-timesyncd \
+	sshd \
 	apparmor \
