@@ -40,6 +40,11 @@ return {
 					cloak_pattern = { '(psk=).+', '(password=")[^"]+' },
 					replace = '%1',
 				},
+				{
+					file_pattern = '*fstab',
+					cloak_pattern = { '(username=)[^,%s]+', '(workgroup=)[^,%s]+', '(password=)[^,%s]+', '([ug]id=)[^,%s]+' },
+					replace = '%1',
+				},
 			},
 		},
 	},
