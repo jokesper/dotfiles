@@ -37,12 +37,23 @@ end
 
 lualine_theme.terminal = lualine_theme.command
 
+local filepath = {
+	'filename',
+	path = 1,
+}
+
 return {
 	{
 		'nvim-lualine/lualine.nvim',
 		opts = {
 			options = {
 				theme = lualine_theme,
+			},
+			sections = {
+				lualine_c = { filepath },
+			},
+			inactive_sections = {
+				lualine_c = { filepath },
 			},
 		},
 	},
