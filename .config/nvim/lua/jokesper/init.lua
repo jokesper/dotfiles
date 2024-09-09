@@ -37,7 +37,7 @@ vim.g.firenvim_config = {
 }
 
 for _, name in ipairs {
-	'opts', 'keys', 'templates', 'autocmds',
+	'opts', 'keys', 'templates', 'autocmds', 'digraphs'
 } do if require(('jokesper.%s'):format(name)) == false then return end end
 vim.cmd.colorscheme 'jokesper'
 
