@@ -47,14 +47,3 @@ function hl -w hledger -d 'HLedger for ongoing finances'
 	|| hledger --file=(date +%Y).journal $argv \
 
 end
-
-if pacman -T ghc-static >/dev/null
-	function scabal -w cabal -d 'Cabal configured for static linking'
-		cabal \
-			--ghc-pkg-option="--global-package-db=$(
-				ghc --print-global-package-db \
-				| sed -e 's/\(package\.conf\.d\)$/static-\1/')" \
-			--enable-library-vanilla --disable-shared --disable-executable-dynamic \
-			$argv
-	end
-end
