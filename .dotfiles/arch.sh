@@ -41,7 +41,7 @@ case ${kernel:-stable} in
 		kernel="linux-$kernel";;
 esac
 
-if which reflector 2>/dev/null; then reflector --country 'Germany,' >/dev/null
+if which reflector 2>/dev/null; then reflector --country 'Germany,' --save /etc/pacman.d/mirrorlist
 else printf "$warn" "reflector not installed" >&2; fi
 
 pacman --needed --noconfirm -Sy archlinux-keyring 2>/dev/null
