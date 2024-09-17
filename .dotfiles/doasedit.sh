@@ -10,7 +10,8 @@ cp "$2" "$tmp"
 chmod 600 "$tmp"
 chown "$DOAS_USER:" "$tmp"
 
-runuser -u "$DOAS_USER" -- $1 "$tmp"
+SHELL="$(getent passwd joe | cut -d: -f7)" \
+	runuser --pty -u "$DOAS_USER" -- $1 "$tmp"
 
 mv "$tmp" "$2"
 chmod $mode "$2"
