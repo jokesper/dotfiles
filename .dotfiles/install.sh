@@ -66,6 +66,8 @@ packages=$(printf "%s\n" \
 	cifs-utils \
 	keepassxc \
 		qt5-wayland \
+		nextcloud-client \
+	thunderbird \
 	gnupg \
 	sl \
 	gimp \
