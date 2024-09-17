@@ -9,7 +9,7 @@ git --git-dir="$data/user.js.git" show HEAD:user.js \
 	| sed -z \
 		-e 's!/\*\([^*]\|\*[^/]\)*\*/!!g' \
 		-e 's!\([\n;]\)[[:space:]]*//[^\n]*!\1!g' \
-		-e 's/\n\+/\n/g' \
+		-e 's/\(^\|\n\)\n*/\1/g' \
 	| cat - <(luajit -- <(printf "%s" "
 		local _json, override = ...
 		local json = loadfile((_json))()
