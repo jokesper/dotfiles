@@ -17,6 +17,7 @@
   ;; the xkb_option is `compose:menu`
   cmp-seq compose
   fallthrough false
+  implicit-around around-only
 )
 
 ;; Thanks to ISO and ANSI existing, I need both `\` and `ent`
@@ -29,8 +30,8 @@
 )
 
 (defalias
-	a (tap-hold-next-release 200 a met)
-	o (tap-hold-next-release 200 o alt)
+	a (tap-hold-next-release 200 a  met)
+	o (tap-hold-next-release 200 o  alt)
 	e (tap-hold-next-release 200 e lctl)
 	u (tap-hold-next-release 200 u lsft)
 	q (tap-hold-next-release 200 q ralt)
@@ -38,18 +39,19 @@
 	v (tap-hold-next-release 200 v ralt)
 	h (tap-hold-next-release 200 h rsft)
 	t (tap-hold-next-release 200 t rctl)
-	n (tap-hold-next-release 200 n alt)
-	s (tap-hold-next-release 200 s met)
+	n (tap-hold-next-release 200 n  alt)
+	s (tap-hold-next-release 200 s  met)
 
-	esc (tap-hold-next-release 200 esc (layer-toggle media))
-	spc (tap-hold-next-release 200 spc (layer-toggle navigation))
-	tab (tap-hold-next-release 200 tab (layer-toggle shortcut))
-	ent (tap-hold-next-release 200 ent (layer-toggle symbol))
+	esc  (tap-hold-next-release 200 esc  (layer-toggle media))
+	spc  (tap-hold-next-release 200 spc  (layer-toggle navigation))
+	tab  (tap-hold-next-release 200 tab  (layer-toggle shortcut))
+	ent  (tap-hold-next-release 200 ent  (layer-toggle symbol))
 	bspc (tap-hold-next-release 200 bspc (layer-toggle numeric))
-	del (tap-hold-next-release 200 del (layer-toggle function))
+	del  (tap-hold-next-release 200 del  (layer-toggle function))
 
 	bse (multi-tap 200 XX (layer-switch dvorak))
 	gme (multi-tap 200 XX (layer-switch gaming))
+	qwe (multi-tap 200 XX (layer-switch qwerty))
 
 	mdi (multi-tap 200 XX (layer-switch media))
 	nav (multi-tap 200 XX (layer-switch navigation))
@@ -85,42 +87,42 @@
 	@esc @spc @tab  @ent @bspc @del
 )
 (deflayer navigation
-	XX  XX   @gme @bse XX  again @pst @cpy @cut undo
+	XX  @qwe @gme @bse XX  again @pst @cpy @cut undo
 	met alt  lctl lsft XX  caps  left down  up  right
 	XX  ralt @num @nav XX  ins   home pgdn pgup end end
 
 	          esc spc tab  ent bspc del
 )
 (deflayer shortcut
-	XX  XX   @gme @bse XX  XX f13 f14 f15 f22
+	XX  @qwe @gme @bse XX  XX f13 f14 f15 f22
 	met alt  lctl lsft XX  XX f16 f17 f18 f23
 	XX  ralt @sym @app XX  XX f19 f20 f21 f24 f24
 
 	          esc spc tab  XX XX XX
 )
 (deflayer media
-	XX  XX   @gme @bse XX  XX  brup brdn XX   XX
-	met alt  lctl lsft XX  XX  prev vold volu next
+	XX  @qwe @gme @bse XX  XX brup brdn XX   XX
+	met alt  lctl lsft XX  XX prev vold volu next
 	XX  ralt @fun @mdi XX  XX @micm @mud @muu XX XX
 
 	          esc spc tab  stopcd playpause mute
 )
 (deflayer numeric
-	[ 1 2 3 ]   XX @bse @gme XX   XX
+	[ 1 2 3 ]   XX @bse @gme @qwe XX
 	; 4 5 6 =   XX rsft rctl alt  met
 	` 7 8 9 \\  XX @num @nav ralt XX XX
 
 	     . 0 -  ent bspc del
 )
 (deflayer symbol
-	{ ! @ #  }  XX @bse @gme XX   XX
+	{ ! @ #  }  XX @bse @gme @qwe XX
 	: $ % ^  +  XX rsft rctl alt  met
 	~ & * \( |  XX @sym @app ralt XX XX
 
 	  \( \) \_  ent bspc del
 )
 (deflayer function
-	f10 f1 f2 f3 prnt   XX @bse @gme XX   XX
+	f10 f1 f2 f3 prnt   XX @bse @gme @qwe XX
 	f11 f4 f5 f6 slck   XX rsft rctl alt  met
 	f12 f7 f8 f9 pause  XX @fun @mdi ralt XX XX
 
@@ -132,4 +134,20 @@
 	lsft z x c v   XX  f7 f8 f9 f12 f12
 
 	lalt spc esc  stopcd playpause mute
+)
+(defsrc :name iso-100
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  nlck kp/  kp*  kp-
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    ret   del  end  pgdn  kp7  kp8  kp9  kp+
+  caps a    s    d    f    g    h    j    k    l    ;    '    \                          kp4  kp5  kp6
+  lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft            up         kp1  kp2  kp3  kprt
+  lctl lmet lalt           spc                 ralt rmet cmp  rctl       left down rght  kp0  kp.
+)
+(deflayer qwerty :source iso-100
+  esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12        ssrq slck pause
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc  ins  home pgup  @bse kp/  kp*  kp-
+  tab  q    w    e    r    t    y    u    i    o    p    [    ]    ret   del  end  pgdn  kp7  kp8  kp9  kp+
+  caps a    s    d    f    g    h    j    k    l    ;    '    \                          kp4  kp5  kp6
+  lsft 102d z    x    c    v    b    n    m    ,    .    /    rsft            up         kp1  kp2  kp3  kprt
+  lctl lmet lalt           spc                 ralt rmet cmp  rctl       left down rght  kp0  kp.
 )
