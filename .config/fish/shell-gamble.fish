@@ -19,6 +19,11 @@ switch (date | md5sum | head -c2)
 				printf "%s" "$fish_color_normal"
 			end)
 
+			if [ $CMD_DURATION -ge 1000 ]
+				printf '%sTook %.2fs\n' \
+					(set_color $fish_color_warning) \
+					(math $CMD_DURATION / 1000)
+			end
 			printf \
 				(printf (if [ -n "$fish_private_mode" ]; echo '%s(%s)%s'; else; echo '%s%s%s'; end) \
 					'%s' '%s@%s%s' ':%s%s%s ') \
