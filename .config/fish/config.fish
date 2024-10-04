@@ -10,7 +10,7 @@ function fish_prompt -d 'Write out the prompt'
 		printf "%s" "$fish_color_normal"
 	end)
 
-	if [ $CMD_DURATION -ge 1000 ]
+	if [ $CMD_DURATION -ge 5000 ]
 		printf '%sTook %.2fs\n' \
 			(set_color $fish_color_warning) \
 			(math $CMD_DURATION / 1000)
