@@ -20,7 +20,7 @@ function fish_prompt -d 'Write out the prompt'
 			'%s' '%s@%s%s' ':%s%s%s ') \
 		(set_color $normal) \
 		(set_color $fish_color_user; printf "%s" "$USER") \
-		(set_color $fish_color_host; printf "%s" "$hostname") \
+		(set_color $fish_color_host; prompt_hostname) \
 		(set_color $normal) \
 		(set_color $fish_color_cwd; basename (prompt_pwd)) \
 		(set_color $normal; if fish_is_root_user; printf '#'; else; printf '$'; end) \

