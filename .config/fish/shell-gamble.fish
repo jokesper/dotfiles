@@ -1,12 +1,7 @@
 switch (date | md5sum | head -c2)
-	case 10
-		if command --query sl; function ls; command sl -lGw; end; end
-	case 11
-		if command --query ghci
-			exec ghci -v0 -ghci-script (printf ':set prompt "%s"\n' (fish_prompt) | psub)
-		end
-	case 12
-		printf "sleep 0.1\n" >> "$__fish_config_dir/config.fish"
+	case 10; if command --query sl; function ls; command sl -lGw; end; end
+	case 11; if command --query ghci; exec ghci -v0 -ghci-script (printf ':set prompt "%s"\n' (fish_prompt) | psub); end
+	case 12; printf "sleep 0.1\n" >> "$__fish_config_dir/config.fish"
 	case 13
 		find "$__fish_config_dir" -type f -name \*.fish \
 			| shuf -n1 \
@@ -16,14 +11,9 @@ switch (date | md5sum | head -c2)
 		function prompt_hostname; printf 'zuhause'; end
 		function fish_prompt; USER="König" __fish_prompt_orig; end
 	case 15
-		function fish_greeting
-			printf "%sTurtles%s\n" (set_color -o green) (set_color normal)
-		end
-		if set -q fish_private_mode
-			printf "... aber versteckt\n"
-		end
-	case 16
-		command xdg-open 'https://en.wikipedia.org/wiki/Turtle' & disown
+		function fish_greeting; printf "%sTurtles%s\n" (set_color -o green) (set_color normal); end
+		if set -q fish_private_mode; printf "... aber versteckt\n"; end
+	case 16; command xdg-open 'https://en.wikipedia.org/wiki/Turtle' & disown
 	case 17
 		functions -c ls __ls_orig
 		function ls; printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"; __ls_orig; end
