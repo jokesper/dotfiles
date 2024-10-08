@@ -4,5 +4,5 @@ DefaultDependencies=no
 
 [Service]
 Type=exec
-ExecStart=/usr/bin/kmonad -i 'device-file "%I"' %E/kmonad/personal.kbd
+ExecStart=/usr/bin/kmonad -w0 -i 'device-file "%I"' %E/kmonad/personal.kbd
 Nice=-20
