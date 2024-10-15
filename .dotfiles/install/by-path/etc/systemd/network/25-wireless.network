@@ -6,4 +6,5 @@ DHCP=true
 IgnoreCarrierLoss=3s
 
 [DHCPv4]
+Anonymize=true
 UseDomains=true
