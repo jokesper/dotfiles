@@ -21,11 +21,14 @@ nvim --headless '+Lazy! sync' '+silent MasonUpdate' +quitall &
 
 printf "$lv2 Fetching changes for local git repos\n"
 for gitDir in {"$data"/*.git,"$aur"/*/.git}; do
-	git --git-dir="$gitDir" fetch --quiet &
+	git --git-dir="$gitDir" fetch --depth=1 --quiet
 done
 
 printf "$lv2 Updating firefox user.js\n"
 ~/.dotfiles/merge-firefox-config.sh &
+
+printf "$lv2 Updating fcitx5 quick phrases\n"
+~/.dotfiles/typst-to-fcitx5.sh &
 
 printf "$lv2 Updating haskell package index\n"
 cabal update

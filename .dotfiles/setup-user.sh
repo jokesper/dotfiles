@@ -15,10 +15,10 @@ mkdir -p \
 cd "${0%/*}/user/"
 [[ ! -f "$config/hyprland-config" ]] && install -Dm644 hyprland-config -t "$config"
 
-for repo in {'rxi/json.lua','arkenfox/user.js'}; do
+for repo in {'rxi/json.lua','arkenfox/user.js','typst/typst'}; do
 	local="$data/${repo#*/}.git"
 	[[ ! -d "$local" ]] \
-		&& git clone --filter=blob:none --bare -- \
+		&& git clone --depth=1 --bare -- \
 			"https://github.com/$repo.git" \
 			"$local"
 done
