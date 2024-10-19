@@ -49,6 +49,9 @@ packages=$(printf "%s\n" \
 		texlive-meta \
 		typst \
 	hyprland \
+	fcitx5 \
+		fcitx5-qt \
+		fcitx5-gtk \
 	kitty \
 		ttf-firacode-nerd \
 		fish \

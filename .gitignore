@@ -10,4 +10,6 @@
 !.haskeline
 
 !.config/
+!.local/
+.local/state/
 !.mozilla/

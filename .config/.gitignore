@@ -17,3 +17,4 @@ gtk-3.0/bookmarks
 cmus/*
 !cmus/rc
 !keepassxc/
+!fcitx5/

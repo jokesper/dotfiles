@@ -1,0 +1,17 @@
+[Groups/0]
+# Group Name
+Name=Default
+# Layout
+Default Layout=eu
+# Default Input Method
+DefaultIM=keyboard-eu
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-eu
+# Layout
+Layout=
+
+[GroupOrder]
+0=Default
+
