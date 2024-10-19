@@ -2,6 +2,18 @@
 
 set -eu
 
+symbols() {
+	git --git-dir="$typst" show HEAD:$symbols/$1.rs \
+		| sed \
+			-e '0,/symbols!/d' -e '/^};/d' \
+			-e 's/#\[.*\]//g' \
+			-e '/\/\//d' \
+			-e 's/\[/{/g' -e 's/\]/}/g' \
+			-e 's/\([A-Za-z.]\+\):/["\1"] =/g' \
+		| sed -e '1 i\return {' -e '$a\}' \
+
+}
+
 typst=${XDG_DATA_HOME:-$HOME/.local/share}/dotfiles/typst.git
 symbols=crates/typst/src/symbols
 
@@ -23,15 +35,9 @@ luajit -- <(printf "%s" "
 			end
 		end
 	end
-	local sym = ...
-	local path = '$XDG_DATA_HOME/fcitx5/data/quickphrase.d/'
-	to_fcitx5(sym, path .. 'sym.mb')
-") <(git --git-dir="$typst" show HEAD:$symbols/sym.rs \
-	| sed \
-		-e '0,/const SYM/d' -e '/^};/d' \
-		-e 's/#\[.*\]//g' \
-		-e '/\/\//d' \
-		-e 's/\[/{/g' -e 's/\]/}/g' \
-		-e 's/\([A-Za-z.]\+\):/["\1"] =/g' \
-	| sed -e '1 i\return {' -e '$a\}' \
-)
+	local args = {...}
+	local path = '$XDG_DATA_HOME/fcitx5/data/quickphrase.d/typst-%s.mb'
+	for i, mod in ipairs{'sym', 'emoji'} do
+		to_fcitx5(args[i], path:format(mod))
+	end
+") <(symbols sym) <(symbols emoji)
