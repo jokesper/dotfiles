@@ -49,6 +49,7 @@ packages=$(printf "%s\n" \
 		texlive-meta \
 		typst \
 	hyprland \
+	kmonad \
 	fcitx5 \
 		fcitx5-qt \
 		fcitx5-gtk \
