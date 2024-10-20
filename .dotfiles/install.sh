@@ -160,7 +160,7 @@ else
 	fish
 fi
 
-mkdir -p /srv/sftp/{read,write}
+mkdir -p /srv/sftp/{read,write,share}
 chown root /srv/sftp
 chown root:wheel /srv/sftp/{read,write,share}
 chmod 0755 /srv/sftp

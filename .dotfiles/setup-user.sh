@@ -23,7 +23,7 @@ for repo in {'rxi/json.lua','arkenfox/user.js','typst/typst'}; do
 			"$local"
 done
 
-for pkg in {swww}; do
+for pkg in swww; do
 	if [[ ! -d "$aur/$pkg" ]]; then
 		git clone --filter=blob:none -- \
 			"https://aur.archlinux.org/$pkg.git" \
