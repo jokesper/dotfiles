@@ -166,6 +166,7 @@ return {
 			local lspconfig = require 'lspconfig'
 			lspconfig.texlab.setup {}
 			lspconfig.rust_analyzer.setup {}
+			lspconfig.clangd.setup {}
 			lspconfig.hls.setup {
 				settings = {
 					haskell = {

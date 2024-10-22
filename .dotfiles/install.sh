@@ -24,6 +24,7 @@ packages=$(printf "%s\n" \
 		$(lscpu | sed -ne 's/^.*\(amd\).*$/amdvlk/ip') \
 		$(lspci | sed -ne 's/^.*Network controller.*$/wpa_supplicant/p') \
 		gcc \
+		clang \
 		git \
 			git-delta \
 		jq \
