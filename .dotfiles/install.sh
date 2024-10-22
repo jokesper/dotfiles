@@ -128,12 +128,13 @@ users=$(getent passwd \
 
 install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
 install -Dm644 <(printf 'LANG=en_US.UTF-8\n') -T /etc/locale.conf
-install -Dm644 <(printf 'root=UUID=%s rw' "$(findmnt -rno UUID /)") -T /etc/cmdline.d/root.conf
+install -Dm644 <(printf 'root=UUID=%s rw rootflags=%s' $(findmnt -rno UUID,OPTIONS /)) \
+	-T /etc/cmdline.d/root.conf
 # NOTE: Assumution of either `/` being on a physical device or on a luks device
-luksRoot=$(dmsetup deps -o devname "$(findmnt -rno SOURCE /)" \
+luksRoot=$(dmsetup deps -o devname "$(findmnt -rno SOURCE / | sed 's/\[.*\]//')" \
 	2>/dev/null \
 	| grep -Po '(?<=\()[[:alnum:]]+(?=\))' \
-	| xargs -I{} lsblk -ndo UUID /dev/{} \
+	| xargs -I{} blkid -o value -s UUID /dev/{} \
 	| sed -e '/^$/d;s/^/rd.luks.name=/;s/$/=root/')
 install -Dm644 <(printf '%s' "$luksRoot") -T /etc/cmdline.d/luks-root.conf
 install -Dm644 <(printf '[Service]\nExecStart=\nExecStart=%s\n' \
