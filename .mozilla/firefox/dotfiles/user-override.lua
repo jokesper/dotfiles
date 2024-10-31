@@ -6,12 +6,6 @@ return
 		['resistFingerprinting.letterboxing'] = false,
 		['globalprivacycontrol.enabled'] = true,
 	},
-	font = {
-		['minimum-size.x-western'] = 9,
-		['name.serif.x-western'] = 'FiraCode Nerd Font',
-		['size.monospace.x-western'] = 9,
-		['size.variable.x-western'] = 9,
-	},
 	browser = {
 		['urlbar.placeholderName'] = '<...>',
 		['urlbar.placeholderName.private'] = '<...>',
