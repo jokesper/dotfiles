@@ -11,6 +11,8 @@
 	conflictstyle = diff3
 [diff]
 	colorMoved = default
+[rerere]
+	enabled = true
 
 [user]
 	name = Joschua Kesper
