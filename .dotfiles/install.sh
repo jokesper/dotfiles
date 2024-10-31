@@ -127,8 +127,8 @@ users=$(getent passwd \
 		} }')
 [[ $(wc -l <<< "$users") == 1 ]] && user=$users || user=''
 
-install -Dm644 <(printf 'en_US.UTF-8 UTF-8\n') -T /etc/locale.gen
-install -Dm644 <(printf 'LANG=en_US.UTF-8\n') -T /etc/locale.conf
+install -Dm644 <(printf 'en_DK.UTF-8 UTF-8\n') -T /etc/locale.gen
+install -Dm644 <(printf 'LANG=en_DK.UTF-8\n') -T /etc/locale.conf
 install -Dm644 <(printf 'root=UUID=%s rw rootflags=%s' $(findmnt -rno UUID,OPTIONS /)) \
 	-T /etc/cmdline.d/root.conf
 # NOTE: Assumution of either `/` being on a physical device or on a luks device
