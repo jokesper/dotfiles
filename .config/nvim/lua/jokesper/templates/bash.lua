@@ -1,6 +1,6 @@
 return function(loader, event)
-	loader([[
+	loader [[
 	#!/usr/bin/env bash
 
-	set -eu]])
+	set -eu]]
 end
