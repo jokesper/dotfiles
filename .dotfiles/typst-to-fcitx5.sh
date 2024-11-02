@@ -31,7 +31,9 @@ luajit -- <(printf "%s" "
 			out:close()
 		else
 			for k, v in pairs(tbl) do
-				if type(v) ~= 'table' then
+				if type(k) == 'number' then
+					table.insert(res, key:sub(1,#key-1) .. ' ' .. v)
+				elseif type(v) ~= 'table' then
 					table.insert(res, key .. k .. ' ' .. v)
 				else to_fcitx5(res, v, key .. k .. '.') end
 			end
