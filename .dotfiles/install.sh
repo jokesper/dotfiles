@@ -40,6 +40,7 @@ packages=$(printf "%s\n" \
 	wireplumber \
 		pipewire-pulse \
 	openssh \
+		x11-ssh-askpass \
 	brightnessctl \
 	libnotify \
 	man-db \
