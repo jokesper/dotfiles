@@ -1,1 +1,3 @@
-:root:has(#viewerContainer) {filter: invert(100%);}
+@media screen {
+	:root:has(#viewerContainer) {filter: invert(100%);}
+}
