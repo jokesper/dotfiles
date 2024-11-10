@@ -47,4 +47,7 @@ return
 		['legacyUserProfileCustomizations.stylesheets'] = true
 	},
 	['full-screen-api.ignore-widgets'] = true,
+	pdfjs = {
+		sidebarViewOnLoad = 0,
+	},
 }
