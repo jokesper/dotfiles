@@ -11,7 +11,8 @@ switch (date | md5sum | head -c2)
 		function prompt_hostname; printf 'zuhause'; end
 		function fish_prompt; USER="König" __fish_prompt_orig; end
 	case 15
-		function fish_greeting; printf "%sTurtles%s\n" (set_color -o green) (set_color normal); end
+		functions -c fish_greeting __fish_greeting_orig
+		function fish_greeting; __fish_greeting_orig; printf "%sTurtles%s\n" (set_color -o green) (set_color normal); end
 		if set -q fish_private_mode; printf "... aber versteckt\n"; end
 	case 16; command xdg-open 'https://en.wikipedia.org/wiki/Turtle' & disown
 	case 17
