@@ -47,3 +47,12 @@ function hl -w hledger -d 'HLedger for ongoing finances'
 	|| hledger --file=(date +%Y).journal $argv \
 
 end
+
+function sshlpr -d 'Print over SSH';
+	set res (mktemp)
+	pdfunite $argv[3..] "$res" \
+		&& cat "$res" | ssh "$argv[1]" lpr -P "$argv[2]"
+	rm "$res"
+end
+
+#function <...> -d 'Print somewhere'; sshlpr <host> <printer> $argv; end

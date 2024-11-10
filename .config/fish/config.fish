@@ -35,4 +35,5 @@ function fish_greeting -d 'Show unpushed git commits when starting fish'
 end
 
 source "$__fish_config_dir/aliases.fish"
+source "$__fish_config_dir/printers.fish" 2>/dev/null
 source "$__fish_config_dir/shell-gamble.fish"
