@@ -49,6 +49,8 @@ luajit -- <(printf "%s" "
 # We ignore the \u{...} parts, since they mostly contain spaces anyways
 git --git-dir="$typst" show HEAD:crates/typst-syntax/src/ast.rs \
 	| sed -ne '/const LIST/,/\];$/p' \
-	| sed -ne 's/\s*("\([^" ]\+\)", '\''\(.\)'\''),.*$/\1 \2/p' \
+	| sed -ne 's/\s*("\([^" ]\+\)", '\''\([^'\'']\+\)'\''),.*$/\1 \2/p' \
+	| sed -e 's/^\(\S\+\) \\u{\([0-9A-Fa-f]\+\)}/\1 \\u\2/' \
+	| xargs -0I{} printf {} \
 	| sort -u \
 	> "$dest"-shorthand.mb
