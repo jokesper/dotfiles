@@ -18,3 +18,4 @@ cmus/*
 !cmus/rc
 !keepassxc/
 !fcitx5/
+!fontconfig/
