@@ -48,6 +48,7 @@ packages=$(printf "%s\n" \
 	neovim \
 		ripgrep \
 		fd \
+		cloc \
 		texlive-meta \
 		typst \
 	hyprland \

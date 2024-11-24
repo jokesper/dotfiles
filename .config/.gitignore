@@ -19,3 +19,4 @@ cmus/*
 !keepassxc/
 !fcitx5/
 !fontconfig/
+!cloc/
