@@ -40,3 +40,6 @@ opt.splitbelow = true
 
 opt.updatetime = 250
 opt.timeoutlen = 800
+
+opt.spelllang = 'en'
+opt.spellsuggest = 'best,9'
