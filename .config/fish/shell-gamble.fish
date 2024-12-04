@@ -1,4 +1,9 @@
 switch (date | md5sum | head -c2)
+	case 09
+		functions -c ls __ls_orig
+		set __fake_pwd "$PWD"
+		function cd; set __fake_pwd "$__fake_pwd/$argv[1]"; end
+		function ls; __ls_orig "$__fake_pwd/$argv[1]"; end
 	case 10; if command --query sl; function ls; command sl -lGw; end; end
 	case 11; if command --query ghci; exec ghci -v0 -ghci-script (printf ':set prompt "%s"\n' (fish_prompt) | psub); end
 	case 12; printf "sleep 0.1\n" >> "$__fish_config_dir/config.fish"
