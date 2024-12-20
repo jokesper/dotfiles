@@ -37,15 +37,23 @@ end
 function newpass -d 'Generate password'
 	openssl rand -base64 30 | tee /dev/stderr | wl-copy
 end
-function hl -w hledger -d 'HLedger for ongoing finances'
-	hledger \
-		--pretty \
-		--file=(date +%Y).journal \
-		--begin=(date +%Y) \
-		$argv \
-		2>/dev/null \
-	|| hledger --file=(date +%Y).journal $argv \
 
+function hl -w hledger -d 'HLedger for ongoing finances'
+	if [ "$argv" = check ]
+		hledger --file=(date +%Y).journal check --strict \
+			ordereddates \
+			tags \
+
+	else
+		hledger \
+			--pretty \
+			--file=(date +%Y).journal \
+			--begin=(date +%Y) \
+			$argv \
+			2>/dev/null \
+		|| hledger --file=(date +%Y).journal $argv \
+
+	end
 end
 
 function sshlpr -d 'Print over SSH';
