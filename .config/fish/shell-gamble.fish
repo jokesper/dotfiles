@@ -1,7 +1,7 @@
 if set -q FISH_RECURSIVE_GAMBLE; set --erase FISH_RECURSIVE_GAMBLE; return; end
 
 switch (date | md5sum | head -c2)
-	case 08; FISH_RECURSIVE_GAMBLE=1 exec bash -c 'fish | stdbuf -o0 tr oilzeasgt 011234567'
+	case 08; FISH_RECURSIVE_GAMBLE=1 exec bash -c 'script -q -c fish /dev/null | stdbuf -o0 tr oilzeasgt 011234567'
 	case 09
 		functions -c ls __ls_orig
 		set __fake_pwd "$PWD"
