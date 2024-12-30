@@ -15,7 +15,7 @@ function up -d 'Upgrade the entire system'
 	and doas -n pacman -Su
 	and ~/.dotfiles/user-updates.sh
 end
-function down -w poweroff -d 'Quick alias to poweroff'; poweroff $argv; end
+function down -d 'Quick alias to poweroff'; ~/.dotfiles/stop-and-shutdown.sh; end
 function ls -w ls -d 'Color `ls` output'; command ls --color=auto -H $argv; end
 function grep -w grep -d 'Color `grep` output'; command grep --color=auto $argv; end
 function ll -w ls -d '`ls` but with long listing format'; ls -Alh $argv; end
