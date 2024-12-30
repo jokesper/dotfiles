@@ -13,6 +13,8 @@
 	colorMoved = default
 [rerere]
 	enabled = true
+[gc]
+	rerereResolved = 1.year.ago
 
 [user]
 	name = Joschua Kesper
@@ -30,3 +32,8 @@
 	format = ssh
 [commit]
 	gpgSign = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
