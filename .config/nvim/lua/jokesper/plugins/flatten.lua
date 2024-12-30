@@ -1,9 +1,9 @@
 return { {
 	'willothy/flatten.nvim',
 	opts = {
-		callbacks = {
+		hooks = {
 			should_nest = function(...)
-				return #vim.api.nvim_list_uis() <= 0 or require 'flatten'.default_should_nest(...)
+				return #vim.api.nvim_list_uis() <= 0 or require 'flatten'.hooks.should_nest(...)
 			end,
 		},
 		window = { open = 'tab' },
