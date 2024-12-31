@@ -4,10 +4,7 @@ set -eu
 
 error() { printf "\e[31;1m%s: %s\e[0m\n" "$0" "$*" >&2; }
 
-if ! cmus-remote -Q &>/dev/null; then
-	error "cmus not running"
-	exit 1
-fi
+if ! cmus-remote -Q &>/dev/null; then poweroff; fi
 
 if [[ ! -f /tmp/stop-and-shutdown.lock ]] then (
 	touch /tmp/stop-and-shutdown.lock
