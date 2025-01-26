@@ -3,6 +3,6 @@
 		"include": "$XDG_CONFIG_HOME/waybar/base.jsonc",
 		"position": "overlay",
 		"modules-left": ["hyprland/workspaces"],
-		"modules-right": ["network", "wireplumber", "battery", "disk", "cpu", "temperature", "memory", "clock"],
+		"modules-right": ["tray", "network", "wireplumber", "battery", "disk", "cpu", "temperature", "memory", "clock"],
 	},
 ]
