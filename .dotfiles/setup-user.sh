@@ -23,15 +23,6 @@ for repo in {'rxi/json.lua','arkenfox/user.js','typst/typst'}; do
 			"$local"
 done
 
-for pkg in swww; do
-	if [[ ! -d "$aur/$pkg" ]]; then
-		git clone --filter=blob:none -- \
-			"https://aur.archlinux.org/$pkg.git" \
-			"$aur/$pkg"
-		cd "$aur/$pkg"
-		makepkg --syncdeps --rmdeps --install --needed
-	fi
-done
 
 hoogleDB=${XDG_DATA_HOME:-$HOME/.local/share}/hoogle/haskell.hoo
 [[ ! -d "$hoogleDB" ]] && hoogle generate --database="$hoogleDB"

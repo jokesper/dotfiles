@@ -12,5 +12,6 @@ before() {
 		waybar \
 		wofi \
 		grim slurp \
+		swww \
 
 }
