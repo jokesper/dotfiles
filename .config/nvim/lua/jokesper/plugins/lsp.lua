@@ -127,7 +127,7 @@ return {
 				capabilities = require 'cmp_nvim_lsp'.default_capabilities(),
 				lsp_attach = function(client, bufnr)
 					lsp_zero.default_keymaps { buffer = bufnr }
-					lsp_zero.buffer_autoformat(client, bufnr)
+					--lsp_zero.buffer_autoformat(client, bufnr)
 					vim.keymap.set('n', 'gl', function() vim.diagnostic.open_float {} end, { buffer = bufnr })
 				end,
 			}
