@@ -26,6 +26,16 @@ done
 hyprpm add https://github.com/outfoxxed/hy3
 hyprpm enable hy3
 
+#for pkg in ethersync-bin; do
+#	if [[ ! -d "$aur/$pkg" ]]; then
+#		git clone --filter=blob:none -- \
+#			"https://aur.archlinux.org/$pkg.git" \
+#			"$aur/$pkg"
+#		cd "$aur/$pkg"
+#		makepkg --syncdeps --rmdeps --install --needed
+#	fi
+#done
+
 hoogleDB=${XDG_DATA_HOME:-$HOME/.local/share}/hoogle/haskell.hoo
 [[ ! -d "$hoogleDB" ]] && hoogle generate --database="$hoogleDB"
 
