@@ -15,6 +15,9 @@ printf "$lv1 $USER\n"
 printf "$lv2 Synchronizing music playlists\n"
 ~/.dotfiles/music-sync.sh
 
+printf "$lv2 Updating hyprland plugins\n"
+hyprpm update &
+
 printf "$lv2 Updating neovim plugins\n"
 nvim --headless '+Lazy! sync' '+silent MasonUpdate' +quitall &
 

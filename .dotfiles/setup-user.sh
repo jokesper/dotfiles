@@ -23,6 +23,8 @@ for repo in {'rxi/json.lua','arkenfox/user.js','typst/typst'}; do
 			"$local"
 done
 
+hyprpm add https://github.com/outfoxxed/hy3
+hyprpm enable hy3
 
 hoogleDB=${XDG_DATA_HOME:-$HOME/.local/share}/hoogle/haskell.hoo
 [[ ! -d "$hoogleDB" ]] && hoogle generate --database="$hoogleDB"

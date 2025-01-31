@@ -13,5 +13,7 @@ before() {
 		wofi \
 		grim slurp \
 		swww \
+		cpio \
+		cmake \
 
 }
