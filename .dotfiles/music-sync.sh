@@ -30,7 +30,8 @@ while IFS= read -r list; do
 					print track "\t" notListed[track] "\t" fileNames[track]
 			}' \
 				"$list" \
-				<(ls -1 "$dir" 2> /dev/null))
+				<(ls -1 "$dir" 2> /dev/null) \
+				| sort -dk2 -t$'\t')
 	}
 		2>&1
 	if [ -n "$notListed" ]; then
