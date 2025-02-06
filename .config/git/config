@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [core]
-	whitespace = space-before-tab,tabwith=4,trailing-space
+	whitespace = space-before-tab,tabwidth=4,trailing-space
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
