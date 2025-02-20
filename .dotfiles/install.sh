@@ -64,6 +64,8 @@ packages=$(printf "%s\n" \
 	cabal-install \
 		haskell-language-server \
 		hoogle \
+		haskell-lens \
+		haskell-shake \
 	agda \
 		agda-stdlib \
 	hledger \
