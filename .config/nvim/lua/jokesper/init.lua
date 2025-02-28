@@ -49,6 +49,8 @@ require 'lazy'.setup {
 		colorscheme = { 'jokesper' },
 	},
 	headless = {
+		--process = false,
+		--log = false,
 		task = false,
 	},
 	change_detection = {

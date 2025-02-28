@@ -6,7 +6,7 @@ before() {
 	add-package \
 		wl-clipboard \
 		xdg-desktop-portal-hyprland \
-		`#polkit-kde-agent` \
+		`#hyprpolkitagent` \
 		hyprlock \
 		hypridle \
 		waybar \
