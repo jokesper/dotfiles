@@ -4,6 +4,7 @@ Type=wlan
 [Network]
 DHCP=true
 IgnoreCarrierLoss=3s
+MulticastDNS=yes
 
 [DHCPv4]
 Anonymize=true
