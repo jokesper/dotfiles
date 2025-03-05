@@ -30,7 +30,7 @@ printf "$lv2 Updating firefox user.js\n"
 ~/.dotfiles/merge-firefox-config.sh &
 
 printf "$lv2 Updating fcitx5 quick phrases\n"
-~/.dotfiles/typst-to-fcitx5.sh &
+~/.dotfiles/typst-to-fcitx5.hs &
 
 printf "$lv2 Updating haskell package index\n"
 cabal update
