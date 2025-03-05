@@ -43,6 +43,7 @@ return
 			newElementCount = 3,
 		}
 	},
+	['extensions.webextensions.restrictedDomains'] = '';
 	toolkit = {
 		['legacyUserProfileCustomizations.stylesheets'] = true
 	},
