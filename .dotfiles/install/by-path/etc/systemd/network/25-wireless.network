@@ -8,4 +8,3 @@ MulticastDNS=yes
 
 [DHCPv4]
 Anonymize=true
-UseDomains=true
