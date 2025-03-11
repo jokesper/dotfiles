@@ -30,7 +30,7 @@
 )
 
 (defalias
-	a (tap-hold-next-release 200 a  met)
+	a (tap-hold-next-release 200 a lmet)
 	o (tap-hold-next-release 200 o  alt)
 	e (tap-hold-next-release 200 e lctl)
 	u (tap-hold-next-release 200 u lsft)
@@ -40,7 +40,7 @@
 	h (tap-hold-next-release 200 h rsft)
 	t (tap-hold-next-release 200 t rctl)
 	n (tap-hold-next-release 200 n  alt)
-	s (tap-hold-next-release 200 s  met)
+	s (tap-hold-next-release 200 s rmet)
 
 	esc  (tap-hold-next-release 200 esc  (layer-toggle media))
 	spc  (tap-hold-next-release 200 spc  (layer-toggle navigation))
