@@ -6,7 +6,7 @@
 !.dotfiles/
 !docs/
 
-# https://github.com/judah/haskeline/pull/157
+# Moved to XDG with 0.8.3.0
 !.haskeline
 
 !.config/
