@@ -29,7 +29,7 @@
 [format]
 	pretty = "format:%C(auto)%h%d %s"
 [tag]
-	forceSignAnnotated = true
+	gpgSign = true
 [gpg]
 	format = ssh
 [commit]
