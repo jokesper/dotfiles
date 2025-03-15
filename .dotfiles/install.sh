@@ -46,6 +46,7 @@ packages=$(printf "%s\n" \
 	man-db \
 	doas \
 	neovim \
+		tinyxxd \
 		ripgrep \
 		fd \
 		cloc \
