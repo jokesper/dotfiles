@@ -51,6 +51,7 @@ packages=$(printf "%s\n" \
 		fd \
 		cloc \
 		texlive-meta \
+		texlab \
 		typst \
 	hyprland \
 	kmonad \
