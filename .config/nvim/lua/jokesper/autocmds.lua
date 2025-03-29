@@ -88,7 +88,6 @@ for name, augroup in pairs { custom = {
 		end,
 	},
 	{
-		'VimEnter',
 		'FocusGained',
 		desc = 'Show line numbers when focused',
 		callback = function() setOptionsOnFocus(true) end,
@@ -107,3 +106,7 @@ for name, augroup in pairs { custom = {
 		vim.api.nvim_create_autocmd(event, opts)
 	end
 end
+
+-- Set inital options. We don't use VimEnter,
+-- since it's after commands run with `-c`
+setOptionsOnFocus(true)
