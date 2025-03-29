@@ -36,9 +36,6 @@ function h -w hoogle -d 'Classic hoogle search with extras'
 			] | @tsv" \
 		| column -ts\t
 end
-function newpass -d 'Generate password'
-	openssl rand -base64 30 | tee /dev/stderr | wl-copy
-end
 
 function hl -w hledger -d 'HLedger for ongoing finances'
 	if [ "$argv" = check ]
