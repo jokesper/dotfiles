@@ -46,5 +46,6 @@ return
 	['full-screen-api.ignore-widgets'] = true,
 	pdfjs = {
 		sidebarViewOnLoad = 0,
+		enableScripting = true,
 	},
 }
