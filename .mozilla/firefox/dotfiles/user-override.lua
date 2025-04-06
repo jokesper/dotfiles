@@ -2,6 +2,9 @@ local json = ...
 
 return
 {
+	privacy = {
+		['resistFingerprinting'] = true,
+	},
 	browser = {
 		['urlbar.placeholderName'] = '<...>',
 		['urlbar.placeholderName.private'] = '<...>',
