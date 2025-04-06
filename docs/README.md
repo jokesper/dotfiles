@@ -1,5 +1,5 @@
 # Dotfiles
-Here are my dotfiles, if you find anything usefull feel free to copy it.
+The public part of my personal configuration.
 
 ## Installation
 ### From Scratch
@@ -36,4 +36,5 @@ git clone https://github.com/jokesper/dotfiles.git ~
 ```
 
 ## Contributing
-If you want to contribute feel free, but I wouldn't encourage it as dotfiles should be a personalized configuration.
+You probably shouldn't. Though if you still want to, I will review them.
+In such cases I might also consider extracting them into a separate repository.
