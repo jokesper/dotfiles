@@ -8,10 +8,12 @@ vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResume', 'VimResized', 'WinNew', '
 	desc = 'Update scrolloff value',
 	callback = function()
 		for _, id in pairs(vim.api.nvim_list_wins()) do
-			local wo = vim.wo[id]
-			wo.scrolloff, wo.sidescrolloff =
-				math.ceil(vim.api.nvim_win_get_height(id) / 10),
-				math.ceil(vim.api.nvim_win_get_width(id) / 10)
+			if vim.bo[vim.api.nvim_win_get_buf(id)].buftype == '' then
+				local wo = vim.wo[id]
+				wo.scrolloff, wo.sidescrolloff =
+					math.ceil(vim.api.nvim_win_get_height(id) / 10),
+					math.ceil(vim.api.nvim_win_get_width(id) / 10)
+			end
 		end
 	end,
 })
