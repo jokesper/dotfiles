@@ -41,6 +41,11 @@ return {
 					replace = '%1',
 				},
 				{
+					file_pattern = '*/glab-cli/config.yml',
+					cloak_pattern = { '(token:%s+)%w+', },
+					replace = '%1',
+				},
+				{
 					file_pattern = '*fstab',
 					cloak_pattern = { '(username=)[^,%s]+', '(workgroup=)[^,%s]+', '(password=)[^,%s]+', '([ug]id=)[^,%s]+' },
 					replace = '%1',
