@@ -35,10 +35,5 @@ printf "$lv2 Updating fcitx5 quick phrases\n"
 printf "$lv2 Updating haskell package index\n"
 cabal update
 
-printf "$lv2 Updating local haskell binaries\n"
-for bin in "$HOME"/.dotfiles/*/*.cabal; do
-	(cd "${bin%/*}"; cabal install --ghc-options=-dynamic --overwrite-policy=always)
-done
-
 printf "$lv2 Waiting for tasks to finish\n"
 wait

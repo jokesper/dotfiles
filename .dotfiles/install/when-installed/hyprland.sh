@@ -9,10 +9,10 @@ before() {
 		`#hyprpolkitagent` \
 		hyprlock \
 		hypridle \
+		swaybg \
 		waybar \
 		wofi \
 		grim slurp \
-		swww \
 		cpio \
 		cmake \
 
