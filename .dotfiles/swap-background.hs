@@ -64,7 +64,7 @@ changeWallpaper ssid = do
     void $ readProcessWithExitCode "pkill" ["-fu", user, "swaybg"] ""
     void $ spawnProcess "swaybg" args
   applyFallback monitor = ["-o", monitor, "-c", "0F0F0F"]
-  applyWallpaper monitor wallpaper = ["-o", monitor, "-i", wallpaper]
+  applyWallpaper monitor wallpaper = ["-o", monitor, "-m", "fill", "-i", wallpaper]
 
   getShuffled monitors wallpapers = do
     baseSet <- cycle <$> shuffleM wallpapers
