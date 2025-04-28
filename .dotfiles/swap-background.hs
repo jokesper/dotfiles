@@ -15,7 +15,7 @@ import Data.Traversable (for)
 
 import qualified Data.List.NonEmpty as N
 
-import System.Directory (canonicalizePath, doesDirectoryExist, getHomeDirectory, listDirectory)
+import System.Directory (XdgDirectory (..), canonicalizePath, doesDirectoryExist, getXdgDirectory, listDirectory)
 import System.Environment (getArgs, lookupEnv)
 import System.FilePath ((</>))
 import System.Process (readProcess, readProcessWithExitCode, spawnProcess)
@@ -46,7 +46,7 @@ main = join $ go <$> getArgs <*> lookupEnv "WPA_ID"
 changeWallpaper :: Maybe String -> IO ()
 changeWallpaper ssid = do
   monitors <- getMonitors
-  base <- (</> "Desktop") <$> getHomeDirectory
+  base <- getXdgDirectory XdgConfig "swap-background"
   pairing <- for monitors $ \monitor -> (monitor,) <$> getLocation base monitor
 
   for_ (N.groupAllWith snd pairing) $ \pairs -> do
