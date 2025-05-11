@@ -53,6 +53,7 @@ packages=$(printf "%s\n" \
 		texlive-meta \
 		texlab \
 		typst \
+		tinymist \
 	hyprland \
 	kmonad \
 	fcitx5 \

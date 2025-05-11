@@ -165,6 +165,7 @@ return {
 			}
 			local lspconfig = require 'lspconfig'
 			lspconfig.texlab.setup {}
+			lspconfig.tinymist.setup {}
 			lspconfig.rust_analyzer.setup {}
 			lspconfig.clangd.setup {}
 			lspconfig.hls.setup {
