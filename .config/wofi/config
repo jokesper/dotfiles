@@ -15,6 +15,6 @@ layer=overlay
 key_up=Alt-k
 key_down=Alt-j
 key_left=Alt-h
-key_right=Alt-right
+key_right=Alt-l
 key_pgup=Ctrl-u
 key_pgdn=Ctrl-d
