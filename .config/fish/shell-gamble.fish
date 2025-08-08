@@ -1,6 +1,7 @@
 if set -q FISH_RECURSIVE_GAMBLE; set --erase FISH_RECURSIVE_GAMBLE; return; end
 
 switch (date | md5sum | head -c2)
+	case 07; function cat; "$__fish_config_dir/tiny-cat.lua" $argv; end
 	case 08; FISH_RECURSIVE_GAMBLE=1 exec fish -c 'script -qc fish /dev/null | stdbuf -o0 tr oilzeasgt 011234567'
 	case 09
 		functions -c ls __ls_orig
