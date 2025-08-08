@@ -10,7 +10,7 @@ switch (date | md5sum | head -c2)
 		function ls; __ls_orig "$__fake_pwd/$argv[1]"; end
 	case 10; if command --query sl; function ls; command sl -lGw; end; end
 	case 11; if command --query ghci; exec ghci -v0 -ghci-script (printf ':set prompt "%s"\n' (fish_prompt) | psub); end
-	case 12; printf "sleep 0.1\n" >> "$__fish_config_dir/config.fish"
+	case 12; printf "sleep 0.1\n" >> "$XDG_DATA_HOME/fish/shell-gamble.fish"
 	case 13
 		find "$__fish_config_dir" -type f -name \*.fish \
 			| shuf -n1 \
@@ -26,5 +26,5 @@ switch (date | md5sum | head -c2)
 	case 16; command xdg-open 'https://en.wikipedia.org/wiki/Turtle' & disown
 	case 17
 		functions -c ls __ls_orig
-		function ls; printf "sleep 0.01\n" >> "$__fish_config_dir/config.fish"; __ls_orig; end
+		function ls; printf "sleep 0.01\n" >> "$XDG_DATA_HOME/fish/shell-gamble.fish"; __ls_orig; end
 end
