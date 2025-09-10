@@ -38,7 +38,7 @@ return {
 						item.menu = ({
 							luasnip = '□',
 							calc = '∑',
-							async_path = '/',
+							path = '/',
 							nvim_lua = '∃',
 							nvim_lsp = '∃',
 							buffer = '~',
@@ -107,7 +107,7 @@ return {
 			cmp.setup.cmdline(':', {
 				mapping = cmp.mapping.preset.cmdline(),
 				sources = {
-					{ name = 'async_path' },
+					{ name = 'path' },
 					{ name = 'cmdline' },
 				},
 			})
