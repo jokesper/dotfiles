@@ -5,11 +5,6 @@ return {
 		lazy = true,
 	},
 	{
-		'williamboman/mason.nvim',
-		config = true,
-		build = function() pcall(vim.cmd.MasonUpdate) end,
-	},
-	{
 		'hrsh7th/nvim-cmp',
 		event = { 'InsertEnter', 'CmdLineEnter' },
 		dependencies = {
@@ -119,7 +114,6 @@ return {
 		event = { 'BufReadPre', 'BufNewFile' },
 		dependencies = {
 			{ 'hrsh7th/cmp-nvim-lsp' },
-			{ 'williamboman/mason-lspconfig.nvim' },
 		},
 		config = function()
 			local lsp_zero = require 'lsp-zero'
@@ -131,39 +125,29 @@ return {
 					vim.keymap.set('n', 'gl', function() vim.diagnostic.open_float {} end, { buffer = bufnr })
 				end,
 			}
-			require 'mason-lspconfig'.setup {
-				ensure_installed = {
-					'lua_ls',
-				},
-				handlers = {
-					function(server) require 'lspconfig'[server].setup {} end,
-					lua_ls = function()
-						require 'lspconfig'.lua_ls.setup(lsp_zero.nvim_lua_ls {
-							settings = {
-								Lua = {
-									format = {
-										enable = true,
-										defaultConfig = {
-											end_of_line = 'lf',
-											table_seperator_style = 'comma',
-											trailing_table_seperator = 'smart',
-											call_arg_parentheses = 'remove',
-											quote_style = 'single',
-											align_function_params = 'false',
-											align_continuous_assign_statement = 'false',
-											align_continuous_rect_table_field = 'false',
-											align_continuous_line_space = '0',
-											align_array_table = 'none',
-											align_continuous_inline_comment = 'false',
-										},
-									},
-								},
-							},
-						})
-					end,
-				},
-			}
 			local lspconfig = require 'lspconfig'
+			lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls {
+				settings = {
+					Lua = {
+						format = {
+							enable = true,
+							defaultConfig = {
+								end_of_line = 'lf',
+								table_seperator_style = 'comma',
+								trailing_table_seperator = 'smart',
+								call_arg_parentheses = 'remove',
+								quote_style = 'single',
+								align_function_params = 'false',
+								align_continuous_assign_statement = 'false',
+								align_continuous_rect_table_field = 'false',
+								align_continuous_line_space = '0',
+								align_array_table = 'none',
+								align_continuous_inline_comment = 'false',
+							},
+						},
+					},
+				},
+			})
 			lspconfig.texlab.setup {}
 			lspconfig.tinymist.setup {}
 			lspconfig.rust_analyzer.setup {}
